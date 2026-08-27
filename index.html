@@ -9,10 +9,18 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
 
+:root {
+    --gold: #f5dca8;
+    --white: #fffaf0;
+    --muted: rgba(255,255,255,.65);
+    --glass: rgba(255,255,255,.055);
+    --border: rgba(255,255,255,.13);
+}
+
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 html {
@@ -21,23 +29,110 @@ html {
 
 body {
     min-height: 100vh;
-    color: #f7f1e5;
-    font-family: "Cormorant Garamond", Georgia, serif;
-
+    color: var(--white);
     background:
-        radial-gradient(
-            circle at 50% 0%,
-            #3b304d 0%,
-            #171423 38%,
-            #07070c 100%
-        );
-
+        radial-gradient(circle at 50% 0%, #3b304d 0%, #171423 38%, #07070c 100%);
+    font-family: "Cormorant Garamond", Georgia, serif;
     overflow-x: hidden;
 }
 
-/* =====================================================
-   OS TOP BAR
-===================================================== */
+button {
+    font: inherit;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.stars {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,.9) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(255,255,255,.55) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(255,225,170,.5) 1px, transparent 1.5px);
+
+    background-size:
+        120px 140px,
+        190px 180px,
+        270px 250px;
+
+    opacity: .38;
+
+    animation: starsMove 50s linear infinite;
+}
+
+@keyframes starsMove {
+    to {
+        transform: translateY(-100px);
+    }
+}
+
+.aurora {
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    left: 50%;
+    top: 5%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background:
+        radial-gradient(
+            circle,
+            rgba(245,220,168,.08),
+            rgba(180,150,255,.05),
+            transparent 68%
+        );
+    filter: blur(40px);
+}
+
+.orb {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: .15;
+    animation: orbFloat 12s ease-in-out infinite;
+}
+
+.orb.one {
+    left: -80px;
+    top: 20%;
+    background: #b79cff;
+}
+
+.orb.two {
+    right: -100px;
+    top: 55%;
+    background: #f5dca8;
+    animation-delay: -5s;
+}
+
+@keyframes orbFloat {
+    50% {
+        transform: translateY(-80px) scale(1.15);
+    }
+}
+
+
+/* =========================================================
+   TOP OS BAR
+========================================================= */
 
 .os-bar {
     position: fixed;
@@ -45,9 +140,9 @@ body {
     left: 0;
     right: 0;
 
-    height: 48px;
+    height: 50px;
 
-    z-index: 100;
+    z-index: 500;
 
     display: flex;
     align-items: center;
@@ -55,69 +150,56 @@ body {
 
     padding: 0 18px;
 
-    background: rgba(7,7,12,.55);
+    background: rgba(7,7,12,.58);
 
-    border-bottom:
-        1px solid rgba(255,255,255,.08);
+    border-bottom: 1px solid rgba(255,255,255,.08);
 
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
 
     font-family: Cinzel, serif;
-
-    font-size: .65rem;
-
+    font-size: .62rem;
     letter-spacing: 1.5px;
 }
 
-.os-name {
+.os-left {
     display: flex;
     align-items: center;
-    gap: 8px;
-
-    opacity: .8;
+    gap: 9px;
 }
 
 .os-light {
     width: 7px;
     height: 7px;
-
     border-radius: 50%;
+    background: var(--gold);
 
-    background: #f5dca8;
-
-    box-shadow:
-        0 0 15px rgba(245,220,168,.9);
+    box-shadow: 0 0 15px rgba(245,220,168,.9);
 
     animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
     50% {
-        box-shadow:
-            0 0 28px rgba(245,220,168,1);
+        box-shadow: 0 0 30px rgba(245,220,168,1);
     }
 }
 
-.os-info {
+.os-right {
     display: flex;
     align-items: center;
     gap: 14px;
-
-    opacity: .65;
+    opacity: .7;
 }
 
 .music-mini {
     width: 28px;
     height: 28px;
-
     border-radius: 50%;
 
-    border:
-        1px solid rgba(255,255,255,.18);
+    border: 1px solid rgba(255,255,255,.18);
 
-    background:
-        rgba(255,255,255,.06);
+    background: rgba(255,255,255,.06);
 
     color: white;
 
@@ -125,46 +207,39 @@ body {
 }
 
 
-/* =====================================================
+/* =========================================================
    MUSIC PLAYER
-===================================================== */
+========================================================= */
 
 .music-player {
     position: fixed;
-
-    top: 62px;
+    top: 64px;
     right: 18px;
 
-    width: 330px;
+    width: 340px;
 
-    z-index: 90;
+    z-index: 400;
 
     display: flex;
     align-items: center;
-
     gap: 12px;
 
     padding: 12px;
 
-    border:
-        1px solid rgba(255,255,255,.13);
-
+    border: 1px solid var(--border);
     border-radius: 18px;
 
-    background:
-        rgba(12,11,20,.65);
+    background: rgba(12,11,20,.68);
 
     backdrop-filter: blur(22px);
     -webkit-backdrop-filter: blur(22px);
 
-    box-shadow:
-        0 20px 60px rgba(0,0,0,.35);
+    box-shadow: 0 20px 60px rgba(0,0,0,.35);
 
     animation: playerIn .8s ease;
 }
 
 @keyframes playerIn {
-
     from {
         opacity: 0;
         transform: translateY(-15px);
@@ -174,17 +249,16 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
-
 }
 
 .album {
-    width: 42px;
-    height: 42px;
-
-    flex-shrink: 0;
+    width: 43px;
+    height: 43px;
 
     display: grid;
     place-items: center;
+
+    flex-shrink: 0;
 
     border-radius: 13px;
 
@@ -195,8 +269,7 @@ body {
             rgba(188,168,255,.2)
         );
 
-    border:
-        1px solid rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.12);
 
     font-size: 1.2rem;
 }
@@ -211,7 +284,7 @@ body {
 
     font-family: Cinzel, serif;
 
-    font-size: .65rem;
+    font-size: .62rem;
 
     letter-spacing: .6px;
 
@@ -238,11 +311,9 @@ body {
 
     border-radius: 50%;
 
-    border:
-        1px solid rgba(255,255,255,.2);
+    border: 1px solid rgba(255,255,255,.2);
 
-    background:
-        rgba(255,255,255,.07);
+    background: rgba(255,255,255,.07);
 
     color: white;
 
@@ -250,114 +321,20 @@ body {
 }
 
 
-/* =====================================================
-   BACKGROUND
-===================================================== */
-
-.background {
-    position: fixed;
-
-    inset: 0;
-
-    z-index: -2;
-
-    pointer-events: none;
-
-    overflow: hidden;
-}
-
-.stars {
-    position: absolute;
-
-    inset: 0;
-
-    background-image:
-
-        radial-gradient(
-            circle,
-            rgba(255,255,255,.9) 1px,
-            transparent 1.5px
-        ),
-
-        radial-gradient(
-            circle,
-            rgba(255,255,255,.55) 1px,
-            transparent 1.5px
-        ),
-
-        radial-gradient(
-            circle,
-            rgba(255,225,170,.5) 1px,
-            transparent 1.5px
-        );
-
-    background-size:
-        120px 140px,
-        190px 180px,
-        270px 250px;
-
-    background-position:
-        20px 30px,
-        90px 70px,
-        40px 130px;
-
-    opacity: .4;
-
-    animation:
-        starsMove 45s linear infinite;
-}
-
-@keyframes starsMove {
-
-    to {
-        transform:
-            translateY(-100px);
-    }
-
-}
-
-.glow {
-    position: absolute;
-
-    width: 500px;
-    height: 500px;
-
-    left: 50%;
-    top: 10%;
-
-    transform:
-        translateX(-50%);
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(245,220,168,.08),
-            rgba(175,145,255,.05),
-            transparent 70%
-        );
-
-    filter: blur(30px);
-}
-
-
-/* =====================================================
+/* =========================================================
    OPENING
-===================================================== */
+========================================================= */
 
 #opening {
     min-height: 100vh;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
     text-align: center;
 
-    padding:
-        80px 25px 40px;
+    padding: 100px 25px 50px;
 
     transition:
         opacity 1s ease,
@@ -365,46 +342,37 @@ body {
 }
 
 .opening-content {
-    width: min(760px, 100%);
+    width: min(800px, 100%);
 
-    animation:
-        openingIn 1.5s ease;
+    animation: openingIn 1.4s ease;
 }
 
 @keyframes openingIn {
-
     from {
         opacity: 0;
-        transform:
-            translateY(25px);
+        transform: translateY(25px);
     }
 
     to {
         opacity: 1;
-        transform:
-            translateY(0);
+        transform: translateY(0);
     }
-
 }
 
 .system-label {
-
     display: inline-block;
 
     margin-bottom: 22px;
 
     padding: 8px 15px;
 
-    border:
-        1px solid rgba(245,220,168,.2);
+    border: 1px solid rgba(245,220,168,.2);
 
     border-radius: 999px;
 
-    background:
-        rgba(245,220,168,.035);
+    background: rgba(245,220,168,.035);
 
-    color:
-        rgba(245,220,168,.75);
+    color: rgba(245,220,168,.75);
 
     font-family: Cinzel, serif;
 
@@ -425,17 +393,12 @@ body {
     margin-bottom: 25px;
 }
 
-h1 {
+.opening-title {
     font-family: Cinzel, serif;
 
+    font-size: clamp(3rem, 11vw, 6.5rem);
+
     font-weight: 400;
-}
-
-.opening-title {
-    font-size:
-        clamp(3rem, 11vw, 6.5rem);
-
-    letter-spacing: 2px;
 }
 
 .name {
@@ -444,11 +407,11 @@ h1 {
     background:
         linear-gradient(
             90deg,
-            #ffffff,
+            #fff,
             #f5dca8,
-            #ffffff,
+            #fff,
             #c8bbff,
-            #ffffff
+            #fff
         );
 
     background-size: 250% auto;
@@ -458,17 +421,13 @@ h1 {
 
     color: transparent;
 
-    animation:
-        shimmer 6s linear infinite;
+    animation: shimmer 6s linear infinite;
 }
 
 @keyframes shimmer {
-
     to {
-        background-position:
-            250% center;
+        background-position: 250% center;
     }
-
 }
 
 .subtitle {
@@ -476,18 +435,17 @@ h1 {
 
     margin-top: 12px;
 
-    font-size: .38em;
+    font-size: .18em;
 
-    letter-spacing: 6px;
+    letter-spacing: 7px;
 
-    opacity: .6;
+    opacity: .55;
 }
 
 .opening-text {
-    max-width: 580px;
+    max-width: 620px;
 
-    margin:
-        30px auto 42px;
+    margin: 30px auto 42px;
 
     font-size: 1.3rem;
 
@@ -496,24 +454,22 @@ h1 {
     opacity: .7;
 }
 
-.start-button {
+.start-button,
+.primary-button {
 
-    padding:
-        16px 40px;
+    padding: 16px 40px;
 
-    border:
-        1px solid rgba(255,255,255,.28);
+    border: 1px solid rgba(255,255,255,.28);
 
     border-radius: 50px;
 
-    background:
-        rgba(255,255,255,.055);
+    background: rgba(255,255,255,.055);
 
     color: white;
 
     font-family: Cinzel, serif;
 
-    font-size: .95rem;
+    font-size: .85rem;
 
     letter-spacing: 2px;
 
@@ -522,93 +478,122 @@ h1 {
     transition: .35s;
 }
 
-.start-button:hover {
+.start-button:hover,
+.primary-button:hover {
 
-    transform:
-        translateY(-4px);
+    transform: translateY(-4px);
 
-    background:
-        rgba(255,255,255,.12);
+    background: rgba(255,255,255,.12);
 
-    box-shadow:
-        0 15px 50px rgba(0,0,0,.35);
+    box-shadow: 0 15px 50px rgba(0,0,0,.35);
 }
 
 
-/* =====================================================
-   GAME
-===================================================== */
+/* =========================================================
+   GENERAL SECTIONS
+========================================================= */
+
+section.page-section {
+    width: min(1000px, 92%);
+    margin: auto;
+    padding: 100px 0;
+}
+
+.section-label {
+    text-align: center;
+
+    font-family: Cinzel, serif;
+
+    font-size: .65rem;
+
+    letter-spacing: 4px;
+
+    opacity: .4;
+
+    margin-bottom: 15px;
+}
+
+.section-title {
+    text-align: center;
+
+    font-family: Cinzel, serif;
+
+    font-size: clamp(2.1rem, 7vw, 4rem);
+
+    font-weight: 400;
+}
+
+.section-description {
+    max-width: 650px;
+
+    margin: 20px auto 45px;
+
+    text-align: center;
+
+    font-size: 1.2rem;
+
+    line-height: 1.8;
+
+    opacity: .65;
+}
+
+
+/* =========================================================
+   QUIZ
+========================================================= */
 
 #game {
     display: none;
 }
 
 .game-container {
-
-    width:
-        min(760px, 90%);
-
+    width: min(760px, 92%);
     margin: auto;
 
-    padding:
-        110px 0 90px;
+    padding: 115px 0 90px;
 }
 
 .game-header {
-
     text-align: center;
-
-    margin-bottom: 40px;
+    margin-bottom: 38px;
 }
 
 .game-header small {
-
     font-family: Cinzel, serif;
-
     letter-spacing: 4px;
-
-    font-size: .68rem;
-
+    font-size: .65rem;
     opacity: .4;
 }
 
 .game-header h2 {
-
     margin-top: 18px;
 
-    font-size:
-        clamp(2rem, 7vw, 3.7rem);
+    font-family: Cinzel, serif;
+
+    font-weight: 400;
+
+    font-size: clamp(2rem, 7vw, 3.7rem);
 }
 
 .game-header p {
-
     margin-top: 15px;
-
     font-size: 1.15rem;
-
     opacity: .65;
 }
-
-
-/* =====================================================
-   PROGRESS
-===================================================== */
 
 .progress-wrapper {
     margin-bottom: 30px;
 }
 
 .progress-text {
-
     display: flex;
-
     justify-content: space-between;
 
     margin-bottom: 8px;
 
     font-family: Cinzel, serif;
 
-    font-size: .65rem;
+    font-size: .62rem;
 
     letter-spacing: 2px;
 
@@ -616,11 +601,9 @@ h1 {
 }
 
 .progress {
-
     height: 3px;
 
-    background:
-        rgba(255,255,255,.08);
+    background: rgba(255,255,255,.08);
 
     border-radius: 10px;
 
@@ -628,7 +611,6 @@ h1 {
 }
 
 .progress-bar {
-
     height: 100%;
 
     width: 10%;
@@ -637,79 +619,55 @@ h1 {
         linear-gradient(
             90deg,
             rgba(255,255,255,.5),
-            #f5dca8
+            var(--gold)
         );
 
     box-shadow:
         0 0 15px rgba(245,220,168,.4);
 
-    transition:
-        width .5s ease;
+    transition: width .5s ease;
 }
 
-
-/* =====================================================
-   CARD
-===================================================== */
-
 .question-card {
-
     position: relative;
 
-    padding:
-        45px 30px;
+    padding: 45px 30px;
 
-    border:
-        1px solid rgba(255,255,255,.13);
+    border: 1px solid var(--border);
 
     border-radius: 28px;
 
-    background:
-        rgba(255,255,255,.045);
+    background: var(--glass);
 
-    backdrop-filter:
-        blur(20px);
+    backdrop-filter: blur(20px);
 
-    -webkit-backdrop-filter:
-        blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.3);
+    box-shadow: 0 30px 80px rgba(0,0,0,.3);
 
     overflow: hidden;
 
-    animation:
-        cardIn .6s ease;
+    animation: cardIn .6s ease;
 }
 
-.question-card::before {
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(.98);
+    }
 
-    content: "";
-
-    position: absolute;
-
-    width: 250px;
-    height: 250px;
-
-    right: -125px;
-    top: -125px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(188,168,255,.07);
-
-    filter:
-        blur(20px);
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .question-number {
-
     text-align: center;
 
     font-family: Cinzel, serif;
 
-    font-size: .68rem;
+    font-size: .65rem;
 
     letter-spacing: 4px;
 
@@ -719,60 +677,34 @@ h1 {
 }
 
 .question {
-
-    position: relative;
-
-    z-index: 2;
-
     text-align: center;
 
-    font-size:
-        clamp(1.8rem, 6vw, 2.7rem);
+    font-size: clamp(1.8rem, 6vw, 2.7rem);
 
     line-height: 1.25;
 
     margin-bottom: 35px;
 }
 
-
-/* =====================================================
-   OPTIONS
-===================================================== */
-
 .options {
-
     display: grid;
-
     gap: 13px;
-
-    position: relative;
-
-    z-index: 3;
 }
 
 .option {
-
     width: 100%;
 
-    padding:
-        17px 20px;
+    padding: 17px 20px;
 
-    border:
-        1px solid rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.12);
 
     border-radius: 15px;
 
-    background:
-        rgba(255,255,255,.035);
+    background: rgba(255,255,255,.035);
 
     color: #f8f2e6;
 
-    font-family:
-        "Cormorant Garamond",
-        Georgia,
-        serif;
-
-    font-size: 1.15rem;
+    font-size: 1.12rem;
 
     text-align: left;
 
@@ -782,21 +714,15 @@ h1 {
 }
 
 .option:hover {
+    transform: translateX(6px);
 
-    transform:
-        translateX(6px);
+    background: rgba(255,255,255,.08);
 
-    background:
-        rgba(255,255,255,.08);
-
-    border-color:
-        rgba(245,220,168,.35);
+    border-color: rgba(245,220,168,.35);
 }
 
 .option.selected {
-
-    transform:
-        translateX(6px);
+    transform: translateX(6px);
 
     background:
         linear-gradient(
@@ -805,32 +731,21 @@ h1 {
             rgba(188,168,255,.1)
         );
 
-    border-color:
-        rgba(245,220,168,.55);
+    border-color: rgba(245,220,168,.55);
 }
 
-
-/* =====================================================
-   NEXT BUTTON
-===================================================== */
-
 .next-btn {
-
     display: block;
 
-    margin:
-        30px auto 0;
+    margin: 30px auto 0;
 
-    padding:
-        14px 32px;
+    padding: 14px 32px;
 
-    border:
-        1px solid rgba(255,255,255,.25);
+    border: 1px solid rgba(255,255,255,.25);
 
     border-radius: 50px;
 
-    background:
-        rgba(255,255,255,.06);
+    background: rgba(255,255,255,.06);
 
     color: white;
 
@@ -848,43 +763,447 @@ h1 {
 }
 
 .next-btn.ready {
-
     opacity: 1;
-
     pointer-events: auto;
 }
 
 .next-btn:hover {
+    transform: translateY(-3px);
+}
 
+
+/* =========================================================
+   GIFT SECTION
+========================================================= */
+
+#gifts {
+    padding-top: 40px;
+}
+
+.gift-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+    margin-top: 45px;
+}
+
+.gift-card {
+    position: relative;
+
+    min-height: 270px;
+
+    padding: 30px 20px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 25px;
+
+    background: var(--glass);
+
+    backdrop-filter: blur(18px);
+
+    -webkit-backdrop-filter: blur(18px);
+
+    text-align: center;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        transform .4s,
+        border-color .4s,
+        background .4s;
+}
+
+.gift-card:hover {
     transform:
-        translateY(-3px);
+        translateY(-9px);
+
+    border-color:
+        rgba(245,220,168,.4);
 
     background:
-        rgba(255,255,255,.12);
+        rgba(255,255,255,.075);
 }
 
-@keyframes cardIn {
+.gift-card.opened {
+    border-color:
+        rgba(245,220,168,.55);
+}
 
-    from {
-        opacity: 0;
-        transform:
-            translateY(20px)
-            scale(.98);
-    }
+.gift-icon {
+    font-size: 4rem;
 
-    to {
-        opacity: 1;
-        transform:
-            translateY(0)
-            scale(1);
-    }
+    margin: 20px 0;
 
+    transition:
+        transform .5s;
+}
+
+.gift-card:hover .gift-icon {
+    transform:
+        translateY(-8px)
+        rotate(-4deg)
+        scale(1.08);
+}
+
+.gift-card h3 {
+    font-family: Cinzel, serif;
+
+    font-weight: 400;
+
+    font-size: 1.15rem;
+
+    letter-spacing: 1px;
+}
+
+.gift-card p {
+    margin-top: 12px;
+
+    line-height: 1.6;
+
+    opacity: .55;
+}
+
+.gift-card .tap {
+    position: absolute;
+
+    bottom: 17px;
+    left: 0;
+    right: 0;
+
+    font-family: Cinzel, serif;
+
+    font-size: .55rem;
+
+    letter-spacing: 2px;
+
+    opacity: .4;
 }
 
 
-/* =====================================================
+/* =========================================================
+   GIFT REVEAL MODAL
+========================================================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(0,0,0,.72);
+
+    backdrop-filter: blur(12px);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: opacity .35s;
+}
+
+.modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-box {
+    width: min(600px, 100%);
+
+    padding: 45px 30px;
+
+    border: 1px solid rgba(255,255,255,.15);
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(40,35,52,.97),
+            rgba(12,11,19,.97)
+        );
+
+    box-shadow:
+        0 40px 120px rgba(0,0,0,.6);
+
+    text-align: center;
+
+    transform: scale(.92) translateY(15px);
+
+    transition: transform .4s;
+}
+
+.modal.active .modal-box {
+    transform: scale(1) translateY(0);
+}
+
+.modal-icon {
+    font-size: 5rem;
+
+    margin-bottom: 20px;
+}
+
+.modal-box h2 {
+    font-family: Cinzel, serif;
+
+    font-weight: 400;
+
+    font-size: 2rem;
+}
+
+.modal-box p {
+    margin:
+        20px auto 30px;
+
+    max-width: 500px;
+
+    font-size: 1.25rem;
+
+    line-height: 1.8;
+
+    opacity: .72;
+}
+
+.close-modal {
+    padding:
+        12px 27px;
+
+    border:
+        1px solid rgba(255,255,255,.2);
+
+    border-radius: 50px;
+
+    background:
+        rgba(255,255,255,.06);
+
+    color: white;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   DIGITAL GIFT CARD
+========================================================= */
+
+.gift-card-special {
+
+    margin:
+        55px auto 0;
+
+    width:
+        min(780px, 100%);
+
+    padding:
+        2px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(245,220,168,.6),
+            rgba(188,168,255,.4),
+            rgba(245,220,168,.6)
+        );
+
+    background-size: 250% 250%;
+
+    animation:
+        borderFlow 6s linear infinite;
+}
+
+@keyframes borderFlow {
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.gift-card-inner {
+
+    padding:
+        45px 35px;
+
+    border-radius:
+        28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(30,27,40,.98),
+            rgba(13,12,19,.98)
+        );
+
+    text-align: center;
+}
+
+.card-chip {
+    width: 55px;
+    height: 40px;
+
+    margin: 0 auto 25px;
+
+    border-radius: 8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0d89d,
+            #9c8755
+        );
+
+    box-shadow:
+        0 5px 25px rgba(245,220,168,.2);
+}
+
+.gift-card-inner h3 {
+
+    font-family: Cinzel, serif;
+
+    font-weight: 400;
+
+    font-size: 2rem;
+}
+
+.gift-card-inner p {
+
+    margin-top: 15px;
+
+    font-size: 1.15rem;
+
+    opacity: .6;
+
+    line-height: 1.7;
+}
+
+.card-number {
+
+    margin:
+        30px 0 15px;
+
+    font-family:
+        monospace;
+
+    letter-spacing:
+        4px;
+
+    font-size:
+        .85rem;
+
+    opacity:
+        .6;
+}
+
+.card-note {
+
+    font-size:
+        .9rem;
+
+    opacity:
+        .4;
+}
+
+
+/* =========================================================
+   MEMORY / MESSAGE CARDS
+========================================================= */
+
+.message-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:
+        18px;
+
+    margin-top:
+        40px;
+}
+
+.message-card {
+
+    padding:
+        30px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        22px;
+
+    background:
+        var(--glass);
+
+    backdrop-filter:
+        blur(15px);
+
+    transition:
+        transform .35s;
+}
+
+.message-card:hover {
+    transform:
+        translateY(-6px);
+}
+
+.message-card span {
+
+    display:
+        block;
+
+    margin-bottom:
+        14px;
+
+    font-size:
+        1.5rem;
+}
+
+.message-card h3 {
+
+    font-family:
+        Cinzel, serif;
+
+    font-weight:
+        400;
+
+    font-size:
+        1.1rem;
+}
+
+.message-card p {
+
+    margin-top:
+        12px;
+
+    line-height:
+        1.7;
+
+    opacity:
+        .6;
+}
+
+
+/* =========================================================
    RESULT
-===================================================== */
+========================================================= */
 
 #result {
 
@@ -892,41 +1211,32 @@ h1 {
 
     min-height: 100vh;
 
-    padding:
-        120px 20px 100px;
+    padding: 120px 20px 100px;
 
     text-align: center;
 }
 
 .result-inner {
-
-    width:
-        min(750px, 90%);
-
+    width: min(780px, 92%);
     margin: auto;
 
-    animation:
-        openingIn 1.2s ease;
+    animation: openingIn 1.2s ease;
 }
 
 .result-icon {
-
     font-size: 4rem;
 
     margin-bottom: 25px;
 
-    animation:
-        float 3s ease-in-out infinite;
+    animation: float 3s ease-in-out infinite;
 }
 
 @keyframes float {
-
     50% {
         transform:
             translateY(-8px)
             scale(1.05);
     }
-
 }
 
 .result-label {
@@ -942,11 +1252,13 @@ h1 {
 
 .result-title {
 
-    margin:
-        20px 0;
+    margin: 20px 0;
 
-    font-size:
-        clamp(2.5rem, 8vw, 5rem);
+    font-family: Cinzel, serif;
+
+    font-weight: 400;
+
+    font-size: clamp(2.5rem, 8vw, 5rem);
 }
 
 .result-description {
@@ -966,8 +1278,7 @@ h1 {
 
     margin-top: 45px;
 
-    padding:
-        40px 25px;
+    padding: 40px 25px;
 
     border:
         1px solid rgba(255,255,255,.12);
@@ -991,9 +1302,9 @@ h1 {
 }
 
 
-/* =====================================================
-   FINAL MESSAGE
-===================================================== */
+/* =========================================================
+   FINAL
+========================================================= */
 
 .final-message {
 
@@ -1007,86 +1318,145 @@ h1 {
 
 .final-message h3 {
 
+    font-family:
+        Cinzel, serif;
+
+    font-weight:
+        400;
+
     font-size:
         clamp(1.8rem, 6vw, 3rem);
 }
 
 .final-message p {
 
-    max-width: 650px;
+    max-width:
+        680px;
 
     margin:
         25px auto 0;
 
-    font-size: 1.35rem;
+    font-size:
+        1.35rem;
 
-    line-height: 1.9;
+    line-height:
+        1.9;
 
-    opacity: .78;
+    opacity:
+        .78;
 }
 
 .signature {
 
-    margin-top: 40px;
+    margin-top:
+        40px;
 
-    font-family: Cinzel, serif;
+    font-family:
+        Cinzel, serif;
 
-    letter-spacing: 2px;
+    letter-spacing:
+        2px;
 
     color:
         rgba(245,220,168,.75);
 }
 
 
-/* =====================================================
+/* =========================================================
    PARTICLES
-===================================================== */
+========================================================= */
 
 .particle {
 
     position: fixed;
 
-    z-index: 80;
+    z-index: 2000;
 
     pointer-events: none;
 
-    color: #f5dca8;
+    color:
+        var(--gold);
 
     text-shadow:
         0 0 15px rgba(245,220,168,.9);
+
+    animation:
+        particleFade 4s linear forwards;
+}
+
+@keyframes particleFade {
+
+    from {
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+
 }
 
 
-/* =====================================================
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+
+    padding:
+        40px 20px 60px;
+
+    text-align:
+        center;
+
+    font-family:
+        Cinzel, serif;
+
+    font-size:
+        .58rem;
+
+    letter-spacing:
+        2px;
+
+    opacity:
+        .3;
+}
+
+
+/* =========================================================
    MOBILE
-===================================================== */
+========================================================= */
 
-@media(max-width:600px) {
-
-    .os-bar {
-        padding: 0 11px;
-    }
-
-    .os-info {
-        gap: 7px;
-    }
+@media(max-width: 720px) {
 
     .music-player {
-
-        top: 58px;
-        right: 10px;
-
         width:
             calc(100vw - 20px);
+
+        right:
+            10px;
+
+        top:
+            60px;
     }
 
-    #opening {
-        padding-top: 100px;
+    .gift-grid {
+        grid-template-columns:
+            1fr;
     }
 
-    .game-container {
+    .message-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    section.page-section {
         padding:
-            100px 0 65px;
+            75px 0;
     }
 
     .question-card {
@@ -1094,12 +1464,14 @@ h1 {
             38px 18px;
     }
 
-    .option {
-        font-size: 1.05rem;
+    .opening-text {
+        font-size:
+            1.15rem;
     }
 
-    #result {
-        padding-top: 105px;
+    .os-right span {
+        display:
+            none;
     }
 
 }
@@ -1110,13 +1482,13 @@ h1 {
 <body>
 
 
-<!-- =====================================================
+<!-- =========================================================
      OS BAR
-===================================================== -->
+========================================================= -->
 
 <div class="os-bar">
 
-    <div class="os-name">
+    <div class="os-left">
 
         <span class="os-light"></span>
 
@@ -1124,7 +1496,7 @@ h1 {
 
     </div>
 
-    <div class="os-info">
+    <div class="os-right">
 
         <span id="date"></span>
 
@@ -1141,9 +1513,9 @@ h1 {
 </div>
 
 
-<!-- =====================================================
-     MUSIC PLAYER
-===================================================== -->
+<!-- =========================================================
+     MUSIC
+========================================================= -->
 
 <div class="music-player">
 
@@ -1172,14 +1544,12 @@ h1 {
 </div>
 
 
-<!-- =====================================================
+<!-- =========================================================
      AUDIO
      
-     KEEP THIS MP3 IN THE SAME GITHUB FOLDER
-     
-     birthday-quiz.html
-     golden-hour-instrumental.mp3
-===================================================== -->
+     IMPORTANT:
+     Keep this MP3 in the same folder as this HTML file.
+========================================================= -->
 
 <audio
     id="birthdayAudio"
@@ -1195,22 +1565,26 @@ h1 {
 </audio>
 
 
-<!-- =====================================================
+<!-- =========================================================
      BACKGROUND
-===================================================== -->
+========================================================= -->
 
 <div class="background">
 
     <div class="stars"></div>
 
-    <div class="glow"></div>
+    <div class="aurora"></div>
+
+    <div class="orb one"></div>
+
+    <div class="orb two"></div>
 
 </div>
 
 
-<!-- =====================================================
+<!-- =========================================================
      OPENING
-===================================================== -->
+========================================================= -->
 
 <section id="opening">
 
@@ -1238,21 +1612,26 @@ h1 {
 
         <p class="opening-text">
 
-            A tiny little birthday world has been
+            A tiny birthday universe has been
             prepared for one very specific person.
 
             <br><br>
 
-            Take the test, enjoy the music,
-            and discover your birthday profile. ✦
+            There are questions to answer,
+            gifts to unlock,
+            and a few surprises hidden inside.
+
+            <br><br>
+
+            Your birthdayOS is ready. ✦
 
         </p>
 
         <button
             class="start-button"
-            onclick="startGame()">
+            onclick="startExperience()">
 
-            Begin ✦
+            Enter BirthdayOS ✦
 
         </button>
 
@@ -1261,9 +1640,9 @@ h1 {
 </section>
 
 
-<!-- =====================================================
-     GAME
-===================================================== -->
+<!-- =========================================================
+     QUIZ
+========================================================= -->
 
 <main id="game">
 
@@ -1353,9 +1732,257 @@ h1 {
 </main>
 
 
-<!-- =====================================================
+<!-- =========================================================
+     GIFTS
+========================================================= -->
+
+<section
+    id="gifts"
+    class="page-section hidden">
+
+    <div class="section-label">
+        BIRTHDAY INVENTORY
+    </div>
+
+    <h2 class="section-title">
+        Your Gifts
+    </h2>
+
+    <p class="section-description">
+
+        Three little packages have been detected
+        inside the birthday system.
+
+        <br>
+
+        Tap each one to open it.
+
+    </p>
+
+
+    <div class="gift-grid">
+
+
+        <!-- GIFT 1 -->
+
+        <div
+            class="gift-card"
+            data-gift="0">
+
+            <div class="gift-icon">
+                🎁
+            </div>
+
+            <h3>
+                Gift #01
+            </h3>
+
+            <p>
+                Something warm,
+                simple and meaningful.
+            </p>
+
+            <div class="tap">
+                TAP TO OPEN
+            </div>
+
+        </div>
+
+
+        <!-- GIFT 2 -->
+
+        <div
+            class="gift-card"
+            data-gift="1">
+
+            <div class="gift-icon">
+                💌
+            </div>
+
+            <h3>
+                Gift #02
+            </h3>
+
+            <p>
+                A message hidden
+                inside an envelope.
+            </p>
+
+            <div class="tap">
+                TAP TO OPEN
+            </div>
+
+        </div>
+
+
+        <!-- GIFT 3 -->
+
+        <div
+            class="gift-card"
+            data-gift="2">
+
+            <div class="gift-icon">
+                ✨
+            </div>
+
+            <h3>
+                Gift #03
+            </h3>
+
+            <p>
+                A final surprise.
+                Definitely not suspicious.
+            </p>
+
+            <div class="tap">
+                TAP TO OPEN
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         DIGITAL GIFT CARD
+    ===================================================== -->
+
+    <div class="gift-card-special">
+
+        <div class="gift-card-inner">
+
+            <div class="card-chip"></div>
+
+            <h3>
+                Birthday Wish Card
+            </h3>
+
+            <p>
+
+                This card has no monetary value.
+
+                <br>
+
+                It is redeemable for one year
+                filled with good memories,
+                unexpected happiness,
+                and plenty of reasons to smile.
+
+            </p>
+
+            <div class="card-number">
+                NIKITA · BIRTHDAY · 2026
+            </div>
+
+            <div class="card-note">
+                NON-TRANSFERABLE · INFINITE VALIDITY
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     MESSAGE / MINI GIFTS
+========================================================= -->
+
+<section
+    id="messages"
+    class="page-section hidden">
+
+    <div class="section-label">
+        BONUS CONTENT
+    </div>
+
+    <h2 class="section-title">
+        A Few Things Worth Keeping
+    </h2>
+
+    <p class="section-description">
+
+        Because one birthday card
+        was clearly not enough.
+
+    </p>
+
+
+    <div class="message-grid">
+
+
+        <div class="message-card">
+
+            <span>🌙</span>
+
+            <h3>
+                For Quiet Nights
+            </h3>
+
+            <p>
+                May you always have somewhere peaceful
+                to return to after a long day.
+            </p>
+
+        </div>
+
+
+        <div class="message-card">
+
+            <span>🌸</span>
+
+            <h3>
+                For Ordinary Days
+            </h3>
+
+            <p>
+                Hopefully some of the best memories
+                come from days you never planned.
+            </p>
+
+        </div>
+
+
+        <div class="message-card">
+
+            <span>✨</span>
+
+            <h3>
+                For Your Dreams
+            </h3>
+
+            <p>
+                Keep making room for things
+                that make you genuinely excited.
+            </p>
+
+        </div>
+
+
+        <div class="message-card">
+
+            <span>🎂</span>
+
+            <h3>
+                For This Birthday
+            </h3>
+
+            <p>
+                May today be one of those days
+                you remember with a smile later.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
      RESULT
-===================================================== -->
+========================================================= -->
 
 <section id="result">
 
@@ -1364,15 +1991,11 @@ h1 {
         <div
             class="result-icon"
             id="resultIcon">
-
             ✦
-
         </div>
 
         <div class="result-label">
-
             YOUR BIRTHDAY PROFILE
-
         </div>
 
         <h1
@@ -1437,6 +2060,7 @@ h1 {
             <div class="signature">
 
                 Happy Birthday,
+
                 <span class="name">
                     Nikita
                 </span>
@@ -1457,18 +2081,67 @@ h1 {
 </section>
 
 
+<!-- =========================================================
+     GIFT MODAL
+========================================================= -->
+
+<div
+    class="modal"
+    id="giftModal">
+
+    <div class="modal-box">
+
+        <div
+            class="modal-icon"
+            id="modalIcon">
+            🎁
+        </div>
+
+        <h2
+            id="modalTitle">
+            Surprise
+        </h2>
+
+        <p
+            id="modalText">
+        </p>
+
+        <button
+            class="close-modal"
+            onclick="closeGift()">
+
+            Keep the surprise ✦
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    BIRTHDAYOS · SYSTEM STATUS: HAPPY ✦
+
+</footer>
+
+
 <script>
 
-/* =====================================================
-   NAME
-===================================================== */
+/* =========================================================
+   CONFIG
+========================================================= */
 
 const NAME = "Nikita";
 
 
-/* =====================================================
+/* =========================================================
    QUESTIONS
-===================================================== */
+========================================================= */
 
 const questions = [
 
@@ -1575,11 +2248,13 @@ const questions = [
 ];
 
 
-/* =====================================================
-   VARIABLES
-===================================================== */
+/* =========================================================
+   STATE
+========================================================= */
 
 let currentQuestion = 0;
+
+let selected = false;
 
 let scores = {
     dreamer: 0,
@@ -1588,42 +2263,29 @@ let scores = {
     adventure: 0
 };
 
-let selected = false;
 
+/* =========================================================
+   START EXPERIENCE
+========================================================= */
 
-/* =====================================================
-   START GAME
-===================================================== */
-
-function startGame() {
-
-    const opening =
-        document.getElementById("opening");
-
-    const game =
-        document.getElementById("game");
-
-
-    /*
-       Also attempt music when she clicks Begin.
-       This is useful because browser autoplay restrictions
-       are usually removed after a user interaction.
-    */
+function startExperience() {
 
     startMusic();
 
+    const opening =
+        document.getElementById("opening");
 
     opening.style.opacity = "0";
 
     opening.style.transform =
         "scale(1.03)";
 
-
     setTimeout(() => {
 
         opening.style.display = "none";
 
-        game.style.display = "block";
+        document.getElementById("game")
+            .style.display = "block";
 
         loadQuestion();
 
@@ -1632,14 +2294,14 @@ function startGame() {
             behavior: "smooth"
         });
 
-    }, 900);
+    }, 850);
 
 }
 
 
-/* =====================================================
+/* =========================================================
    LOAD QUESTION
-===================================================== */
+========================================================= */
 
 function loadQuestion() {
 
@@ -1648,20 +2310,16 @@ function loadQuestion() {
     const data =
         questions[currentQuestion];
 
-
     document
         .getElementById("questionNumber")
         .textContent =
         "QUESTION " +
-        String(currentQuestion + 1)
-            .padStart(2, "0");
-
+        String(currentQuestion + 1).padStart(2, "0");
 
     document
         .getElementById("question")
         .textContent =
         data.q;
-
 
     document
         .getElementById("questionCount")
@@ -1671,62 +2329,48 @@ function loadQuestion() {
         " / " +
         questions.length;
 
-
     const percent =
         Math.round(
             ((currentQuestion + 1) /
             questions.length) * 100
         );
 
-
     document
         .getElementById("percentage")
         .textContent =
         percent + "%";
-
 
     document
         .getElementById("progressBar")
         .style.width =
         percent + "%";
 
-
     const options =
         document.getElementById("options");
 
     options.innerHTML = "";
-
 
     data.options.forEach(option => {
 
         const button =
             document.createElement("button");
 
-
         button.className =
             "option";
 
-
         button.textContent =
             option[0];
-
 
         button.onclick = () => {
 
             if (selected)
                 return;
 
-
             selected = true;
 
-
-            button.classList.add(
-                "selected"
-            );
-
+            button.classList.add("selected");
 
             scores[option[1]]++;
-
 
             document
                 .getElementById("nextBtn")
@@ -1734,31 +2378,22 @@ function loadQuestion() {
 
         };
 
-
         options.appendChild(button);
 
     });
 
-
     const next =
         document.getElementById("nextBtn");
 
-
     next.classList.remove("ready");
 
-
     next.textContent =
-        currentQuestion ===
-        questions.length - 1
-
-        ? "Reveal My Result ✦"
-
-        : "Next Question →";
-
+        currentQuestion === questions.length - 1
+            ? "Reveal My Result ✦"
+            : "Next Question →";
 
     const card =
         document.getElementById("questionCard");
-
 
     card.style.animation = "none";
 
@@ -1770,43 +2405,38 @@ function loadQuestion() {
 }
 
 
-/* =====================================================
-   NEXT
-===================================================== */
+/* =========================================================
+   NEXT QUESTION
+========================================================= */
 
 document
     .getElementById("nextBtn")
-    .addEventListener(
-        "click",
-        () => {
+    .addEventListener("click", () => {
 
-            if (!selected)
-                return;
+        if (!selected)
+            return;
 
+        currentQuestion++;
 
-            currentQuestion++;
+        if (
+            currentQuestion <
+            questions.length
+        ) {
 
+            loadQuestion();
 
-            if (
-                currentQuestion <
-                questions.length
-            ) {
+        } else {
 
-                loadQuestion();
-
-            } else {
-
-                showResult();
-
-            }
+            showResult();
 
         }
-    );
+
+    });
 
 
-/* =====================================================
+/* =========================================================
    RESULT
-===================================================== */
+========================================================= */
 
 function showResult() {
 
@@ -1814,13 +2444,11 @@ function showResult() {
         .getElementById("game")
         .style.display = "none";
 
-
     document
         .getElementById("result")
         .style.display = "block";
 
-
-    let winner =
+    const winner =
         Object.keys(scores).reduce(
             (a, b) =>
                 scores[a] >= scores[b]
@@ -1828,178 +2456,300 @@ function showResult() {
                     : b
         );
 
-
     const results = {
 
         dreamer: {
-
             icon: "🌙",
-
             title: "The Dreamer",
-
             description:
                 "You seem to carry a little world of your own inside you.",
-
             card:
                 "Curious, thoughtful and quietly imaginative. " +
                 "You probably notice more than you let people realise."
-
         },
 
-
         chaos: {
-
             icon: "✨",
-
             title: "The Chaos Star",
-
             description:
                 "A perfectly reasonable amount of chaos. Probably.",
-
             card:
                 "You bring energy wherever you go. " +
                 "Life would be considerably less interesting without people " +
                 "who know how to have fun."
-
         },
 
-
         calm: {
-
             icon: "🌸",
-
             title: "The Gentle Soul",
-
             description:
                 "You seem to value the little things that make life meaningful.",
-
             card:
                 "Good people, peaceful moments and memories that actually matter. " +
                 "There is something quietly beautiful about that."
-
         },
 
-
         adventure: {
-
             icon: "🌌",
-
             title: "The Wanderer",
-
             description:
                 "You seem to have a little curiosity pulling you toward the unknown.",
-
             card:
                 "New places, new experiences and stories waiting to happen. " +
                 "The world is much too big to stay in one chapter forever."
-
         }
 
     };
 
-
     const result =
         results[winner];
-
 
     document
         .getElementById("resultIcon")
         .textContent =
         result.icon;
 
-
     document
         .getElementById("resultTitle")
         .textContent =
         result.title;
-
 
     document
         .getElementById("resultDescription")
         .textContent =
         result.description;
 
-
     document
         .getElementById("resultCardText")
         .textContent =
         result.card;
 
+    burstParticles(50);
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    setTimeout(() => {
 
+        revealSection("gifts");
 
-    burstParticles(40);
-
-    createFinalParticles();
+    }, 700);
 
 }
 
 
-/* =====================================================
-   PARTICLES
-===================================================== */
+/* =========================================================
+   REVEAL SECTION
+========================================================= */
 
-function spawnParticle(duration) {
+function revealSection(id) {
+
+    const element =
+        document.getElementById(id);
+
+    element.classList.remove("hidden");
+
+    setTimeout(() => {
+
+        element.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }, 150);
+
+}
+
+
+/* =========================================================
+   GIFTS
+========================================================= */
+
+const gifts = [
+
+    {
+        icon: "🎁",
+        title: "A Little Reminder",
+        text:
+            "You don't need a perfect day to have a beautiful year. " +
+            "Sometimes the smallest moments become the ones you remember most."
+    },
+
+    {
+        icon: "💌",
+        title: "A Birthday Letter",
+        text:
+            "Happy Birthday, Nikita. " +
+            "I hope this year gives you plenty of reasons to smile, " +
+            "people who make you feel appreciated, and memories worth keeping."
+    },
+
+    {
+        icon: "✨",
+        title: "The Secret Gift",
+        text:
+            "The actual gift is simple: " +
+            "I hope the person reading this knows that someone thought " +
+            "their birthday was important enough to build an entire little universe for."
+    }
+
+];
+
+
+document
+    .querySelectorAll(".gift-card")
+    .forEach(card => {
+
+        card.addEventListener(
+            "click",
+            () => {
+
+                const index =
+                    Number(
+                        card.dataset.gift
+                    );
+
+                openGift(index);
+
+                card.classList.add(
+                    "opened"
+                );
+
+            }
+        );
+
+    });
+
+
+function openGift(index) {
+
+    const gift =
+        gifts[index];
+
+    document
+        .getElementById("modalIcon")
+        .textContent =
+        gift.icon;
+
+    document
+        .getElementById("modalTitle")
+        .textContent =
+        gift.title;
+
+    document
+        .getElementById("modalText")
+        .textContent =
+        gift.text;
+
+    document
+        .getElementById("giftModal")
+        .classList.add("active");
+
+    burstParticles(25);
+
+}
+
+
+function closeGift() {
+
+    document
+        .getElementById("giftModal")
+        .classList.remove("active");
+
+    setTimeout(() => {
+
+        revealSection("messages");
+
+    }, 350);
+
+}
+
+
+/* =========================================================
+   MODAL BACKGROUND CLOSE
+========================================================= */
+
+document
+    .getElementById("giftModal")
+    .addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target.id ===
+                "giftModal"
+            ) {
+
+                closeGift();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+function spawnParticle() {
 
     const particle =
         document.createElement("div");
 
-
     particle.className =
         "particle";
-
 
     particle.textContent =
         Math.random() > .5
             ? "✦"
             : "✧";
 
-
     particle.style.left =
         Math.random() * 100 + "vw";
 
-
-    particle.style.bottom =
-        "-20px";
-
+    particle.style.top =
+        (70 + Math.random() * 30) + "vh";
 
     particle.style.fontSize =
         (
-            .8 +
-            Math.random() * .8
+            .7 +
+            Math.random() * 1
         ) + "rem";
-
 
     document.body.appendChild(
         particle
     );
 
+    const duration =
+        3 + Math.random() * 3;
 
-    requestAnimationFrame(() => {
-
-        particle.style.transition =
-            `transform ${duration}s linear,
-             opacity ${duration}s`;
-
-
-        particle.style.transform =
-            `translateY(-110vh)
-             translateX(${(Math.random()-.5)*120}px)`;
-
-
-        particle.style.opacity =
-            "0";
-
-    });
-
+    particle.animate(
+        [
+            {
+                transform:
+                    "translateY(0) scale(.5)",
+                opacity: 0
+            },
+            {
+                transform:
+                    "translateY(-50vh) scale(1)",
+                opacity: 1
+            },
+            {
+                transform:
+                    "translateY(-110vh) scale(.7)",
+                opacity: 0
+            }
+        ],
+        {
+            duration:
+                duration * 1000,
+            easing:
+                "linear"
+        }
+    );
 
     setTimeout(
         () => particle.remove(),
-        duration * 1000 + 500
+        duration * 1000 + 100
     );
 
 }
@@ -2014,10 +2764,8 @@ function burstParticles(count) {
     ) {
 
         setTimeout(
-            () => spawnParticle(
-                3 + Math.random() * 3
-            ),
-            i * 40
+            spawnParticle,
+            i * 35
         );
 
     }
@@ -2025,25 +2773,25 @@ function burstParticles(count) {
 }
 
 
-function createFinalParticles() {
+/* =========================================================
+   CONTINUOUS FLOATING STARS
+========================================================= */
 
-    setInterval(
-        () => spawnParticle(7),
-        800
-    );
+setInterval(() => {
 
-}
+    spawnParticle();
+
+}, 1200);
 
 
-/* =====================================================
+/* =========================================================
    CLOCK
-===================================================== */
+========================================================= */
 
 function updateClock() {
 
     const now =
         new Date();
-
 
     document
         .getElementById("date")
@@ -2055,7 +2803,6 @@ function updateClock() {
                 month: "short"
             }
         );
-
 
     document
         .getElementById("time")
@@ -2070,7 +2817,6 @@ function updateClock() {
 
 }
 
-
 updateClock();
 
 setInterval(
@@ -2079,9 +2825,9 @@ setInterval(
 );
 
 
-/* =====================================================
+/* =========================================================
    MUSIC
-===================================================== */
+========================================================= */
 
 const audio =
     document.getElementById(
@@ -2133,12 +2879,6 @@ function updateMusicUI() {
 }
 
 
-/*
-   IMPORTANT:
-   The browser decides whether audible autoplay
-   is permitted. We request it immediately.
-*/
-
 async function startMusic() {
 
     try {
@@ -2150,11 +2890,6 @@ async function startMusic() {
         updateMusicUI();
 
     } catch (error) {
-
-        /*
-           Autoplay was blocked.
-           The next user interaction will retry.
-        */
 
         musicStatus.textContent =
             "Music ready";
@@ -2183,10 +2918,6 @@ async function toggleMusic() {
 }
 
 
-/* =====================================================
-   MUSIC CONTROLS
-===================================================== */
-
 musicButton.addEventListener(
     "click",
     toggleMusic
@@ -2198,33 +2929,16 @@ musicMini.addEventListener(
 );
 
 
-/* =====================================================
-   AUTOPLAY ATTEMPTS
-===================================================== */
-
-/*
-   Attempt #1:
-   immediately.
-*/
+/* =========================================================
+   AUTOPLAY
+========================================================= */
 
 startMusic();
-
-
-/*
-   Attempt #2:
-   DOM loaded.
-*/
 
 document.addEventListener(
     "DOMContentLoaded",
     startMusic
 );
-
-
-/*
-   Attempt #3:
-   when tab becomes visible.
-*/
 
 document.addEventListener(
     "visibilitychange",
@@ -2244,11 +2958,8 @@ document.addEventListener(
 
 
 /*
-   Attempt #4:
-   first interaction.
-
-   This is the fallback required by browsers
-   that block audible autoplay.
+   Browser autoplay fallback:
+   first user interaction.
 */
 
 function unlockMusic() {
@@ -2271,7 +2982,6 @@ window.addEventListener(
     }
 );
 
-
 window.addEventListener(
     "touchstart",
     unlockMusic,
@@ -2280,7 +2990,6 @@ window.addEventListener(
         passive: true
     }
 );
-
 
 window.addEventListener(
     "keydown",
@@ -2291,9 +3000,9 @@ window.addEventListener(
 );
 
 
-/* =====================================================
+/* =========================================================
    AUDIO ERROR
-===================================================== */
+========================================================= */
 
 audio.addEventListener(
     "error",
@@ -2303,7 +3012,7 @@ audio.addEventListener(
             "MP3 not found";
 
         console.error(
-            "MP3 missing: ./golden-hour-instrumental.mp3"
+            "Missing file: ./golden-hour-instrumental.mp3"
         );
 
     }
