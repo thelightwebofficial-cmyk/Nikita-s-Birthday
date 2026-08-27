@@ -3,11 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nikita's Birthday ✦</title>
+<title>Happy Birthday Nikita ✦</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
-
 * {
     margin: 0;
     padding: 0;
@@ -18,13 +20,281 @@ html {
     scroll-behavior: smooth;
 }
 
+:root {
+    --text: #f7f1e5;
+    --muted: rgba(247,241,229,.62);
+    --gold: #f5dca8;
+    --violet: #bca8ff;
+    --glass: rgba(255,255,255,.055);
+    --line: rgba(255,255,255,.13);
+}
+
 body {
     min-height: 100vh;
-    color: #f7f1e5;
+    color: var(--text);
     font-family: "Cormorant Garamond", Georgia, serif;
     background:
-        radial-gradient(circle at 50% 0%, #302742 0%, #151322 42%, #07070c 100%);
+        radial-gradient(circle at 50% -10%, #3a304d 0%, #171423 38%, #07070c 78%);
     overflow-x: hidden;
+}
+
+/* ================= OS TOP BAR ================= */
+
+.os-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+
+    background: rgba(7,7,12,.48);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+
+    backdrop-filter: blur(25px) saturate(140%);
+    -webkit-backdrop-filter: blur(25px) saturate(140%);
+
+    font-family: Cinzel, serif;
+    font-size: .65rem;
+    letter-spacing: 1.5px;
+}
+
+.os-brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    opacity: .82;
+}
+
+.os-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 15px rgba(245,220,168,.8);
+    animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+    50% {
+        box-shadow: 0 0 25px rgba(245,220,168,1);
+    }
+}
+
+.os-status {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    opacity: .7;
+}
+
+.music-mini {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.06);
+    color: white;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.music-mini:hover {
+    transform: scale(1.1);
+    background: rgba(255,255,255,.13);
+}
+
+/* ================= MUSIC PLAYER ================= */
+
+.music-panel {
+    position: fixed;
+    top: 65px;
+    right: 18px;
+    z-index: 90;
+
+    width: min(340px, calc(100vw - 36px));
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    padding: 12px 14px;
+
+    border: 1px solid var(--line);
+    border-radius: 19px;
+
+    background: rgba(12,11,20,.62);
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    box-shadow: 0 25px 70px rgba(0,0,0,.35);
+
+    animation: panelIn .9s ease;
+}
+
+@keyframes panelIn {
+    from {
+        opacity: 0;
+        transform: translateY(-15px) translateX(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.music-art {
+    width: 42px;
+    height: 42px;
+
+    flex: 0 0 42px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(245,220,168,.25),
+            rgba(188,168,255,.18)
+        );
+
+    border: 1px solid rgba(255,255,255,.14);
+
+    font-size: 1.2rem;
+
+    animation: musicGlow 3s ease-in-out infinite;
+}
+
+@keyframes musicGlow {
+    50% {
+        box-shadow: 0 0 25px rgba(245,220,168,.13);
+    }
+}
+
+.music-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.music-info strong {
+    display: block;
+
+    font-family: Cinzel, serif;
+    font-size: .66rem;
+    letter-spacing: .7px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.music-info span {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: .78rem;
+    color: var(--muted);
+}
+
+.music-button {
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,.2);
+
+    background: rgba(255,255,255,.07);
+    color: white;
+
+    cursor: pointer;
+    transition: .25s;
+}
+
+.music-button:hover {
+    transform: scale(1.08);
+    background: rgba(255,255,255,.14);
+}
+
+/* ================= TOAST ================= */
+
+.toast {
+    position: fixed;
+    left: 18px;
+    bottom: 18px;
+
+    z-index: 110;
+
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    padding: 13px 16px;
+
+    border: 1px solid var(--line);
+    border-radius: 16px;
+
+    background: rgba(13,12,22,.67);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow: 0 20px 60px rgba(0,0,0,.35);
+
+    animation:
+        toastIn .7s ease,
+        toastOut .8s ease 5.5s forwards;
+}
+
+.toast-icon {
+    color: var(--gold);
+    font-size: 1.2rem;
+}
+
+.toast strong,
+.toast small {
+    display: block;
+}
+
+.toast strong {
+    font-family: Cinzel, serif;
+    font-size: .66rem;
+    letter-spacing: 1px;
+}
+
+.toast small {
+    margin-top: 3px;
+    font-size: .8rem;
+    opacity: .55;
+}
+
+@keyframes toastIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes toastOut {
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
 }
 
 /* ================= BACKGROUND ================= */
@@ -32,8 +302,11 @@ body {
 .background {
     position: fixed;
     inset: 0;
+
     overflow: hidden;
+
     pointer-events: none;
+
     z-index: -2;
 }
 
@@ -56,23 +329,33 @@ body {
         90px 70px,
         40px 130px;
 
-    opacity: .4;
+    opacity: .42;
 
     animation: starDrift 45s linear infinite;
 }
 
 .glow {
     position: absolute;
-    width: 450px;
-    height: 450px;
+
+    width: 500px;
+    height: 500px;
+
     left: 50%;
-    top: 15%;
+    top: 12%;
+
     transform: translateX(-50%);
 
     border-radius: 50%;
 
-    background: rgba(175,145,255,.055);
-    filter: blur(50px);
+    background:
+        radial-gradient(
+            circle,
+            rgba(245,220,168,.08),
+            rgba(175,145,255,.045),
+            transparent 70%
+        );
+
+    filter: blur(35px);
 }
 
 @keyframes starDrift {
@@ -91,72 +374,164 @@ body {
     justify-content: center;
 
     text-align: center;
-    padding: 25px;
+
+    padding: 80px 25px 40px;
 
     transition: 1s ease;
 }
 
 .opening-content {
-    max-width: 720px;
+    width: min(760px, 100%);
+
     animation: appear 1.5s ease;
+}
+
+.opening-content::before {
+    content: "PERSONAL BIRTHDAY SYSTEM";
+
+    display: inline-block;
+
+    margin-bottom: 20px;
+
+    padding: 8px 14px;
+
+    border: 1px solid rgba(245,220,168,.2);
+    border-radius: 999px;
+
+    background: rgba(245,220,168,.035);
+
+    color: rgba(245,220,168,.75);
+
+    font-family: Cinzel, serif;
+    font-size: .55rem;
+    letter-spacing: 2.5px;
 }
 
 .kicker {
     font-family: Cinzel, serif;
-    font-size: .7rem;
+
+    font-size: .68rem;
+
     letter-spacing: 5px;
+
     text-transform: uppercase;
-    opacity: .45;
+
+    opacity: .42;
+
     margin-bottom: 25px;
 }
 
 .opening-content h1 {
     font-family: Cinzel, serif;
+
     font-weight: 400;
-    font-size: clamp(3rem, 10vw, 6rem);
+
+    font-size: clamp(3rem, 11vw, 6.5rem);
+
     letter-spacing: 2px;
+
+    text-shadow:
+        0 0 35px rgba(245,220,168,.07);
 }
 
-.opening-content h1 span {
+.nameSlot {
     display: block;
-    font-size: .4em;
-    letter-spacing: 5px;
-    opacity: .65;
-    margin-top: 12px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #f5dca8,
+            #fff,
+            #d6c8ff,
+            #fff
+        );
+
+    background-size: 250% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    animation: shimmer 6s linear infinite;
+}
+
+@keyframes shimmer {
+    to {
+        background-position: 250% center;
+    }
+}
+
+.opening-content h1 span:last-child {
+    display: block;
+
+    margin-top: 13px;
+
+    font-size: .37em;
+
+    letter-spacing: 6px;
+
+    opacity: .6;
 }
 
 .opening-content p {
-    max-width: 560px;
+    max-width: 570px;
+
     margin: 30px auto 42px;
 
     font-size: 1.3rem;
+
     line-height: 1.8;
 
-    opacity: .72;
+    opacity: .7;
 }
 
 .start-btn {
     border: 1px solid rgba(255,255,255,.3);
-    background: rgba(255,255,255,.055);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(245,220,168,.08),
+            rgba(188,168,255,.07)
+        );
 
     color: #fff9eb;
 
-    padding: 16px 38px;
+    padding: 16px 40px;
+
     border-radius: 50px;
 
     font-family: Cinzel, serif;
+
     letter-spacing: 2px;
 
+    font-size: 1rem;
+
     cursor: pointer;
+
     transition: .4s;
 
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,.2);
 }
 
 .start-btn:hover {
-    transform: translateY(-4px);
-    background: rgba(255,255,255,.12);
-    box-shadow: 0 15px 45px rgba(0,0,0,.35);
+    transform: translateY(-4px) scale(1.02);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(245,220,168,.14),
+            rgba(188,168,255,.13)
+        );
+
+    box-shadow:
+        0 18px 55px rgba(0,0,0,.4),
+        0 0 35px rgba(245,220,168,.07);
 }
 
 @keyframes appear {
@@ -179,34 +554,45 @@ body {
 
 .game-container {
     width: min(760px, 90%);
+
     margin: auto;
-    padding: 90px 0;
+
+    padding: 110px 0 90px;
 }
 
 /* ================= HEADER ================= */
 
 .game-header {
     text-align: center;
+
     margin-bottom: 40px;
 }
 
 .game-header small {
     font-family: Cinzel, serif;
+
     letter-spacing: 4px;
+
     font-size: .68rem;
+
     opacity: .4;
 }
 
 .game-header h2 {
     font-family: Cinzel, serif;
+
     font-weight: 400;
+
     font-size: clamp(2rem, 7vw, 3.7rem);
+
     margin-top: 18px;
 }
 
 .game-header p {
     margin-top: 15px;
+
     font-size: 1.15rem;
+
     opacity: .65;
 }
 
@@ -218,67 +604,135 @@ body {
 
 .progress-text {
     display: flex;
+
     justify-content: space-between;
 
     font-family: Cinzel, serif;
+
     font-size: .65rem;
+
     letter-spacing: 2px;
 
     opacity: .45;
+
     margin-bottom: 8px;
 }
 
 .progress {
     height: 3px;
+
     width: 100%;
 
     background: rgba(255,255,255,.08);
+
     border-radius: 10px;
+
     overflow: hidden;
 }
 
 .progress-bar {
     height: 100%;
+
     width: 10%;
 
-    background: rgba(255,255,255,.65);
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.5),
+            var(--gold)
+        );
 
     transition: width .5s ease;
+
+    box-shadow:
+        0 0 15px rgba(245,220,168,.35);
 }
 
 /* ================= QUESTION CARD ================= */
 
 .question-card {
+    position: relative;
+
     padding: 45px 30px;
 
     border: 1px solid rgba(255,255,255,.13);
+
     border-radius: 28px;
 
-    background: rgba(255,255,255,.045);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.025)
+        );
 
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(20px);
+
+    -webkit-backdrop-filter: blur(20px);
 
     box-shadow:
-        0 30px 80px rgba(0,0,0,.25);
+        0 30px 90px rgba(0,0,0,.3);
+
+    overflow: hidden;
 
     animation: cardIn .6s ease;
+}
+
+.question-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    right: -125px;
+    top: -125px;
+
+    border-radius: 50%;
+
+    background: rgba(188,168,255,.07);
+
+    filter: blur(20px);
+
+    pointer-events: none;
+}
+
+.question-card::after {
+    content: "✦";
+
+    position: absolute;
+
+    right: 20px;
+    bottom: 10px;
+
+    font-size: 3rem;
+
+    opacity: .06;
 }
 
 .question-number {
     text-align: center;
 
     font-family: Cinzel, serif;
+
     font-size: .68rem;
+
     letter-spacing: 4px;
 
     opacity: .4;
+
     margin-bottom: 20px;
 }
 
 .question {
+    position: relative;
+    z-index: 2;
+
     text-align: center;
 
     font-size: clamp(1.8rem, 6vw, 2.7rem);
+
     line-height: 1.25;
 
     margin-bottom: 35px;
@@ -288,7 +742,11 @@ body {
 
 .options {
     display: grid;
+
     gap: 13px;
+
+    position: relative;
+    z-index: 2;
 }
 
 .option {
@@ -297,12 +755,15 @@ body {
     padding: 17px 20px;
 
     border: 1px solid rgba(255,255,255,.12);
+
     border-radius: 15px;
 
     background: rgba(255,255,255,.035);
+
     color: #f8f2e6;
 
     font-family: "Cormorant Garamond", Georgia, serif;
+
     font-size: 1.15rem;
 
     text-align: left;
@@ -312,39 +773,62 @@ body {
     transition:
         transform .25s,
         background .25s,
-        border-color .25s;
+        border-color .25s,
+        box-shadow .25s;
 }
 
 .option:hover {
-    transform: translateX(5px);
+    transform: translateX(6px);
+
     background: rgba(255,255,255,.08);
-    border-color: rgba(255,255,255,.25);
+
+    border-color: rgba(245,220,168,.3);
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.15);
 }
 
 .option.selected {
-    background: rgba(255,255,255,.13);
-    border-color: rgba(255,255,255,.5);
-    transform: translateX(5px);
+    background:
+        linear-gradient(
+            90deg,
+            rgba(245,220,168,.13),
+            rgba(188,168,255,.1)
+        );
+
+    border-color: rgba(245,220,168,.55);
+
+    transform: translateX(6px);
+
+    box-shadow:
+        0 8px 35px rgba(245,220,168,.06);
 }
 
 .next-btn {
     display: block;
+
     margin: 30px auto 0;
 
     padding: 14px 32px;
 
     border: 1px solid rgba(255,255,255,.25);
+
     border-radius: 50px;
 
     background: rgba(255,255,255,.06);
+
     color: white;
 
     font-family: Cinzel, serif;
+
     letter-spacing: 2px;
+
+    font-size: .95rem;
 
     cursor: pointer;
 
     opacity: 0;
+
     pointer-events: none;
 
     transition: .35s;
@@ -357,6 +841,7 @@ body {
 
 .next-btn:hover {
     transform: translateY(-3px);
+
     background: rgba(255,255,255,.12);
 }
 
@@ -381,11 +866,12 @@ body {
 
     text-align: center;
 
-    padding: 100px 20px;
+    padding: 120px 20px 100px;
 }
 
 .result-inner {
     width: min(750px, 90%);
+
     margin: auto;
 
     animation: appear 1.2s ease;
@@ -393,19 +879,33 @@ body {
 
 .result-icon {
     font-size: 4rem;
+
     margin-bottom: 25px;
+
+    animation: resultFloat 3s ease-in-out infinite;
+}
+
+@keyframes resultFloat {
+    50% {
+        transform: translateY(-8px) scale(1.04);
+    }
 }
 
 .result-label {
     font-family: Cinzel, serif;
+
     font-size: .7rem;
+
     letter-spacing: 5px;
+
     opacity: .45;
 }
 
 .result-title {
     font-family: Cinzel, serif;
+
     font-size: clamp(2.5rem, 8vw, 5rem);
+
     font-weight: 400;
 
     margin: 20px 0;
@@ -413,28 +913,41 @@ body {
 
 .result-description {
     font-size: 1.35rem;
+
     line-height: 1.8;
 
     opacity: .8;
 
     max-width: 650px;
+
     margin: auto;
 }
 
 .result-card {
+    position: relative;
+
     margin-top: 45px;
 
     padding: 40px 25px;
 
     border: 1px solid rgba(255,255,255,.12);
+
     border-radius: 25px;
 
     background: rgba(255,255,255,.045);
+
+    backdrop-filter: blur(20px);
+
+    -webkit-backdrop-filter: blur(20px);
+
+    overflow: hidden;
 }
 
 .result-card p {
     font-size: 1.2rem;
+
     line-height: 1.8;
+
     opacity: .8;
 }
 
@@ -442,6 +955,7 @@ body {
 
 .final-message {
     margin-top: 70px;
+
     padding-top: 60px;
 
     border-top: 1px solid rgba(255,255,255,.12);
@@ -449,7 +963,9 @@ body {
 
 .final-message h3 {
     font-family: Cinzel, serif;
+
     font-size: clamp(1.8rem, 6vw, 3rem);
+
     font-weight: 400;
 }
 
@@ -459,6 +975,7 @@ body {
     max-width: 650px;
 
     font-size: 1.35rem;
+
     line-height: 1.9;
 
     opacity: .78;
@@ -468,17 +985,64 @@ body {
     margin-top: 40px;
 
     font-family: Cinzel, serif;
+
     letter-spacing: 2px;
 
-    opacity: .55;
+    color: rgba(245,220,168,.75);
+
+    opacity: .7;
+}
+
+/* ================= PARTICLES ================= */
+
+.birthday-particle {
+    position: fixed;
+
+    z-index: 80;
+
+    pointer-events: none;
+
+    color: var(--gold);
+
+    text-shadow:
+        0 0 12px rgba(245,220,168,.8);
 }
 
 /* ================= MOBILE ================= */
 
 @media(max-width:600px) {
 
+    .os-topbar {
+        padding: 0 12px;
+    }
+
+    .os-brand {
+        font-size: .57rem;
+    }
+
+    .os-status {
+        gap: 8px;
+        font-size: .57rem;
+    }
+
+    .music-panel {
+        top: 60px;
+        right: 10px;
+        width: calc(100vw - 20px);
+    }
+
+    .toast {
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+    }
+
+    #opening {
+        padding-top: 100px;
+    }
+
     .game-container {
-        padding: 65px 0;
+        padding: 100px 0 65px;
     }
 
     .question-card {
@@ -488,45 +1052,190 @@ body {
     .option {
         font-size: 1.05rem;
     }
+
+    #result {
+        padding-top: 105px;
+    }
+}
+
+/* ================= REDUCED MOTION ================= */
+
+@media(prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+    }
+
+    .stars {
+        animation: none;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="background">
-    <div class="stars"></div>
-    <div class="glow"></div>
+<!-- ================= OS BAR ================= -->
+
+<div class="os-topbar">
+
+    <div class="os-brand">
+        <span class="os-dot"></span>
+        birthdayOS
+    </div>
+
+    <div class="os-status">
+
+        <span id="liveDate"></span>
+
+        <span id="liveTime"></span>
+
+        <button
+            class="music-mini"
+            id="musicMini"
+            aria-label="Toggle music">
+            ♫
+        </button>
+
+    </div>
+
 </div>
 
 
-<!-- ================================================= -->
-<!-- OPENING -->
-<!-- ================================================= -->
+<!-- ================= MUSIC ================= -->
+
+<div class="music-panel">
+
+    <div class="music-art">
+        ♫
+    </div>
+
+    <div class="music-info">
+
+        <strong>
+            golden hour — instrumental
+        </strong>
+
+        <span id="musicStatus">
+            Preparing music…
+        </span>
+
+    </div>
+
+    <button
+        class="music-button"
+        id="musicToggle"
+        aria-label="Play or pause music">
+        ▶
+    </button>
+
+</div>
+
+
+<!-- ================= TOAST ================= -->
+
+<div class="toast">
+
+    <span class="toast-icon">
+        ✦
+    </span>
+
+    <div>
+
+        <strong>
+            BirthdayOS
+        </strong>
+
+        <small>
+            Special birthday file opened.
+        </small>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MUSIC FILE
+     IMPORTANT:
+     Put golden-hour-instrumental.mp3 beside this HTML file.
+===================================================== -->
+
+<audio
+    id="birthdayAudio"
+    preload="auto"
+    autoplay
+    loop
+    playsinline>
+
+    <source
+        src="./golden-hour-instrumental.mp3"
+        type="audio/mpeg">
+
+</audio>
+
+
+<!-- ================= BACKGROUND ================= -->
+
+<div class="background">
+
+    <div class="stars"></div>
+
+    <div class="glow"></div>
+
+</div>
+
+
+<!-- =====================================================
+     OPENING
+===================================================== -->
 
 <section id="opening">
 
     <div class="opening-content">
 
         <div class="kicker">
-            Classified Birthday File
+            Classified Birthday File · 27.08
         </div>
 
         <h1>
-            Nikita
-            <span>Birthday Edition</span>
+
+            <span class="nameSlot">
+                Nikita
+            </span>
+
+            <span>
+                Birthday Edition
+            </span>
+
         </h1>
 
         <p>
-            A highly scientific investigation has been
-            conducted to determine your birthday personality.
+
+            A tiny little birthday world has been
+            prepared for one very specific person.
+
             <br><br>
-            Your only task is to choose wisely.
-            👀
+
+            Take the test, enjoy the music,
+            and see what your birthday profile says about you. ✦
+
         </p>
 
-        <button class="start-btn" onclick="startGame()">
+        <button
+            class="start-btn"
+            onclick="startGame()">
+
             Begin ✦
+
         </button>
 
     </div>
@@ -534,9 +1243,9 @@ body {
 </section>
 
 
-<!-- ================================================= -->
-<!-- GAME -->
-<!-- ================================================= -->
+<!-- =====================================================
+     GAME
+===================================================== -->
 
 <main id="game">
 
@@ -559,6 +1268,8 @@ body {
 
         </header>
 
+
+        <!-- PROGRESS -->
 
         <div class="progress-wrapper">
 
@@ -586,6 +1297,8 @@ body {
         </div>
 
 
+        <!-- QUESTION -->
+
         <div
             class="question-card"
             id="questionCard">
@@ -610,7 +1323,9 @@ body {
             <button
                 class="next-btn"
                 id="nextBtn">
+
                 Next Question →
+
             </button>
 
         </div>
@@ -620,9 +1335,9 @@ body {
 </main>
 
 
-<!-- ================================================= -->
-<!-- RESULT -->
-<!-- ================================================= -->
+<!-- =====================================================
+     RESULT
+===================================================== -->
 
 <section id="result">
 
@@ -663,33 +1378,54 @@ body {
             </h3>
 
             <p>
+
                 Birthdays are strange little reminders
                 that another year has passed and another
                 chapter is waiting to be written.
+
                 <br><br>
 
                 So here's my wish for yours:
+
+                <br><br>
 
                 May you find more reasons to laugh,
                 more moments worth remembering,
                 people who make ordinary days brighter,
                 and enough courage to chase the things
                 that truly matter to you.
+
                 <br><br>
 
                 Whatever this next year brings,
                 I hope it brings you somewhere
                 you're happy to be.
+
                 <br><br>
 
                 And yes...
+
+                <br>
+
                 you survived the highly scientific
                 birthday investigation. 😂
+
             </p>
 
+
             <div class="signature">
-                Happy Birthday, Nikita. 🎂<br><br>
-                — From a friend
+
+                Happy Birthday,
+                <span class="nameSlot">
+                    Nikita
+                </span>.
+                🎂
+
+                <br><br>
+
+                — From someone who wanted your birthday
+                to feel a little different ✦
+
             </div>
 
         </div>
@@ -701,118 +1437,134 @@ body {
 
 <script>
 
-/* ================================================= */
-/* QUESTIONS */
-/* ================================================= */
+/* =====================================================
+   PERSONALIZATION
+===================================================== */
+
+const NAME = "Nikita";
+
+document.title =
+    "Happy Birthday " + NAME + " ✦";
+
+document
+    .querySelectorAll(".nameSlot")
+    .forEach(el => {
+        el.textContent = NAME;
+    });
+
+
+/* =====================================================
+   QUESTIONS
+===================================================== */
 
 const questions = [
 
-{
-    q: "What's your birthday mood today?",
-    options: [
-        ["👑 Main character energy", "dreamer"],
-        ["🍰 Cake first, questions later", "chaos"],
-        ["😴 Sleep mode activated", "calm"],
-        ["🤪 Chaos has entered the chat", "adventure"]
-    ]
-},
+    {
+        q: "What's your birthday mood today?",
+        options: [
+            ["👑 Main character energy", "dreamer"],
+            ["🍰 Cake first, questions later", "chaos"],
+            ["😴 Sleep mode activated", "calm"],
+            ["🤪 Chaos has entered the chat", "adventure"]
+        ]
+    },
 
-{
-    q: "Choose your perfect birthday.",
-    options: [
-        ["🎉 A huge celebration", "chaos"],
-        ["🌸 A small gathering", "calm"],
-        ["🏡 A peaceful day", "dreamer"],
-        ["🎮 Just vibing", "adventure"]
-    ]
-},
+    {
+        q: "Choose your perfect birthday.",
+        options: [
+            ["🎉 A huge celebration", "chaos"],
+            ["🌸 A small gathering", "calm"],
+            ["🏡 A peaceful day", "dreamer"],
+            ["🎮 Just vibing", "adventure"]
+        ]
+    },
 
-{
-    q: "Someone gives you a mystery gift. What do you do?",
-    options: [
-        ["🎁 Open it immediately", "adventure"],
-        ["👀 Guess what's inside", "dreamer"],
-        ["😂 Shake the box", "chaos"],
-        ["🥹 Get genuinely touched", "calm"]
-    ]
-},
+    {
+        q: "Someone gives you a mystery gift. What do you do?",
+        options: [
+            ["🎁 Open it immediately", "adventure"],
+            ["👀 Guess what's inside", "dreamer"],
+            ["😂 Shake the box", "chaos"],
+            ["🥹 Get genuinely touched", "calm"]
+        ]
+    },
 
-{
-    q: "Pick a superpower.",
-    options: [
-        ["🧠 Unlimited intelligence", "dreamer"],
-        ["⏳ Control time", "calm"],
-        ["🪽 Flight", "adventure"],
-        ["✨ Make anyone laugh", "chaos"]
-    ]
-},
+    {
+        q: "Pick a superpower.",
+        options: [
+            ["🧠 Unlimited intelligence", "dreamer"],
+            ["⏳ Control time", "calm"],
+            ["🪽 Flight", "adventure"],
+            ["✨ Make anyone laugh", "chaos"]
+        ]
+    },
 
-{
-    q: "Choose an adventure.",
-    options: [
-        ["🌊 Somewhere by the sea", "calm"],
-        ["🏔️ Mountains and clouds", "adventure"],
-        ["🌃 A city at night", "chaos"],
-        ["🌲 Somewhere completely unknown", "dreamer"]
-    ]
-},
+    {
+        q: "Choose an adventure.",
+        options: [
+            ["🌊 Somewhere by the sea", "calm"],
+            ["🏔️ Mountains and clouds", "adventure"],
+            ["🌃 A city at night", "chaos"],
+            ["🌲 Somewhere completely unknown", "dreamer"]
+        ]
+    },
 
-{
-    q: "Pick your perfect atmosphere.",
-    options: [
-        ["🌙 Quiet night", "calm"],
-        ["☀️ Bright morning", "dreamer"],
-        ["🌧️ Rainy afternoon", "adventure"],
-        ["🌌 Stars everywhere", "chaos"]
-    ]
-},
+    {
+        q: "Pick your perfect atmosphere.",
+        options: [
+            ["🌙 Quiet night", "calm"],
+            ["☀️ Bright morning", "dreamer"],
+            ["🌧️ Rainy afternoon", "adventure"],
+            ["🌌 Stars everywhere", "chaos"]
+        ]
+    },
 
-{
-    q: "What's more important?",
-    options: [
-        ["❤️ Good people", "calm"],
-        ["🧠 Great memories", "dreamer"],
-        ["🎯 Big dreams", "adventure"],
-        ["😂 Having fun", "chaos"]
-    ]
-},
+    {
+        q: "What's more important?",
+        options: [
+            ["❤️ Good people", "calm"],
+            ["🧠 Great memories", "dreamer"],
+            ["🎯 Big dreams", "adventure"],
+            ["😂 Having fun", "chaos"]
+        ]
+    },
 
-{
-    q: "Pick a cake.",
-    options: [
-        ["🍫 Chocolate", "chaos"],
-        ["🍓 Strawberry", "dreamer"],
-        ["🍰 Vanilla", "calm"],
-        ["🎂 Surprise me", "adventure"]
-    ]
-},
+    {
+        q: "Pick a cake.",
+        options: [
+            ["🍫 Chocolate", "chaos"],
+            ["🍓 Strawberry", "dreamer"],
+            ["🍰 Vanilla", "calm"],
+            ["🎂 Surprise me", "adventure"]
+        ]
+    },
 
-{
-    q: "What would you choose for your next year?",
-    options: [
-        ["🌟 New experiences", "adventure"],
-        ["📚 New achievements", "dreamer"],
-        ["🫶 More meaningful friendships", "calm"],
-        ["🌍 New adventures", "chaos"]
-    ]
-},
+    {
+        q: "What would you choose for your next year?",
+        options: [
+            ["🌟 New experiences", "adventure"],
+            ["📚 New achievements", "dreamer"],
+            ["🫶 More meaningful friendships", "calm"],
+            ["🌍 New adventures", "chaos"]
+        ]
+    },
 
-{
-    q: "Final question... what do you think this website is?",
-    options: [
-        ["🎂 Just a birthday thing", "calm"],
-        ["😂 Someone got bored", "chaos"],
-        ["👀 There is definitely something hidden", "dreamer"],
-        ["🧐 I have absolutely no idea", "adventure"]
-    ]
-}
+    {
+        q: "Final question... what do you think this website is?",
+        options: [
+            ["🎂 Just a birthday thing", "calm"],
+            ["😂 Someone got bored", "chaos"],
+            ["👀 There is definitely something hidden", "dreamer"],
+            ["🧐 I have absolutely no idea", "adventure"]
+        ]
+    }
 
 ];
 
 
-/* ================================================= */
-/* VARIABLES */
-/* ================================================= */
+/* =====================================================
+   VARIABLES
+===================================================== */
 
 let currentQuestion = 0;
 
@@ -826,9 +1578,9 @@ let scores = {
 let selected = false;
 
 
-/* ================================================= */
-/* START */
-/* ================================================= */
+/* =====================================================
+   START GAME
+===================================================== */
 
 function startGame() {
 
@@ -839,22 +1591,31 @@ function startGame() {
         document.getElementById("game");
 
     opening.style.opacity = "0";
-    opening.style.transform = "scale(1.03)";
+
+    opening.style.transform =
+        "scale(1.03)";
 
     setTimeout(() => {
 
         opening.style.display = "none";
+
         game.style.display = "block";
 
         loadQuestion();
 
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
     }, 900);
+
 }
 
 
-/* ================================================= */
-/* LOAD QUESTION */
-/* ================================================= */
+/* =====================================================
+   LOAD QUESTION
+===================================================== */
 
 function loadQuestion() {
 
@@ -863,15 +1624,20 @@ function loadQuestion() {
     const data =
         questions[currentQuestion];
 
-    document.getElementById("questionNumber")
+    document
+        .getElementById("questionNumber")
         .textContent =
         "QUESTION " +
-        String(currentQuestion + 1).padStart(2, "0");
+        String(currentQuestion + 1)
+            .padStart(2, "0");
 
-    document.getElementById("question")
-        .textContent = data.q;
+    document
+        .getElementById("question")
+        .textContent =
+        data.q;
 
-    document.getElementById("questionCount")
+    document
+        .getElementById("questionCount")
         .textContent =
         "QUESTION " +
         (currentQuestion + 1) +
@@ -884,11 +1650,15 @@ function loadQuestion() {
             questions.length) * 100
         );
 
-    document.getElementById("percentage")
-        .textContent = percent + "%";
+    document
+        .getElementById("percentage")
+        .textContent =
+        percent + "%";
 
-    document.getElementById("progressBar")
-        .style.width = percent + "%";
+    document
+        .getElementById("progressBar")
+        .style.width =
+        percent + "%";
 
 
     const options =
@@ -897,23 +1667,27 @@ function loadQuestion() {
     options.innerHTML = "";
 
 
-    data.options.forEach((option, index) => {
+    data.options.forEach((option) => {
 
         const button =
             document.createElement("button");
 
-        button.className = "option";
+        button.className =
+            "option";
 
         button.textContent =
             option[0];
 
         button.onclick = () => {
 
-            if (selected) return;
+            if (selected)
+                return;
 
             selected = true;
 
-            button.classList.add("selected");
+            button.classList.add(
+                "selected"
+            );
 
             scores[option[1]]++;
 
@@ -934,8 +1708,11 @@ function loadQuestion() {
     next.classList.remove("ready");
 
     next.textContent =
-        currentQuestion === questions.length - 1
+        currentQuestion ===
+        questions.length - 1
+
         ? "Reveal My Result ✦"
+
         : "Next Question →";
 
 
@@ -948,22 +1725,27 @@ function loadQuestion() {
 
     card.style.animation =
         "cardIn .6s ease";
+
 }
 
 
-/* ================================================= */
-/* NEXT */
-/* ================================================= */
+/* =====================================================
+   NEXT QUESTION
+===================================================== */
 
 document
     .getElementById("nextBtn")
     .addEventListener("click", () => {
 
-        if (!selected) return;
+        if (!selected)
+            return;
 
         currentQuestion++;
 
-        if (currentQuestion < questions.length) {
+        if (
+            currentQuestion <
+            questions.length
+        ) {
 
             loadQuestion();
 
@@ -976,67 +1758,91 @@ document
     });
 
 
-/* ================================================= */
-/* RESULT */
-/* ================================================= */
+/* =====================================================
+   RESULT
+===================================================== */
 
 function showResult() {
 
-    document.getElementById("game")
+    document
+        .getElementById("game")
         .style.display = "none";
 
-    document.getElementById("result")
+    document
+        .getElementById("result")
         .style.display = "block";
 
 
-    let winner =
+    const winner =
         Object.keys(scores).reduce(
             (a, b) =>
-                scores[a] >= scores[b] ? a : b
+                scores[a] >= scores[b]
+                    ? a
+                    : b
         );
 
 
     const results = {
 
         dreamer: {
+
             icon: "🌙",
+
             title: "The Dreamer",
+
             description:
                 "You seem to carry a little world of your own inside you.",
+
             card:
                 "Curious, thoughtful and quietly imaginative. " +
                 "You probably notice more than you let people realise."
+
         },
 
         chaos: {
+
             icon: "✨",
+
             title: "The Chaos Star",
+
             description:
                 "A perfectly reasonable amount of chaos. Probably.",
+
             card:
                 "You bring energy wherever you go. " +
                 "Life would be considerably less interesting without people " +
                 "who know how to have fun."
+
         },
 
         calm: {
+
             icon: "🌸",
+
             title: "The Gentle Soul",
+
             description:
                 "You seem to value the little things that make life meaningful.",
+
             card:
                 "Good people, peaceful moments and memories that actually matter. " +
                 "There is something quietly beautiful about that."
+
         },
 
         adventure: {
+
             icon: "🌌",
+
             title: "The Wanderer",
+
             description:
                 "You seem to have a little curiosity pulling you toward the unknown.",
+
             card:
                 "New places, new experiences and stories waiting to happen. " +
                 "The world is much too big to stay in one chapter forever."
+
         }
 
     };
@@ -1046,17 +1852,25 @@ function showResult() {
         results[winner];
 
 
-    document.getElementById("resultIcon")
-        .textContent = result.icon;
+    document
+        .getElementById("resultIcon")
+        .textContent =
+        result.icon;
 
-    document.getElementById("resultTitle")
-        .textContent = result.title;
+    document
+        .getElementById("resultTitle")
+        .textContent =
+        result.title;
 
-    document.getElementById("resultDescription")
-        .textContent = result.description;
+    document
+        .getElementById("resultDescription")
+        .textContent =
+        result.description;
 
-    document.getElementById("resultCardText")
-        .textContent = result.card;
+    document
+        .getElementById("resultCardText")
+        .textContent =
+        result.card;
 
 
     window.scrollTo({
@@ -1065,56 +1879,319 @@ function showResult() {
     });
 
 
+    burstParticles(35);
+
     createFinalParticles();
+
 }
 
 
-/* ================================================= */
-/* FINAL PARTICLES */
-/* ================================================= */
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+function spawnParticle(duration) {
+
+    const star =
+        document.createElement("div");
+
+    star.className =
+        "birthday-particle";
+
+    star.textContent =
+        Math.random() > .5
+            ? "✦"
+            : "✧";
+
+    star.style.left =
+        Math.random() * 100 + "vw";
+
+    star.style.bottom =
+        "-20px";
+
+    star.style.fontSize =
+        (0.8 + Math.random() * .8) +
+        "rem";
+
+    star.style.opacity =
+        ".65";
+
+    document.body.appendChild(star);
+
+
+    requestAnimationFrame(() => {
+
+        star.style.transition =
+            `transform ${duration}s linear, opacity ${duration}s`;
+
+        star.style.transform =
+            `translateY(-110vh) translateX(${(Math.random() - .5) * 100}px)`;
+
+        star.style.opacity =
+            "0";
+
+    });
+
+
+    setTimeout(() => {
+
+        star.remove();
+
+    }, duration * 1000 + 500);
+
+}
+
+
+function burstParticles(count) {
+
+    for (
+        let i = 0;
+        i < count;
+        i++
+    ) {
+
+        setTimeout(() => {
+
+            spawnParticle(
+                3 + Math.random() * 3
+            );
+
+        }, i * 40);
+
+    }
+
+}
+
 
 function createFinalParticles() {
 
     setInterval(() => {
 
-        const star =
-            document.createElement("div");
+        spawnParticle(7);
 
-        star.textContent =
-            Math.random() > .5
-            ? "✦"
-            : "✧";
+    }, 800);
 
-        star.style.position = "fixed";
-        star.style.left =
-            Math.random() * 100 + "vw";
-
-        star.style.bottom = "-20px";
-
-        star.style.opacity = ".65";
-
-        star.style.pointerEvents = "none";
-
-        star.style.transition =
-            "transform 7s linear, opacity 7s";
-
-        document.body.appendChild(star);
-
-        requestAnimationFrame(() => {
-
-            star.style.transform =
-                "translateY(-110vh)";
-
-            star.style.opacity = "0";
-
-        });
-
-        setTimeout(() => {
-            star.remove();
-        }, 7500);
-
-    }, 700);
 }
+
+
+/* =====================================================
+   LIVE CLOCK
+===================================================== */
+
+function updateClock() {
+
+    const now =
+        new Date();
+
+    document
+        .getElementById("liveDate")
+        .textContent =
+        now.toLocaleDateString(
+            undefined,
+            {
+                day: "2-digit",
+                month: "short"
+            }
+        );
+
+    document
+        .getElementById("liveTime")
+        .textContent =
+        now.toLocaleTimeString(
+            undefined,
+            {
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+        );
+
+}
+
+updateClock();
+
+setInterval(
+    updateClock,
+    1000
+);
+
+
+/* =====================================================
+   MUSIC SYSTEM
+===================================================== */
+
+const audio =
+    document.getElementById(
+        "birthdayAudio"
+    );
+
+const musicToggle =
+    document.getElementById(
+        "musicToggle"
+    );
+
+const musicMini =
+    document.getElementById(
+        "musicMini"
+    );
+
+const musicStatus =
+    document.getElementById(
+        "musicStatus"
+    );
+
+
+function updateMusicUI() {
+
+    const playing =
+        !audio.paused &&
+        !audio.ended;
+
+    musicToggle.textContent =
+        playing
+            ? "❚❚"
+            : "▶";
+
+    musicMini.textContent =
+        playing
+            ? "❚❚"
+            : "♫";
+
+    musicStatus.textContent =
+        playing
+            ? "Now playing"
+            : "Tap play to start";
+
+}
+
+
+async function startMusic() {
+
+    try {
+
+        await audio.play();
+
+        updateMusicUI();
+
+    } catch (error) {
+
+        musicStatus.textContent =
+            "Tap anywhere to start music";
+
+        updateMusicUI();
+
+    }
+
+}
+
+
+async function toggleMusic() {
+
+    if (audio.paused) {
+
+        try {
+
+            await audio.play();
+
+        } catch (error) {
+
+            musicStatus.textContent =
+                "Music could not be started";
+
+        }
+
+    } else {
+
+        audio.pause();
+
+    }
+
+    updateMusicUI();
+
+}
+
+
+musicToggle.addEventListener(
+    "click",
+    toggleMusic
+);
+
+musicMini.addEventListener(
+    "click",
+    toggleMusic
+);
+
+
+audio.addEventListener(
+    "play",
+    updateMusicUI
+);
+
+audio.addEventListener(
+    "pause",
+    updateMusicUI
+);
+
+audio.addEventListener(
+    "error",
+    () => {
+
+        musicStatus.textContent =
+            "MP3 not found — check GitHub filename";
+
+    }
+);
+
+
+/*
+   Browsers may block audible autoplay.
+   We attempt autoplay immediately.
+*/
+
+startMusic();
+
+
+/*
+   If autoplay was blocked,
+   first interaction starts it.
+*/
+
+function unlockAudio() {
+
+    if (audio.paused) {
+
+        audio.play()
+            .then(updateMusicUI)
+            .catch(() => {});
+
+    }
+
+}
+
+window.addEventListener(
+    "pointerdown",
+    unlockAudio,
+    {
+        once: true,
+        passive: true
+    }
+);
+
+window.addEventListener(
+    "keydown",
+    unlockAudio,
+    {
+        once: true
+    }
+);
+
+window.addEventListener(
+    "touchstart",
+    unlockAudio,
+    {
+        once: true,
+        passive: true
+    }
+);
 
 </script>
 
