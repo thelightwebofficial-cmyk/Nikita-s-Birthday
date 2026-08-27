@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Happy Birthday Nikita ✦</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -20,140 +19,169 @@ html {
     scroll-behavior: smooth;
 }
 
-:root {
-    --text: #f7f1e5;
-    --muted: rgba(247,241,229,.62);
-    --gold: #f5dca8;
-    --violet: #bca8ff;
-    --glass: rgba(255,255,255,.055);
-    --line: rgba(255,255,255,.13);
-}
-
 body {
     min-height: 100vh;
-    color: var(--text);
+    color: #f7f1e5;
     font-family: "Cormorant Garamond", Georgia, serif;
+
     background:
-        radial-gradient(circle at 50% -10%, #3a304d 0%, #171423 38%, #07070c 78%);
+        radial-gradient(
+            circle at 50% 0%,
+            #3b304d 0%,
+            #171423 38%,
+            #07070c 100%
+        );
+
     overflow-x: hidden;
 }
 
-/* ================= OS TOP BAR ================= */
+/* =====================================================
+   OS TOP BAR
+===================================================== */
 
-.os-topbar {
+.os-bar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    height: 50px;
+
+    height: 48px;
+
     z-index: 100;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
 
-    background: rgba(7,7,12,.48);
-    border-bottom: 1px solid rgba(255,255,255,.08);
+    padding: 0 18px;
 
-    backdrop-filter: blur(25px) saturate(140%);
-    -webkit-backdrop-filter: blur(25px) saturate(140%);
+    background: rgba(7,7,12,.55);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
+
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
 
     font-family: Cinzel, serif;
+
     font-size: .65rem;
+
     letter-spacing: 1.5px;
 }
 
-.os-brand {
+.os-name {
     display: flex;
     align-items: center;
-    gap: 9px;
-    opacity: .82;
+    gap: 8px;
+
+    opacity: .8;
 }
 
-.os-dot {
+.os-light {
     width: 7px;
     height: 7px;
+
     border-radius: 50%;
-    background: var(--gold);
-    box-shadow: 0 0 15px rgba(245,220,168,.8);
-    animation: pulseDot 2s infinite;
+
+    background: #f5dca8;
+
+    box-shadow:
+        0 0 15px rgba(245,220,168,.9);
+
+    animation: pulse 2s infinite;
 }
 
-@keyframes pulseDot {
+@keyframes pulse {
     50% {
-        box-shadow: 0 0 25px rgba(245,220,168,1);
+        box-shadow:
+            0 0 28px rgba(245,220,168,1);
     }
 }
 
-.os-status {
+.os-info {
     display: flex;
     align-items: center;
-    gap: 15px;
-    opacity: .7;
+    gap: 14px;
+
+    opacity: .65;
 }
 
 .music-mini {
     width: 28px;
     height: 28px;
+
     border-radius: 50%;
-    border: 1px solid var(--line);
-    background: rgba(255,255,255,.06);
+
+    border:
+        1px solid rgba(255,255,255,.18);
+
+    background:
+        rgba(255,255,255,.06);
+
     color: white;
+
     cursor: pointer;
-    transition: .25s;
 }
 
-.music-mini:hover {
-    transform: scale(1.1);
-    background: rgba(255,255,255,.13);
-}
 
-/* ================= MUSIC PLAYER ================= */
+/* =====================================================
+   MUSIC PLAYER
+===================================================== */
 
-.music-panel {
+.music-player {
     position: fixed;
-    top: 65px;
-    right: 18px;
-    z-index: 90;
 
-    width: min(340px, calc(100vw - 36px));
+    top: 62px;
+    right: 18px;
+
+    width: 330px;
+
+    z-index: 90;
 
     display: flex;
     align-items: center;
-    gap: 13px;
 
-    padding: 12px 14px;
+    gap: 12px;
 
-    border: 1px solid var(--line);
-    border-radius: 19px;
+    padding: 12px;
 
-    background: rgba(12,11,20,.62);
+    border:
+        1px solid rgba(255,255,255,.13);
+
+    border-radius: 18px;
+
+    background:
+        rgba(12,11,20,.65);
 
     backdrop-filter: blur(22px);
     -webkit-backdrop-filter: blur(22px);
 
-    box-shadow: 0 25px 70px rgba(0,0,0,.35);
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.35);
 
-    animation: panelIn .9s ease;
+    animation: playerIn .8s ease;
 }
 
-@keyframes panelIn {
+@keyframes playerIn {
+
     from {
         opacity: 0;
-        transform: translateY(-15px) translateX(15px);
+        transform: translateY(-15px);
     }
 
     to {
         opacity: 1;
-        transform: none;
+        transform: translateY(0);
     }
+
 }
 
-.music-art {
+.album {
     width: 42px;
     height: 42px;
 
-    flex: 0 0 42px;
+    flex-shrink: 0;
 
     display: grid;
     place-items: center;
@@ -164,46 +192,44 @@ body {
         linear-gradient(
             135deg,
             rgba(245,220,168,.25),
-            rgba(188,168,255,.18)
+            rgba(188,168,255,.2)
         );
 
-    border: 1px solid rgba(255,255,255,.14);
+    border:
+        1px solid rgba(255,255,255,.12);
 
     font-size: 1.2rem;
-
-    animation: musicGlow 3s ease-in-out infinite;
 }
 
-@keyframes musicGlow {
-    50% {
-        box-shadow: 0 0 25px rgba(245,220,168,.13);
-    }
-}
-
-.music-info {
-    min-width: 0;
+.track {
     flex: 1;
+    min-width: 0;
 }
 
-.music-info strong {
+.track strong {
     display: block;
 
     font-family: Cinzel, serif;
-    font-size: .66rem;
-    letter-spacing: .7px;
+
+    font-size: .65rem;
+
+    letter-spacing: .6px;
 
     white-space: nowrap;
+
     overflow: hidden;
+
     text-overflow: ellipsis;
 }
 
-.music-info span {
+.track span {
     display: block;
 
     margin-top: 3px;
 
     font-size: .78rem;
-    color: var(--muted);
+
+    opacity: .55;
 }
 
 .music-button {
@@ -212,112 +238,58 @@ body {
 
     border-radius: 50%;
 
-    border: 1px solid rgba(255,255,255,.2);
+    border:
+        1px solid rgba(255,255,255,.2);
 
-    background: rgba(255,255,255,.07);
+    background:
+        rgba(255,255,255,.07);
+
     color: white;
 
     cursor: pointer;
-    transition: .25s;
 }
 
-.music-button:hover {
-    transform: scale(1.08);
-    background: rgba(255,255,255,.14);
-}
 
-/* ================= TOAST ================= */
-
-.toast {
-    position: fixed;
-    left: 18px;
-    bottom: 18px;
-
-    z-index: 110;
-
-    display: flex;
-    align-items: center;
-    gap: 11px;
-
-    padding: 13px 16px;
-
-    border: 1px solid var(--line);
-    border-radius: 16px;
-
-    background: rgba(13,12,22,.67);
-
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-
-    box-shadow: 0 20px 60px rgba(0,0,0,.35);
-
-    animation:
-        toastIn .7s ease,
-        toastOut .8s ease 5.5s forwards;
-}
-
-.toast-icon {
-    color: var(--gold);
-    font-size: 1.2rem;
-}
-
-.toast strong,
-.toast small {
-    display: block;
-}
-
-.toast strong {
-    font-family: Cinzel, serif;
-    font-size: .66rem;
-    letter-spacing: 1px;
-}
-
-.toast small {
-    margin-top: 3px;
-    font-size: .8rem;
-    opacity: .55;
-}
-
-@keyframes toastIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: none;
-    }
-}
-
-@keyframes toastOut {
-    to {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-}
-
-/* ================= BACKGROUND ================= */
+/* =====================================================
+   BACKGROUND
+===================================================== */
 
 .background {
     position: fixed;
+
     inset: 0;
 
-    overflow: hidden;
+    z-index: -2;
 
     pointer-events: none;
 
-    z-index: -2;
+    overflow: hidden;
 }
 
 .stars {
     position: absolute;
+
     inset: 0;
 
     background-image:
-        radial-gradient(circle, rgba(255,255,255,.9) 1px, transparent 1.5px),
-        radial-gradient(circle, rgba(255,255,255,.55) 1px, transparent 1.5px),
-        radial-gradient(circle, rgba(255,225,170,.5) 1px, transparent 1.5px);
+
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.9) 1px,
+            transparent 1.5px
+        ),
+
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.55) 1px,
+            transparent 1.5px
+        ),
+
+        radial-gradient(
+            circle,
+            rgba(255,225,170,.5) 1px,
+            transparent 1.5px
+        );
 
     background-size:
         120px 140px,
@@ -329,9 +301,19 @@ body {
         90px 70px,
         40px 130px;
 
-    opacity: .42;
+    opacity: .4;
 
-    animation: starDrift 45s linear infinite;
+    animation:
+        starsMove 45s linear infinite;
+}
+
+@keyframes starsMove {
+
+    to {
+        transform:
+            translateY(-100px);
+    }
+
 }
 
 .glow {
@@ -341,9 +323,10 @@ body {
     height: 500px;
 
     left: 50%;
-    top: 12%;
+    top: 10%;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     border-radius: 50%;
 
@@ -351,100 +334,121 @@ body {
         radial-gradient(
             circle,
             rgba(245,220,168,.08),
-            rgba(175,145,255,.045),
+            rgba(175,145,255,.05),
             transparent 70%
         );
 
-    filter: blur(35px);
+    filter: blur(30px);
 }
 
-@keyframes starDrift {
-    to {
-        transform: translateY(-100px);
-    }
-}
 
-/* ================= OPENING ================= */
+/* =====================================================
+   OPENING
+===================================================== */
 
 #opening {
     min-height: 100vh;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     text-align: center;
 
-    padding: 80px 25px 40px;
+    padding:
+        80px 25px 40px;
 
-    transition: 1s ease;
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
 }
 
 .opening-content {
     width: min(760px, 100%);
 
-    animation: appear 1.5s ease;
+    animation:
+        openingIn 1.5s ease;
 }
 
-.opening-content::before {
-    content: "PERSONAL BIRTHDAY SYSTEM";
+@keyframes openingIn {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0);
+    }
+
+}
+
+.system-label {
 
     display: inline-block;
 
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 
-    padding: 8px 14px;
+    padding: 8px 15px;
 
-    border: 1px solid rgba(245,220,168,.2);
+    border:
+        1px solid rgba(245,220,168,.2);
+
     border-radius: 999px;
 
-    background: rgba(245,220,168,.035);
+    background:
+        rgba(245,220,168,.035);
 
-    color: rgba(245,220,168,.75);
+    color:
+        rgba(245,220,168,.75);
 
     font-family: Cinzel, serif;
+
     font-size: .55rem;
+
     letter-spacing: 2.5px;
 }
 
 .kicker {
     font-family: Cinzel, serif;
 
-    font-size: .68rem;
+    font-size: .7rem;
 
     letter-spacing: 5px;
 
-    text-transform: uppercase;
-
-    opacity: .42;
+    opacity: .4;
 
     margin-bottom: 25px;
 }
 
-.opening-content h1 {
+h1 {
     font-family: Cinzel, serif;
 
     font-weight: 400;
-
-    font-size: clamp(3rem, 11vw, 6.5rem);
-
-    letter-spacing: 2px;
-
-    text-shadow:
-        0 0 35px rgba(245,220,168,.07);
 }
 
-.nameSlot {
+.opening-title {
+    font-size:
+        clamp(3rem, 11vw, 6.5rem);
+
+    letter-spacing: 2px;
+}
+
+.name {
     display: block;
 
     background:
         linear-gradient(
             90deg,
-            #fff,
+            #ffffff,
             #f5dca8,
-            #fff,
-            #d6c8ff,
-            #fff
+            #ffffff,
+            #c8bbff,
+            #ffffff
         );
 
     background-size: 250% auto;
@@ -454,31 +458,36 @@ body {
 
     color: transparent;
 
-    animation: shimmer 6s linear infinite;
+    animation:
+        shimmer 6s linear infinite;
 }
 
 @keyframes shimmer {
+
     to {
-        background-position: 250% center;
+        background-position:
+            250% center;
     }
+
 }
 
-.opening-content h1 span:last-child {
+.subtitle {
     display: block;
 
-    margin-top: 13px;
+    margin-top: 12px;
 
-    font-size: .37em;
+    font-size: .38em;
 
     letter-spacing: 6px;
 
     opacity: .6;
 }
 
-.opening-content p {
-    max-width: 570px;
+.opening-text {
+    max-width: 580px;
 
-    margin: 30px auto 42px;
+    margin:
+        30px auto 42px;
 
     font-size: 1.3rem;
 
@@ -487,88 +496,73 @@ body {
     opacity: .7;
 }
 
-.start-btn {
-    border: 1px solid rgba(255,255,255,.3);
+.start-button {
 
-    background:
-        linear-gradient(
-            135deg,
-            rgba(245,220,168,.08),
-            rgba(188,168,255,.07)
-        );
+    padding:
+        16px 40px;
 
-    color: #fff9eb;
-
-    padding: 16px 40px;
+    border:
+        1px solid rgba(255,255,255,.28);
 
     border-radius: 50px;
 
+    background:
+        rgba(255,255,255,.055);
+
+    color: white;
+
     font-family: Cinzel, serif;
+
+    font-size: .95rem;
 
     letter-spacing: 2px;
 
-    font-size: 1rem;
-
     cursor: pointer;
 
-    transition: .4s;
-
-    backdrop-filter: blur(15px);
-
-    box-shadow:
-        0 10px 40px rgba(0,0,0,.2);
+    transition: .35s;
 }
 
-.start-btn:hover {
-    transform: translateY(-4px) scale(1.02);
+.start-button:hover {
+
+    transform:
+        translateY(-4px);
 
     background:
-        linear-gradient(
-            135deg,
-            rgba(245,220,168,.14),
-            rgba(188,168,255,.13)
-        );
+        rgba(255,255,255,.12);
 
     box-shadow:
-        0 18px 55px rgba(0,0,0,.4),
-        0 0 35px rgba(245,220,168,.07);
+        0 15px 50px rgba(0,0,0,.35);
 }
 
-@keyframes appear {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ================= GAME ================= */
+/* =====================================================
+   GAME
+===================================================== */
 
 #game {
     display: none;
 }
 
 .game-container {
-    width: min(760px, 90%);
+
+    width:
+        min(760px, 90%);
 
     margin: auto;
 
-    padding: 110px 0 90px;
+    padding:
+        110px 0 90px;
 }
 
-/* ================= HEADER ================= */
-
 .game-header {
+
     text-align: center;
 
     margin-bottom: 40px;
 }
 
 .game-header small {
+
     font-family: Cinzel, serif;
 
     letter-spacing: 4px;
@@ -579,16 +573,15 @@ body {
 }
 
 .game-header h2 {
-    font-family: Cinzel, serif;
-
-    font-weight: 400;
-
-    font-size: clamp(2rem, 7vw, 3.7rem);
 
     margin-top: 18px;
+
+    font-size:
+        clamp(2rem, 7vw, 3.7rem);
 }
 
 .game-header p {
+
     margin-top: 15px;
 
     font-size: 1.15rem;
@@ -596,16 +589,22 @@ body {
     opacity: .65;
 }
 
-/* ================= PROGRESS ================= */
+
+/* =====================================================
+   PROGRESS
+===================================================== */
 
 .progress-wrapper {
     margin-bottom: 30px;
 }
 
 .progress-text {
+
     display: flex;
 
     justify-content: space-between;
+
+    margin-bottom: 8px;
 
     font-family: Cinzel, serif;
 
@@ -614,16 +613,14 @@ body {
     letter-spacing: 2px;
 
     opacity: .45;
-
-    margin-bottom: 8px;
 }
 
 .progress {
+
     height: 3px;
 
-    width: 100%;
-
-    background: rgba(255,255,255,.08);
+    background:
+        rgba(255,255,255,.08);
 
     border-radius: 10px;
 
@@ -631,6 +628,7 @@ body {
 }
 
 .progress-bar {
+
     height: 100%;
 
     width: 10%;
@@ -639,46 +637,53 @@ body {
         linear-gradient(
             90deg,
             rgba(255,255,255,.5),
-            var(--gold)
+            #f5dca8
         );
 
-    transition: width .5s ease;
-
     box-shadow:
-        0 0 15px rgba(245,220,168,.35);
+        0 0 15px rgba(245,220,168,.4);
+
+    transition:
+        width .5s ease;
 }
 
-/* ================= QUESTION CARD ================= */
+
+/* =====================================================
+   CARD
+===================================================== */
 
 .question-card {
+
     position: relative;
 
-    padding: 45px 30px;
+    padding:
+        45px 30px;
 
-    border: 1px solid rgba(255,255,255,.13);
+    border:
+        1px solid rgba(255,255,255,.13);
 
     border-radius: 28px;
 
     background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.055),
-            rgba(255,255,255,.025)
-        );
+        rgba(255,255,255,.045);
 
-    backdrop-filter: blur(20px);
+    backdrop-filter:
+        blur(20px);
 
-    -webkit-backdrop-filter: blur(20px);
+    -webkit-backdrop-filter:
+        blur(20px);
 
     box-shadow:
-        0 30px 90px rgba(0,0,0,.3);
+        0 30px 80px rgba(0,0,0,.3);
 
     overflow: hidden;
 
-    animation: cardIn .6s ease;
+    animation:
+        cardIn .6s ease;
 }
 
 .question-card::before {
+
     content: "";
 
     position: absolute;
@@ -691,27 +696,15 @@ body {
 
     border-radius: 50%;
 
-    background: rgba(188,168,255,.07);
+    background:
+        rgba(188,168,255,.07);
 
-    filter: blur(20px);
-
-    pointer-events: none;
-}
-
-.question-card::after {
-    content: "✦";
-
-    position: absolute;
-
-    right: 20px;
-    bottom: 10px;
-
-    font-size: 3rem;
-
-    opacity: .06;
+    filter:
+        blur(20px);
 }
 
 .question-number {
+
     text-align: center;
 
     font-family: Cinzel, serif;
@@ -726,43 +719,58 @@ body {
 }
 
 .question {
+
     position: relative;
+
     z-index: 2;
 
     text-align: center;
 
-    font-size: clamp(1.8rem, 6vw, 2.7rem);
+    font-size:
+        clamp(1.8rem, 6vw, 2.7rem);
 
     line-height: 1.25;
 
     margin-bottom: 35px;
 }
 
-/* ================= OPTIONS ================= */
+
+/* =====================================================
+   OPTIONS
+===================================================== */
 
 .options {
+
     display: grid;
 
     gap: 13px;
 
     position: relative;
-    z-index: 2;
+
+    z-index: 3;
 }
 
 .option {
+
     width: 100%;
 
-    padding: 17px 20px;
+    padding:
+        17px 20px;
 
-    border: 1px solid rgba(255,255,255,.12);
+    border:
+        1px solid rgba(255,255,255,.12);
 
     border-radius: 15px;
 
-    background: rgba(255,255,255,.035);
+    background:
+        rgba(255,255,255,.035);
 
     color: #f8f2e6;
 
-    font-family: "Cormorant Garamond", Georgia, serif;
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
 
     font-size: 1.15rem;
 
@@ -770,25 +778,26 @@ body {
 
     cursor: pointer;
 
-    transition:
-        transform .25s,
-        background .25s,
-        border-color .25s,
-        box-shadow .25s;
+    transition: .25s;
 }
 
 .option:hover {
-    transform: translateX(6px);
 
-    background: rgba(255,255,255,.08);
+    transform:
+        translateX(6px);
 
-    border-color: rgba(245,220,168,.3);
+    background:
+        rgba(255,255,255,.08);
 
-    box-shadow:
-        0 8px 30px rgba(0,0,0,.15);
+    border-color:
+        rgba(245,220,168,.35);
 }
 
 .option.selected {
+
+    transform:
+        translateX(6px);
+
     background:
         linear-gradient(
             90deg,
@@ -796,34 +805,38 @@ body {
             rgba(188,168,255,.1)
         );
 
-    border-color: rgba(245,220,168,.55);
-
-    transform: translateX(6px);
-
-    box-shadow:
-        0 8px 35px rgba(245,220,168,.06);
+    border-color:
+        rgba(245,220,168,.55);
 }
 
+
+/* =====================================================
+   NEXT BUTTON
+===================================================== */
+
 .next-btn {
+
     display: block;
 
-    margin: 30px auto 0;
+    margin:
+        30px auto 0;
 
-    padding: 14px 32px;
+    padding:
+        14px 32px;
 
-    border: 1px solid rgba(255,255,255,.25);
+    border:
+        1px solid rgba(255,255,255,.25);
 
     border-radius: 50px;
 
-    background: rgba(255,255,255,.06);
+    background:
+        rgba(255,255,255,.06);
 
     color: white;
 
     font-family: Cinzel, serif;
 
     letter-spacing: 2px;
-
-    font-size: .95rem;
 
     cursor: pointer;
 
@@ -835,63 +848,89 @@ body {
 }
 
 .next-btn.ready {
+
     opacity: 1;
+
     pointer-events: auto;
 }
 
 .next-btn:hover {
-    transform: translateY(-3px);
 
-    background: rgba(255,255,255,.12);
+    transform:
+        translateY(-3px);
+
+    background:
+        rgba(255,255,255,.12);
 }
 
 @keyframes cardIn {
+
     from {
         opacity: 0;
-        transform: translateY(20px) scale(.98);
+        transform:
+            translateY(20px)
+            scale(.98);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform:
+            translateY(0)
+            scale(1);
     }
+
 }
 
-/* ================= RESULT ================= */
+
+/* =====================================================
+   RESULT
+===================================================== */
 
 #result {
+
     display: none;
 
     min-height: 100vh;
 
-    text-align: center;
+    padding:
+        120px 20px 100px;
 
-    padding: 120px 20px 100px;
+    text-align: center;
 }
 
 .result-inner {
-    width: min(750px, 90%);
+
+    width:
+        min(750px, 90%);
 
     margin: auto;
 
-    animation: appear 1.2s ease;
+    animation:
+        openingIn 1.2s ease;
 }
 
 .result-icon {
+
     font-size: 4rem;
 
     margin-bottom: 25px;
 
-    animation: resultFloat 3s ease-in-out infinite;
+    animation:
+        float 3s ease-in-out infinite;
 }
 
-@keyframes resultFloat {
+@keyframes float {
+
     50% {
-        transform: translateY(-8px) scale(1.04);
+        transform:
+            translateY(-8px)
+            scale(1.05);
     }
+
 }
 
 .result-label {
+
     font-family: Cinzel, serif;
 
     font-size: .7rem;
@@ -902,48 +941,48 @@ body {
 }
 
 .result-title {
-    font-family: Cinzel, serif;
 
-    font-size: clamp(2.5rem, 8vw, 5rem);
+    margin:
+        20px 0;
 
-    font-weight: 400;
-
-    margin: 20px 0;
+    font-size:
+        clamp(2.5rem, 8vw, 5rem);
 }
 
 .result-description {
+
+    max-width: 650px;
+
+    margin: auto;
+
     font-size: 1.35rem;
 
     line-height: 1.8;
 
     opacity: .8;
-
-    max-width: 650px;
-
-    margin: auto;
 }
 
 .result-card {
-    position: relative;
 
     margin-top: 45px;
 
-    padding: 40px 25px;
+    padding:
+        40px 25px;
 
-    border: 1px solid rgba(255,255,255,.12);
+    border:
+        1px solid rgba(255,255,255,.12);
 
     border-radius: 25px;
 
-    background: rgba(255,255,255,.045);
+    background:
+        rgba(255,255,255,.045);
 
-    backdrop-filter: blur(20px);
-
-    -webkit-backdrop-filter: blur(20px);
-
-    overflow: hidden;
+    backdrop-filter:
+        blur(20px);
 }
 
 .result-card p {
+
     font-size: 1.2rem;
 
     line-height: 1.8;
@@ -951,28 +990,33 @@ body {
     opacity: .8;
 }
 
-/* ================= FINAL MESSAGE ================= */
+
+/* =====================================================
+   FINAL MESSAGE
+===================================================== */
 
 .final-message {
+
     margin-top: 70px;
 
     padding-top: 60px;
 
-    border-top: 1px solid rgba(255,255,255,.12);
+    border-top:
+        1px solid rgba(255,255,255,.12);
 }
 
 .final-message h3 {
-    font-family: Cinzel, serif;
 
-    font-size: clamp(1.8rem, 6vw, 3rem);
-
-    font-weight: 400;
+    font-size:
+        clamp(1.8rem, 6vw, 3rem);
 }
 
 .final-message p {
-    margin: 25px auto 0;
 
     max-width: 650px;
+
+    margin:
+        25px auto 0;
 
     font-size: 1.35rem;
 
@@ -982,59 +1026,58 @@ body {
 }
 
 .signature {
+
     margin-top: 40px;
 
     font-family: Cinzel, serif;
 
     letter-spacing: 2px;
 
-    color: rgba(245,220,168,.75);
-
-    opacity: .7;
+    color:
+        rgba(245,220,168,.75);
 }
 
-/* ================= PARTICLES ================= */
 
-.birthday-particle {
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+.particle {
+
     position: fixed;
 
     z-index: 80;
 
     pointer-events: none;
 
-    color: var(--gold);
+    color: #f5dca8;
 
     text-shadow:
-        0 0 12px rgba(245,220,168,.8);
+        0 0 15px rgba(245,220,168,.9);
 }
 
-/* ================= MOBILE ================= */
+
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:600px) {
 
-    .os-topbar {
-        padding: 0 12px;
+    .os-bar {
+        padding: 0 11px;
     }
 
-    .os-brand {
-        font-size: .57rem;
+    .os-info {
+        gap: 7px;
     }
 
-    .os-status {
-        gap: 8px;
-        font-size: .57rem;
-    }
+    .music-player {
 
-    .music-panel {
-        top: 60px;
+        top: 58px;
         right: 10px;
-        width: calc(100vw - 20px);
-    }
 
-    .toast {
-        left: 10px;
-        right: 10px;
-        bottom: 10px;
+        width:
+            calc(100vw - 20px);
     }
 
     #opening {
@@ -1042,11 +1085,13 @@ body {
     }
 
     .game-container {
-        padding: 100px 0 65px;
+        padding:
+            100px 0 65px;
     }
 
     .question-card {
-        padding: 38px 18px;
+        padding:
+            38px 18px;
     }
 
     .option {
@@ -1056,52 +1101,38 @@ body {
     #result {
         padding-top: 105px;
     }
-}
 
-/* ================= REDUCED MOTION ================= */
-
-@media(prefers-reduced-motion: reduce) {
-
-    html {
-        scroll-behavior: auto;
-    }
-
-    *,
-    *::before,
-    *::after {
-        animation-duration: .001ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .001ms !important;
-    }
-
-    .stars {
-        animation: none;
-    }
 }
 </style>
 </head>
 
+
 <body>
 
-<!-- ================= OS BAR ================= -->
 
-<div class="os-topbar">
+<!-- =====================================================
+     OS BAR
+===================================================== -->
 
-    <div class="os-brand">
-        <span class="os-dot"></span>
+<div class="os-bar">
+
+    <div class="os-name">
+
+        <span class="os-light"></span>
+
         birthdayOS
+
     </div>
 
-    <div class="os-status">
+    <div class="os-info">
 
-        <span id="liveDate"></span>
+        <span id="date"></span>
 
-        <span id="liveTime"></span>
+        <span id="time"></span>
 
         <button
             class="music-mini"
-            id="musicMini"
-            aria-label="Toggle music">
+            id="musicMini">
             ♫
         </button>
 
@@ -1110,70 +1141,51 @@ body {
 </div>
 
 
-<!-- ================= MUSIC ================= -->
+<!-- =====================================================
+     MUSIC PLAYER
+===================================================== -->
 
-<div class="music-panel">
+<div class="music-player">
 
-    <div class="music-art">
+    <div class="album">
         ♫
     </div>
 
-    <div class="music-info">
+    <div class="track">
 
         <strong>
             golden hour — instrumental
         </strong>
 
         <span id="musicStatus">
-            Preparing music…
+            Starting…
         </span>
 
     </div>
 
     <button
         class="music-button"
-        id="musicToggle"
-        aria-label="Play or pause music">
+        id="musicButton">
         ▶
     </button>
 
 </div>
 
 
-<!-- ================= TOAST ================= -->
-
-<div class="toast">
-
-    <span class="toast-icon">
-        ✦
-    </span>
-
-    <div>
-
-        <strong>
-            BirthdayOS
-        </strong>
-
-        <small>
-            Special birthday file opened.
-        </small>
-
-    </div>
-
-</div>
-
-
 <!-- =====================================================
-     MUSIC FILE
-     IMPORTANT:
-     Put golden-hour-instrumental.mp3 beside this HTML file.
+     AUDIO
+     
+     KEEP THIS MP3 IN THE SAME GITHUB FOLDER
+     
+     birthday-quiz.html
+     golden-hour-instrumental.mp3
 ===================================================== -->
 
 <audio
     id="birthdayAudio"
-    preload="auto"
     autoplay
     loop
+    preload="auto"
     playsinline>
 
     <source
@@ -1183,7 +1195,9 @@ body {
 </audio>
 
 
-<!-- ================= BACKGROUND ================= -->
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
 
 <div class="background">
 
@@ -1202,23 +1216,27 @@ body {
 
     <div class="opening-content">
 
-        <div class="kicker">
-            Classified Birthday File · 27.08
+        <div class="system-label">
+            PERSONAL BIRTHDAY SYSTEM
         </div>
 
-        <h1>
+        <div class="kicker">
+            CLASSIFIED BIRTHDAY FILE · 27.08
+        </div>
 
-            <span class="nameSlot">
+        <h1 class="opening-title">
+
+            <span class="name">
                 Nikita
             </span>
 
-            <span>
-                Birthday Edition
+            <span class="subtitle">
+                BIRTHDAY EDITION
             </span>
 
         </h1>
 
-        <p>
+        <p class="opening-text">
 
             A tiny little birthday world has been
             prepared for one very specific person.
@@ -1226,12 +1244,12 @@ body {
             <br><br>
 
             Take the test, enjoy the music,
-            and see what your birthday profile says about you. ✦
+            and discover your birthday profile. ✦
 
         </p>
 
         <button
-            class="start-btn"
+            class="start-button"
             onclick="startGame()">
 
             Begin ✦
@@ -1269,8 +1287,6 @@ body {
         </header>
 
 
-        <!-- PROGRESS -->
-
         <div class="progress-wrapper">
 
             <div class="progress-text">
@@ -1297,8 +1313,6 @@ body {
         </div>
 
 
-        <!-- QUESTION -->
-
         <div
             class="question-card"
             id="questionCard">
@@ -1306,13 +1320,17 @@ body {
             <div
                 class="question-number"
                 id="questionNumber">
+
                 QUESTION 01
+
             </div>
 
             <div
                 class="question"
                 id="question">
+
                 Loading...
+
             </div>
 
             <div
@@ -1346,11 +1364,15 @@ body {
         <div
             class="result-icon"
             id="resultIcon">
+
             ✦
+
         </div>
 
         <div class="result-label">
+
             YOUR BIRTHDAY PROFILE
+
         </div>
 
         <h1
@@ -1412,13 +1434,13 @@ body {
 
             </p>
 
-
             <div class="signature">
 
                 Happy Birthday,
-                <span class="nameSlot">
+                <span class="name">
                     Nikita
-                </span>.
+                </span>
+
                 🎂
 
                 <br><br>
@@ -1438,19 +1460,10 @@ body {
 <script>
 
 /* =====================================================
-   PERSONALIZATION
+   NAME
 ===================================================== */
 
 const NAME = "Nikita";
-
-document.title =
-    "Happy Birthday " + NAME + " ✦";
-
-document
-    .querySelectorAll(".nameSlot")
-    .forEach(el => {
-        el.textContent = NAME;
-    });
 
 
 /* =====================================================
@@ -1590,10 +1603,21 @@ function startGame() {
     const game =
         document.getElementById("game");
 
+
+    /*
+       Also attempt music when she clicks Begin.
+       This is useful because browser autoplay restrictions
+       are usually removed after a user interaction.
+    */
+
+    startMusic();
+
+
     opening.style.opacity = "0";
 
     opening.style.transform =
         "scale(1.03)";
+
 
     setTimeout(() => {
 
@@ -1624,6 +1648,7 @@ function loadQuestion() {
     const data =
         questions[currentQuestion];
 
+
     document
         .getElementById("questionNumber")
         .textContent =
@@ -1631,10 +1656,12 @@ function loadQuestion() {
         String(currentQuestion + 1)
             .padStart(2, "0");
 
+
     document
         .getElementById("question")
         .textContent =
         data.q;
+
 
     document
         .getElementById("questionCount")
@@ -1644,16 +1671,19 @@ function loadQuestion() {
         " / " +
         questions.length;
 
+
     const percent =
         Math.round(
             ((currentQuestion + 1) /
             questions.length) * 100
         );
 
+
     document
         .getElementById("percentage")
         .textContent =
         percent + "%";
+
 
     document
         .getElementById("progressBar")
@@ -1667,35 +1697,43 @@ function loadQuestion() {
     options.innerHTML = "";
 
 
-    data.options.forEach((option) => {
+    data.options.forEach(option => {
 
         const button =
             document.createElement("button");
 
+
         button.className =
             "option";
 
+
         button.textContent =
             option[0];
+
 
         button.onclick = () => {
 
             if (selected)
                 return;
 
+
             selected = true;
+
 
             button.classList.add(
                 "selected"
             );
 
+
             scores[option[1]]++;
+
 
             document
                 .getElementById("nextBtn")
                 .classList.add("ready");
 
         };
+
 
         options.appendChild(button);
 
@@ -1705,7 +1743,9 @@ function loadQuestion() {
     const next =
         document.getElementById("nextBtn");
 
+
     next.classList.remove("ready");
+
 
     next.textContent =
         currentQuestion ===
@@ -1719,6 +1759,7 @@ function loadQuestion() {
     const card =
         document.getElementById("questionCard");
 
+
     card.style.animation = "none";
 
     void card.offsetWidth;
@@ -1730,32 +1771,37 @@ function loadQuestion() {
 
 
 /* =====================================================
-   NEXT QUESTION
+   NEXT
 ===================================================== */
 
 document
     .getElementById("nextBtn")
-    .addEventListener("click", () => {
+    .addEventListener(
+        "click",
+        () => {
 
-        if (!selected)
-            return;
+            if (!selected)
+                return;
 
-        currentQuestion++;
 
-        if (
-            currentQuestion <
-            questions.length
-        ) {
+            currentQuestion++;
 
-            loadQuestion();
 
-        } else {
+            if (
+                currentQuestion <
+                questions.length
+            ) {
 
-            showResult();
+                loadQuestion();
+
+            } else {
+
+                showResult();
+
+            }
 
         }
-
-    });
+    );
 
 
 /* =====================================================
@@ -1768,12 +1814,13 @@ function showResult() {
         .getElementById("game")
         .style.display = "none";
 
+
     document
         .getElementById("result")
         .style.display = "block";
 
 
-    const winner =
+    let winner =
         Object.keys(scores).reduce(
             (a, b) =>
                 scores[a] >= scores[b]
@@ -1799,6 +1846,7 @@ function showResult() {
 
         },
 
+
         chaos: {
 
             icon: "✨",
@@ -1815,6 +1863,7 @@ function showResult() {
 
         },
 
+
         calm: {
 
             icon: "🌸",
@@ -1829,6 +1878,7 @@ function showResult() {
                 "There is something quietly beautiful about that."
 
         },
+
 
         adventure: {
 
@@ -1857,15 +1907,18 @@ function showResult() {
         .textContent =
         result.icon;
 
+
     document
         .getElementById("resultTitle")
         .textContent =
         result.title;
 
+
     document
         .getElementById("resultDescription")
         .textContent =
         result.description;
+
 
     document
         .getElementById("resultCardText")
@@ -1879,7 +1932,7 @@ function showResult() {
     });
 
 
-    burstParticles(35);
+    burstParticles(40);
 
     createFinalParticles();
 
@@ -1892,52 +1945,62 @@ function showResult() {
 
 function spawnParticle(duration) {
 
-    const star =
+    const particle =
         document.createElement("div");
 
-    star.className =
-        "birthday-particle";
 
-    star.textContent =
+    particle.className =
+        "particle";
+
+
+    particle.textContent =
         Math.random() > .5
             ? "✦"
             : "✧";
 
-    star.style.left =
+
+    particle.style.left =
         Math.random() * 100 + "vw";
 
-    star.style.bottom =
+
+    particle.style.bottom =
         "-20px";
 
-    star.style.fontSize =
-        (0.8 + Math.random() * .8) +
-        "rem";
 
-    star.style.opacity =
-        ".65";
+    particle.style.fontSize =
+        (
+            .8 +
+            Math.random() * .8
+        ) + "rem";
 
-    document.body.appendChild(star);
+
+    document.body.appendChild(
+        particle
+    );
 
 
     requestAnimationFrame(() => {
 
-        star.style.transition =
-            `transform ${duration}s linear, opacity ${duration}s`;
+        particle.style.transition =
+            `transform ${duration}s linear,
+             opacity ${duration}s`;
 
-        star.style.transform =
-            `translateY(-110vh) translateX(${(Math.random() - .5) * 100}px)`;
 
-        star.style.opacity =
+        particle.style.transform =
+            `translateY(-110vh)
+             translateX(${(Math.random()-.5)*120}px)`;
+
+
+        particle.style.opacity =
             "0";
 
     });
 
 
-    setTimeout(() => {
-
-        star.remove();
-
-    }, duration * 1000 + 500);
+    setTimeout(
+        () => particle.remove(),
+        duration * 1000 + 500
+    );
 
 }
 
@@ -1950,13 +2013,12 @@ function burstParticles(count) {
         i++
     ) {
 
-        setTimeout(() => {
-
-            spawnParticle(
+        setTimeout(
+            () => spawnParticle(
                 3 + Math.random() * 3
-            );
-
-        }, i * 40);
+            ),
+            i * 40
+        );
 
     }
 
@@ -1965,17 +2027,16 @@ function burstParticles(count) {
 
 function createFinalParticles() {
 
-    setInterval(() => {
-
-        spawnParticle(7);
-
-    }, 800);
+    setInterval(
+        () => spawnParticle(7),
+        800
+    );
 
 }
 
 
 /* =====================================================
-   LIVE CLOCK
+   CLOCK
 ===================================================== */
 
 function updateClock() {
@@ -1983,8 +2044,9 @@ function updateClock() {
     const now =
         new Date();
 
+
     document
-        .getElementById("liveDate")
+        .getElementById("date")
         .textContent =
         now.toLocaleDateString(
             undefined,
@@ -1994,8 +2056,9 @@ function updateClock() {
             }
         );
 
+
     document
-        .getElementById("liveTime")
+        .getElementById("time")
         .textContent =
         now.toLocaleTimeString(
             undefined,
@@ -2007,6 +2070,7 @@ function updateClock() {
 
 }
 
+
 updateClock();
 
 setInterval(
@@ -2016,7 +2080,7 @@ setInterval(
 
 
 /* =====================================================
-   MUSIC SYSTEM
+   MUSIC
 ===================================================== */
 
 const audio =
@@ -2024,9 +2088,9 @@ const audio =
         "birthdayAudio"
     );
 
-const musicToggle =
+const musicButton =
     document.getElementById(
-        "musicToggle"
+        "musicButton"
     );
 
 const musicMini =
@@ -2042,31 +2106,44 @@ const musicStatus =
 
 function updateMusicUI() {
 
-    const playing =
-        !audio.paused &&
-        !audio.ended;
+    if (audio.paused) {
 
-    musicToggle.textContent =
-        playing
-            ? "❚❚"
-            : "▶";
+        musicButton.textContent =
+            "▶";
 
-    musicMini.textContent =
-        playing
-            ? "❚❚"
-            : "♫";
+        musicMini.textContent =
+            "♫";
 
-    musicStatus.textContent =
-        playing
-            ? "Now playing"
-            : "Tap play to start";
+        musicStatus.textContent =
+            "Tap to play";
+
+    } else {
+
+        musicButton.textContent =
+            "❚❚";
+
+        musicMini.textContent =
+            "❚❚";
+
+        musicStatus.textContent =
+            "Now playing";
+
+    }
 
 }
 
 
+/*
+   IMPORTANT:
+   The browser decides whether audible autoplay
+   is permitted. We request it immediately.
+*/
+
 async function startMusic() {
 
     try {
+
+        audio.muted = false;
 
         await audio.play();
 
@@ -2074,8 +2151,13 @@ async function startMusic() {
 
     } catch (error) {
 
+        /*
+           Autoplay was blocked.
+           The next user interaction will retry.
+        */
+
         musicStatus.textContent =
-            "Tap anywhere to start music";
+            "Music ready";
 
         updateMusicUI();
 
@@ -2088,29 +2170,24 @@ async function toggleMusic() {
 
     if (audio.paused) {
 
-        try {
-
-            await audio.play();
-
-        } catch (error) {
-
-            musicStatus.textContent =
-                "Music could not be started";
-
-        }
+        await startMusic();
 
     } else {
 
         audio.pause();
 
-    }
+        updateMusicUI();
 
-    updateMusicUI();
+    }
 
 }
 
 
-musicToggle.addEventListener(
+/* =====================================================
+   MUSIC CONTROLS
+===================================================== */
+
+musicButton.addEventListener(
     "click",
     toggleMusic
 );
@@ -2121,75 +2198,114 @@ musicMini.addEventListener(
 );
 
 
-audio.addEventListener(
-    "play",
-    updateMusicUI
-);
-
-audio.addEventListener(
-    "pause",
-    updateMusicUI
-);
-
-audio.addEventListener(
-    "error",
-    () => {
-
-        musicStatus.textContent =
-            "MP3 not found — check GitHub filename";
-
-    }
-);
-
+/* =====================================================
+   AUTOPLAY ATTEMPTS
+===================================================== */
 
 /*
-   Browsers may block audible autoplay.
-   We attempt autoplay immediately.
+   Attempt #1:
+   immediately.
 */
 
 startMusic();
 
 
 /*
-   If autoplay was blocked,
-   first interaction starts it.
+   Attempt #2:
+   DOM loaded.
 */
 
-function unlockAudio() {
+document.addEventListener(
+    "DOMContentLoaded",
+    startMusic
+);
+
+
+/*
+   Attempt #3:
+   when tab becomes visible.
+*/
+
+document.addEventListener(
+    "visibilitychange",
+    () => {
+
+        if (
+            !document.hidden &&
+            audio.paused
+        ) {
+
+            startMusic();
+
+        }
+
+    }
+);
+
+
+/*
+   Attempt #4:
+   first interaction.
+
+   This is the fallback required by browsers
+   that block audible autoplay.
+*/
+
+function unlockMusic() {
 
     if (audio.paused) {
 
-        audio.play()
-            .then(updateMusicUI)
-            .catch(() => {});
+        startMusic();
 
     }
 
 }
 
+
 window.addEventListener(
     "pointerdown",
-    unlockAudio,
+    unlockMusic,
     {
         once: true,
         passive: true
     }
 );
 
+
+window.addEventListener(
+    "touchstart",
+    unlockMusic,
+    {
+        once: true,
+        passive: true
+    }
+);
+
+
 window.addEventListener(
     "keydown",
-    unlockAudio,
+    unlockMusic,
     {
         once: true
     }
 );
 
-window.addEventListener(
-    "touchstart",
-    unlockAudio,
-    {
-        once: true,
-        passive: true
+
+/* =====================================================
+   AUDIO ERROR
+===================================================== */
+
+audio.addEventListener(
+    "error",
+    () => {
+
+        musicStatus.textContent =
+            "MP3 not found";
+
+        console.error(
+            "MP3 missing: ./golden-hour-instrumental.mp3"
+        );
+
     }
 );
 
