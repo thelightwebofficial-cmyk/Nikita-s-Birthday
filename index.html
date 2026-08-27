@@ -2,3556 +2,1118 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<meta name="theme-color" content="#090307">
-
-<title>Something I Need To Ask You ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nikita's Birthday ✦</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-:root{
-    --pink:#ff9dca;
-    --baby:#ffd1e5;
-    --hot:#ff4f9d;
-    --red:#ff335f;
-    --dark:#050205;
-    --black:#080508;
-    --glass:rgba(255,255,255,.075);
-    --line:rgba(255,255,255,.14);
-    --text:#fff8fc;
-    --muted:#cbbec7;
+html {
+    scroll-behavior: smooth;
 }
 
-html{
-    scroll-behavior:smooth;
-}
-
-html,body{
-    width:100%;
-    min-height:100%;
-    background:#050205;
-}
-
-body{
-    font-family:
-        Inter,
-        "Segoe UI",
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        sans-serif;
-    color:var(--text);
-    overflow-x:hidden;
-    perspective:1600px;
-}
-
-/* =========================================================
-   CINEMATIC BACKGROUND
-========================================================= */
-
-#scene{
-    position:fixed;
-    inset:0;
-    z-index:0;
-    pointer-events:none;
-    overflow:hidden;
+body {
+    min-height: 100vh;
+    color: #f7f1e5;
+    font-family: "Cormorant Garamond", Georgia, serif;
     background:
-        radial-gradient(
-            circle at 50% 20%,
-            rgba(255,120,180,.15),
-            transparent 32%
-        ),
-        radial-gradient(
-            circle at 10% 90%,
-            rgba(255,40,80,.10),
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            #12060d,
-            #050205 45%,
-            #090307
-        );
+        radial-gradient(circle at 50% 0%, #302742 0%, #151322 42%, #07070c 100%);
+    overflow-x: hidden;
 }
 
-#stars{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
+/* ================= BACKGROUND ================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -2;
 }
 
-.aurora{
-    position:absolute;
-    width:55vw;
-    height:55vw;
-    min-width:350px;
-    min-height:350px;
-    border-radius:50%;
-    filter:blur(100px);
-    opacity:.16;
-    mix-blend-mode:screen;
-    animation:auroraFloat 14s ease-in-out infinite alternate;
+.stars {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,.9) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(255,255,255,.55) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(255,225,170,.5) 1px, transparent 1.5px);
+
+    background-size:
+        120px 140px,
+        190px 180px,
+        270px 250px;
+
+    background-position:
+        20px 30px,
+        90px 70px,
+        40px 130px;
+
+    opacity: .4;
+
+    animation: starDrift 45s linear infinite;
 }
 
-.aurora.one{
-    background:#ff4f9d;
-    left:-25%;
-    top:-25%;
+.glow {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    left: 50%;
+    top: 15%;
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background: rgba(175,145,255,.055);
+    filter: blur(50px);
 }
 
-.aurora.two{
-    background:#ff244f;
-    right:-30%;
-    bottom:-30%;
-    animation-delay:-5s;
-}
-
-.aurora.three{
-    background:#ffb6d7;
-    width:35vw;
-    height:35vw;
-    left:35%;
-    top:20%;
-    opacity:.07;
-    animation-duration:18s;
-}
-
-@keyframes auroraFloat{
-    from{
-        transform:translate3d(0,0,0) scale(1);
-    }
-    to{
-        transform:translate3d(70px,40px,0) scale(1.18);
+@keyframes starDrift {
+    to {
+        transform: translateY(-100px);
     }
 }
 
-/* =========================================================
-   LIGHT BEAMS
-========================================================= */
+/* ================= OPENING ================= */
 
-.beam{
-    position:absolute;
-    width:2px;
-    height:130vh;
-    top:-15vh;
-    background:linear-gradient(
-        to bottom,
-        transparent,
-        rgba(255,170,210,.16),
-        transparent
-    );
-    filter:blur(2px);
-    transform:rotate(28deg);
-    animation:beamMove 12s ease-in-out infinite;
+#opening {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    padding: 25px;
+
+    transition: 1s ease;
 }
 
-.beam.one{
-    left:15%;
+.opening-content {
+    max-width: 720px;
+    animation: appear 1.5s ease;
 }
 
-.beam.two{
-    left:70%;
-    animation-delay:-5s;
-    opacity:.5;
+.kicker {
+    font-family: Cinzel, serif;
+    font-size: .7rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    opacity: .45;
+    margin-bottom: 25px;
 }
 
-@keyframes beamMove{
-    0%,100%{
-        transform:rotate(28deg) translateX(-80px);
-        opacity:.15;
+.opening-content h1 {
+    font-family: Cinzel, serif;
+    font-weight: 400;
+    font-size: clamp(3rem, 10vw, 6rem);
+    letter-spacing: 2px;
+}
+
+.opening-content h1 span {
+    display: block;
+    font-size: .4em;
+    letter-spacing: 5px;
+    opacity: .65;
+    margin-top: 12px;
+}
+
+.opening-content p {
+    max-width: 560px;
+    margin: 30px auto 42px;
+
+    font-size: 1.3rem;
+    line-height: 1.8;
+
+    opacity: .72;
+}
+
+.start-btn {
+    border: 1px solid rgba(255,255,255,.3);
+    background: rgba(255,255,255,.055);
+
+    color: #fff9eb;
+
+    padding: 16px 38px;
+    border-radius: 50px;
+
+    font-family: Cinzel, serif;
+    letter-spacing: 2px;
+
+    cursor: pointer;
+    transition: .4s;
+
+    backdrop-filter: blur(12px);
+}
+
+.start-btn:hover {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,.12);
+    box-shadow: 0 15px 45px rgba(0,0,0,.35);
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
     }
-    50%{
-        transform:rotate(28deg) translateX(80px);
-        opacity:.5;
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-/* =========================================================
-   VIGNETTE
-========================================================= */
+/* ================= GAME ================= */
 
-.vignette{
-    position:fixed;
-    inset:0;
-    z-index:4;
-    pointer-events:none;
-    background:
-        radial-gradient(
-            ellipse at center,
-            transparent 40%,
-            rgba(0,0,0,.55) 100%
-        );
+#game {
+    display: none;
 }
 
-/* =========================================================
-   PARTICLES
-========================================================= */
-
-.particle-layer{
-    position:fixed;
-    inset:0;
-    z-index:2;
-    pointer-events:none;
-    overflow:hidden;
+.game-container {
+    width: min(760px, 90%);
+    margin: auto;
+    padding: 90px 0;
 }
 
-.particle{
-    position:absolute;
-    border-radius:50%;
-    background:rgba(255,220,235,.9);
+/* ================= HEADER ================= */
+
+.game-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.game-header small {
+    font-family: Cinzel, serif;
+    letter-spacing: 4px;
+    font-size: .68rem;
+    opacity: .4;
+}
+
+.game-header h2 {
+    font-family: Cinzel, serif;
+    font-weight: 400;
+    font-size: clamp(2rem, 7vw, 3.7rem);
+    margin-top: 18px;
+}
+
+.game-header p {
+    margin-top: 15px;
+    font-size: 1.15rem;
+    opacity: .65;
+}
+
+/* ================= PROGRESS ================= */
+
+.progress-wrapper {
+    margin-bottom: 30px;
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+
+    font-family: Cinzel, serif;
+    font-size: .65rem;
+    letter-spacing: 2px;
+
+    opacity: .45;
+    margin-bottom: 8px;
+}
+
+.progress {
+    height: 3px;
+    width: 100%;
+
+    background: rgba(255,255,255,.08);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 10%;
+
+    background: rgba(255,255,255,.65);
+
+    transition: width .5s ease;
+}
+
+/* ================= QUESTION CARD ================= */
+
+.question-card {
+    padding: 45px 30px;
+
+    border: 1px solid rgba(255,255,255,.13);
+    border-radius: 28px;
+
+    background: rgba(255,255,255,.045);
+
+    backdrop-filter: blur(16px);
+
     box-shadow:
-        0 0 10px rgba(255,150,200,.8),
-        0 0 25px rgba(255,80,160,.3);
-    animation:particleFloat linear infinite;
+        0 30px 80px rgba(0,0,0,.25);
+
+    animation: cardIn .6s ease;
 }
 
-@keyframes particleFloat{
-    0%{
-        transform:translate3d(0,110vh,0) scale(.3);
-        opacity:0;
-    }
-    10%{
-        opacity:.8;
-    }
-    90%{
-        opacity:.5;
-    }
-    100%{
-        transform:translate3d(
-            var(--drift),
-            -15vh,
-            0
-        ) scale(1);
-        opacity:0;
-    }
+.question-number {
+    text-align: center;
+
+    font-family: Cinzel, serif;
+    font-size: .68rem;
+    letter-spacing: 4px;
+
+    opacity: .4;
+    margin-bottom: 20px;
 }
 
-/* =========================================================
-   BUTTERFLIES
-========================================================= */
+.question {
+    text-align: center;
 
-.butterfly-layer{
-    position:fixed;
-    inset:0;
-    z-index:3;
-    pointer-events:none;
-    overflow:hidden;
+    font-size: clamp(1.8rem, 6vw, 2.7rem);
+    line-height: 1.25;
+
+    margin-bottom: 35px;
 }
 
-.butterfly{
-    position:absolute;
-    font-size:24px;
-    opacity:0;
-    filter:
-        drop-shadow(0 0 8px rgba(255,150,205,.7))
-        drop-shadow(0 0 18px rgba(255,70,140,.25));
-    animation:butterflyFlight linear infinite;
+/* ================= OPTIONS ================= */
+
+.options {
+    display: grid;
+    gap: 13px;
 }
 
-@keyframes butterflyFlight{
-    0%{
-        transform:
-            translate3d(-10vw,110vh,0)
-            rotate(-10deg)
-            scale(.5);
-        opacity:0;
-    }
+.option {
+    width: 100%;
 
-    12%{
-        opacity:.8;
-    }
+    padding: 17px 20px;
 
-    40%{
-        transform:
-            translate3d(30vw,60vh,0)
-            rotate(8deg)
-            scale(1);
-    }
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 15px;
 
-    70%{
-        transform:
-            translate3d(70vw,35vh,0)
-            rotate(-8deg)
-            scale(.85);
-    }
+    background: rgba(255,255,255,.035);
+    color: #f8f2e6;
 
-    100%{
-        transform:
-            translate3d(110vw,-15vh,0)
-            rotate(15deg)
-            scale(.5);
-        opacity:0;
-    }
-}
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 1.15rem;
 
-/* =========================================================
-   TOP PROGRESS
-========================================================= */
+    text-align: left;
 
-.progress{
-    position:fixed;
-    z-index:100;
-    top:18px;
-    left:50%;
-    transform:translateX(-50%);
-    width:min(400px,70vw);
-    height:3px;
-    border-radius:999px;
-    background:rgba(255,255,255,.08);
-    overflow:hidden;
-    backdrop-filter:blur(10px);
-}
-
-.progress span{
-    display:block;
-    height:100%;
-    width:0;
-    border-radius:inherit;
-    background:
-        linear-gradient(
-            90deg,
-            #ff477f,
-            #ff9dca,
-            #fff
-        );
-    box-shadow:
-        0 0 10px #ff5b9e,
-        0 0 25px rgba(255,80,150,.5);
-    transition:
-        width 1s cubic-bezier(.16,1,.3,1);
-}
-
-/* =========================================================
-   SCREENS
-========================================================= */
-
-.screen{
-    position:fixed;
-    inset:0;
-    z-index:10;
-    display:grid;
-    place-items:center;
-    padding:
-        max(35px,5vh)
-        20px
-        30px;
-
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
-
-    transform:
-        scale(1.055)
-        translateY(20px);
+    cursor: pointer;
 
     transition:
-        opacity .8s cubic-bezier(.16,1,.3,1),
-        transform 1s cubic-bezier(.16,1,.3,1),
-        visibility .8s;
+        transform .25s,
+        background .25s,
+        border-color .25s;
 }
 
-.screen.active{
-    opacity:1;
-    visibility:visible;
-    pointer-events:auto;
-    transform:
-        scale(1)
-        translateY(0);
+.option:hover {
+    transform: translateX(5px);
+    background: rgba(255,255,255,.08);
+    border-color: rgba(255,255,255,.25);
 }
 
-/* =========================================================
-   CARD
-========================================================= */
-
-.card-wrap{
-    width:min(820px,95vw);
-    perspective:1800px;
+.option.selected {
+    background: rgba(255,255,255,.13);
+    border-color: rgba(255,255,255,.5);
+    transform: translateX(5px);
 }
 
-.card{
-    position:relative;
-    width:100%;
-    max-height:88vh;
-    overflow:auto;
+.next-btn {
+    display: block;
+    margin: 30px auto 0;
 
-    padding:
-        clamp(32px,6vw,75px)
-        clamp(22px,6vw,75px);
+    padding: 14px 32px;
 
-    text-align:center;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 50px;
 
-    border-radius:
-        clamp(25px,4vw,42px);
+    background: rgba(255,255,255,.06);
+    color: white;
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.13),
-            rgba(255,255,255,.045)
-        );
+    font-family: Cinzel, serif;
+    letter-spacing: 2px;
 
-    border:1px solid var(--line);
+    cursor: pointer;
 
-    box-shadow:
-        0 50px 140px rgba(0,0,0,.75),
-        inset 0 1px rgba(255,255,255,.14),
-        inset 0 -1px rgba(255,70,130,.04);
+    opacity: 0;
+    pointer-events: none;
 
-    backdrop-filter:
-        blur(30px)
-        saturate(150%);
-
-    -webkit-backdrop-filter:
-        blur(30px)
-        saturate(150%);
-
-    transform-style:preserve-3d;
-
-    transition:
-        transform .18s ease-out,
-        box-shadow .4s ease;
+    transition: .35s;
 }
 
-.card::-webkit-scrollbar{
-    width:3px;
+.next-btn.ready {
+    opacity: 1;
+    pointer-events: auto;
 }
 
-.card::-webkit-scrollbar-thumb{
-    background:#ff77aa;
-    border-radius:10px;
+.next-btn:hover {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,.12);
 }
 
-/* premium reflection */
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(.98);
+    }
 
-.card::before{
-    content:"";
-    position:absolute;
-    inset:-2px;
-
-    background:
-        linear-gradient(
-            120deg,
-            transparent 20%,
-            rgba(255,255,255,.13),
-            transparent 45%
-        );
-
-    transform:
-        translateX(-130%);
-
-    animation:
-        reflection 8s ease-in-out infinite;
-
-    pointer-events:none;
-}
-
-@keyframes reflection{
-    35%,100%{
-        transform:translateX(130%);
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }
 
-/* glow edge */
+/* ================= RESULT ================= */
 
-.card::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    border-radius:inherit;
-    pointer-events:none;
+#result {
+    display: none;
 
-    box-shadow:
-        inset 0 0 80px rgba(255,100,170,.025),
-        0 0 80px rgba(255,70,150,.025);
+    min-height: 100vh;
+
+    text-align: center;
+
+    padding: 100px 20px;
 }
 
-/* =========================================================
-   TYPOGRAPHY
-========================================================= */
+.result-inner {
+    width: min(750px, 90%);
+    margin: auto;
 
-.eyebrow{
-    font-size:11px;
-    letter-spacing:.34em;
-    text-transform:uppercase;
-    color:#ffc4dc;
-    margin-bottom:20px;
-    opacity:.9;
+    animation: appear 1.2s ease;
 }
 
-h1{
-    position:relative;
-    z-index:1;
-    font-size:clamp(40px,8vw,82px);
-    line-height:.98;
-    letter-spacing:-.055em;
-    font-weight:800;
+.result-icon {
+    font-size: 4rem;
+    margin-bottom: 25px;
 }
 
-.gradient{
-    background:
-        linear-gradient(
-            90deg,
-            #fff,
-            #ffd0e4,
-            #ff7bab,
-            #fff
-        );
-
-    background-size:250%;
-
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-
-    animation:
-        gradientMove 6s linear infinite;
+.result-label {
+    font-family: Cinzel, serif;
+    font-size: .7rem;
+    letter-spacing: 5px;
+    opacity: .45;
 }
 
-@keyframes gradientMove{
-    to{
-        background-position:250%;
-    }
+.result-title {
+    font-family: Cinzel, serif;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 400;
+
+    margin: 20px 0;
 }
 
-.subtitle{
-    max-width:620px;
-    margin:25px auto;
-    color:var(--muted);
-    font-size:clamp(15px,2.3vw,19px);
-    line-height:1.8;
+.result-description {
+    font-size: 1.35rem;
+    line-height: 1.8;
+
+    opacity: .8;
+
+    max-width: 650px;
+    margin: auto;
 }
 
-/* =========================================================
-   INPUTS
-========================================================= */
+.result-card {
+    margin-top: 45px;
 
-input,
-select{
-    width:min(500px,100%);
-    margin:10px auto;
-    display:block;
+    padding: 40px 25px;
 
-    padding:17px 20px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 25px;
 
-    border-radius:18px;
-
-    border:
-        1px solid rgba(255,255,255,.13);
-
-    background:
-        rgba(0,0,0,.28);
-
-    color:white;
-
-    outline:none;
-
-    font-size:16px;
-
-    transition:
-        border .3s,
-        box-shadow .3s,
-        transform .3s;
+    background: rgba(255,255,255,.045);
 }
 
-input::placeholder{
-    color:#8e828b;
+.result-card p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    opacity: .8;
 }
 
-input:focus,
-select:focus{
-    border-color:rgba(255,130,190,.75);
+/* ================= FINAL MESSAGE ================= */
 
-    box-shadow:
-        0 0 0 5px rgba(255,90,170,.06),
-        0 0 35px rgba(255,90,170,.12);
+.final-message {
+    margin-top: 70px;
+    padding-top: 60px;
 
-    transform:translateY(-2px);
+    border-top: 1px solid rgba(255,255,255,.12);
 }
 
-select option{
-    background:#10070d;
-    color:white;
+.final-message h3 {
+    font-family: Cinzel, serif;
+    font-size: clamp(1.8rem, 6vw, 3rem);
+    font-weight: 400;
 }
 
-.insta-field{
-    position:relative;
-    width:min(500px,100%);
-    margin:10px auto;
+.final-message p {
+    margin: 25px auto 0;
+
+    max-width: 650px;
+
+    font-size: 1.35rem;
+    line-height: 1.9;
+
+    opacity: .78;
 }
 
-.insta-field .prefix{
-    position:absolute;
-    left:20px;
-    top:50%;
-    transform:translateY(-50%);
-    color:#ffc0da;
+.signature {
+    margin-top: 40px;
+
+    font-family: Cinzel, serif;
+    letter-spacing: 2px;
+
+    opacity: .55;
 }
 
-.insta-field input{
-    margin:0;
-    padding-left:38px;
-    text-align:left;
-}
+/* ================= MOBILE ================= */
 
-/* =========================================================
-   BUTTONS
-========================================================= */
+@media(max-width:600px) {
 
-.buttons{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:13px;
-    margin-top:28px;
-}
-
-button{
-    border:0;
-    border-radius:999px;
-
-    padding:15px 30px;
-
-    color:white;
-
-    font-size:15px;
-    font-weight:750;
-
-    cursor:pointer;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff477f,
-            #ff88b8
-        );
-
-    box-shadow:
-        0 12px 35px rgba(255,60,130,.25),
-        inset 0 1px rgba(255,255,255,.2);
-
-    transition:
-        transform .35s cubic-bezier(.16,1,.3,1),
-        box-shadow .35s,
-        filter .35s;
-}
-
-button:hover{
-    transform:
-        translateY(-5px)
-        scale(1.035);
-
-    box-shadow:
-        0 20px 55px rgba(255,60,130,.38),
-        0 0 25px rgba(255,100,170,.18);
-}
-
-button:active{
-    transform:scale(.96);
-}
-
-.choice{
-    min-width:165px;
-}
-
-/* =========================================================
-   HERO ICONS
-========================================================= */
-
-.heart{
-    font-size:76px;
-    margin-bottom:18px;
-
-    filter:
-        drop-shadow(0 0 15px rgba(255,70,140,.7))
-        drop-shadow(0 0 40px rgba(255,40,90,.35));
-
-    animation:
-        heartbeat 1.7s infinite;
-}
-
-.proposalHeart{
-    font-size:100px;
-
-    filter:
-        drop-shadow(0 0 18px rgba(255,70,140,.8))
-        drop-shadow(0 0 60px rgba(255,40,100,.4));
-
-    animation:
-        heartbeat 1.5s infinite,
-        floatingHeart 4s ease-in-out infinite;
-}
-
-@keyframes heartbeat{
-    0%,100%{transform:scale(1)}
-    10%{transform:scale(1.15)}
-    20%{transform:scale(1)}
-    30%{transform:scale(1.08)}
-    40%{transform:scale(1)}
-}
-
-@keyframes floatingHeart{
-    0%,100%{
-        translate:0 0;
-    }
-    50%{
-        translate:0 -13px;
-    }
-}
-
-/* =========================================================
-   QUESTIONS
-========================================================= */
-
-.question{
-    margin-top:24px;
-    font-size:clamp(27px,5vw,48px);
-    font-weight:850;
-    color:#ffc0db;
-}
-
-.proposalText{
-    margin-top:25px;
-    font-size:clamp(16px,2.4vw,19px);
-    line-height:1.85;
-    color:#eee4eb;
-}
-
-/* =========================================================
-   NO BUTTON
-========================================================= */
-
-.proposalButtons{
-    position:relative;
-    min-height:135px;
-}
-
-.no-btn{
-    position:relative;
-    z-index:5;
-    background:
-        linear-gradient(
-            135deg,
-            #45434b,
-            #77727c
-        );
-}
-
-.no-btn.running{
-    position:fixed;
-    margin:0;
-    z-index:500;
-    transition:
-        left .38s cubic-bezier(.16,1,.3,1),
-        top .38s cubic-bezier(.16,1,.3,1),
-        transform .25s;
-}
-
-.no-btn.running:hover{
-    transform:scale(1.04);
-}
-
-/* =========================================================
-   DATE PLANNER
-========================================================= */
-
-.date-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    max-width:650px;
-    margin:20px auto 0;
-}
-
-.date-grid input{
-    width:100%;
-    margin:0;
-}
-
-.place{
-    margin-top:4px;
-}
-
-.notice{
-    max-width:580px;
-    margin:20px auto 0;
-    padding:13px 16px;
-
-    border-radius:15px;
-
-    background:
-        rgba(255,120,170,.06);
-
-    border:
-        1px solid rgba(255,150,190,.09);
-
-    color:#d9cbd2;
-    font-size:13px;
-    line-height:1.6;
-}
-
-/* =========================================================
-   CONFIRMATION
-========================================================= */
-
-.confirm-box{
-    margin:25px auto;
-    max-width:580px;
-
-    padding:24px;
-
-    border-radius:22px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,180,210,.09),
-            rgba(255,255,255,.025)
-        );
-
-    border:
-        1px solid rgba(255,255,255,.1);
-
-    text-align:left;
-}
-
-.confirm-row{
-    display:flex;
-    justify-content:space-between;
-    gap:20px;
-    padding:12px 0;
-    border-bottom:1px solid rgba(255,255,255,.06);
-}
-
-.confirm-row:last-child{
-    border-bottom:0;
-}
-
-.confirm-label{
-    color:#9d9098;
-    font-size:13px;
-}
-
-.confirm-value{
-    color:#fff;
-    text-align:right;
-    font-weight:650;
-}
-
-/* =========================================================
-   FINAL
-========================================================= */
-
-.finalMessage{
-    max-width:620px;
-    margin:25px auto;
-    color:#f3eaf0;
-    font-size:18px;
-    line-height:1.9;
-}
-
-.signature{
-    margin-top:26px;
-    color:#ffb3d5;
-    font-style:italic;
-}
-
-.gift{
-    margin-top:30px;
-    padding:20px;
-
-    border-radius:22px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,80,130,.10),
-            rgba(255,200,220,.05)
-        );
-
-    border:
-        1px solid rgba(255,150,190,.15);
-
-    box-shadow:
-        0 0 40px rgba(255,70,140,.06);
-}
-
-.gift strong{
-    display:block;
-    color:#ffd1e4;
-    font-size:20px;
-    margin-bottom:6px;
-}
-
-/* =========================================================
-   FLOATING HEARTS
-========================================================= */
-
-.floatHeart{
-    position:fixed;
-    z-index:300;
-    pointer-events:none;
-    animation:
-        floatUp linear forwards;
-}
-
-@keyframes floatUp{
-    0%{
-        transform:
-            translateY(0)
-            scale(.5)
-            rotate(-10deg);
-        opacity:0;
+    .game-container {
+        padding: 65px 0;
     }
 
-    15%{
-        opacity:1;
+    .question-card {
+        padding: 38px 18px;
     }
 
-    100%{
-        transform:
-            translateY(-110vh)
-            scale(1.25)
-            rotate(20deg);
-        opacity:0;
+    .option {
+        font-size: 1.05rem;
     }
 }
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-.toast{
-    position:fixed;
-    z-index:1000;
-    left:50%;
-    bottom:25px;
-    transform:
-        translate(-50%,20px);
-
-    padding:12px 17px;
-
-    border-radius:14px;
-
-    background:
-        rgba(0,0,0,.78);
-
-    border:
-        1px solid rgba(255,255,255,.12);
-
-    backdrop-filter:blur(15px);
-
-    color:#ffe4ef;
-
-    font-size:13px;
-
-    opacity:0;
-    pointer-events:none;
-
-    transition:
-        opacity .3s,
-        transform .3s;
-}
-
-.toast.show{
-    opacity:1;
-    transform:translate(-50%,0);
-}
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:650px){
-
-    .screen{
-        padding:45px 13px 20px;
-    }
-
-    .card{
-        max-height:90vh;
-        padding:38px 20px;
-        border-radius:27px;
-    }
-
-    h1{
-        font-size:clamp(39px,12vw,62px);
-    }
-
-    .subtitle{
-        font-size:15px;
-        line-height:1.7;
-    }
-
-    .buttons{
-        flex-direction:column;
-        width:100%;
-    }
-
-    button,
-    .choice{
-        width:100%;
-    }
-
-    .proposalButtons{
-        min-height:150px;
-    }
-
-    .date-grid{
-        grid-template-columns:1fr;
-    }
-
-    .confirm-row{
-        flex-direction:column;
-        gap:4px;
-    }
-
-    .confirm-value{
-        text-align:left;
-    }
-
-    .proposalHeart{
-        font-size:76px;
-    }
-}
-
-/* reduce animation when requested */
-
-@media(prefers-reduced-motion:reduce){
-
-    *,
-    *::before,
-    *::after{
-        animation-duration:.01ms !important;
-        animation-iteration-count:1 !important;
-        scroll-behavior:auto !important;
-        transition-duration:.01ms !important;
-    }
-}
-
-/* =========================================================
-   MERGED CINEMATIC ENHANCEMENTS
-========================================================= */
-
-.bokeh-layer{
-    position:fixed;
-    inset:0;
-    z-index:1;
-    pointer-events:none;
-    overflow:hidden;
-}
-
-.bokeh{
-    position:absolute;
-    border-radius:50%;
-    filter:blur(2px);
-    opacity:.35;
-    background:
-        radial-gradient(
-            circle at 30% 30%,
-            rgba(255,255,255,.95),
-            rgba(255,120,190,.08)
-        );
-    animation:bokehDrift linear infinite;
-}
-
-@keyframes bokehDrift{
-    0%{
-        transform:translate3d(0,110vh,0) scale(.6);
-        opacity:0;
-    }
-    10%{opacity:.5}
-    90%{opacity:.4}
-    100%{
-        transform:translate3d(30px,-20vh,0) scale(1.1);
-        opacity:0;
-    }
-}
-
-.cinematicLight{
-    position:fixed;
-    inset:-20%;
-    z-index:2;
-    pointer-events:none;
-    background:
-        radial-gradient(
-            ellipse at 50% 50%,
-            rgba(255,120,190,.07),
-            transparent 45%
-        );
-    animation:cinematicPulse 8s ease-in-out infinite;
-}
-
-@keyframes cinematicPulse{
-    0%,100%{transform:scale(1);opacity:.65}
-    50%{transform:scale(1.12);opacity:1}
-}
-
-.grain{
-    position:fixed;
-    inset:0;
-    z-index:80;
-    pointer-events:none;
-    opacity:.025;
-    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
-    animation:grainMove .25s steps(2) infinite;
-}
-
-@keyframes grainMove{
-    0%{transform:translate(0,0)}
-    25%{transform:translate(2%,-2%)}
-    50%{transform:translate(-2%,2%)}
-    75%{transform:translate(1%,2%)}
-    100%{transform:translate(0,0)}
-}
-
-/* Full-screen transition butterfly */
-.transition-butterfly-layer{
-    position:fixed;
-    inset:0;
-    z-index:1200;
-    pointer-events:none;
-    overflow:hidden;
-    opacity:0;
-    visibility:hidden;
-}
-
-.transition-butterfly-layer.active{
-    opacity:1;
-    visibility:visible;
-}
-
-.transition-butterfly{
-    position:absolute;
-    left:-180px;
-    top:50%;
-    width:150px;
-    height:110px;
-    transform:translateY(-50%);
-    filter:
-        drop-shadow(0 0 20px rgba(255,130,190,.8))
-        drop-shadow(0 0 45px rgba(255,60,140,.4));
-}
-
-.transition-butterfly .body{
-    position:absolute;
-    left:50%;
-    top:50%;
-    width:12px;
-    height:65px;
-    transform:translate(-50%,-50%);
-    border-radius:50%;
-    background:linear-gradient(90deg,#21131c,#08070b,#21131c);
-    z-index:5;
-}
-
-.transition-butterfly .wing{
-    position:absolute;
-    top:50%;
-    width:75px;
-    height:100px;
-    transform-origin:center bottom;
-    border-radius:75% 25% 65% 35%;
-    background:
-        radial-gradient(
-            circle at 35% 30%,
-            #ffd8e8 0%,
-            #ff8cbd 28%,
-            #ff315f 62%,
-            #8c0f3d 100%
-        );
-    border:1px solid rgba(255,255,255,.35);
-    box-shadow:
-        inset 0 0 20px rgba(255,255,255,.3),
-        0 0 20px rgba(255,50,140,.3);
-}
-
-.transition-butterfly .wing.left{
-    right:50%;
-    transform-origin:right bottom;
-    transform:translateY(-65%) rotate(-22deg);
-    border-radius:75% 25% 35% 65%;
-}
-
-.transition-butterfly .wing.right{
-    left:50%;
-    transform-origin:left bottom;
-    transform:translateY(-65%) rotate(22deg) scaleX(-1);
-}
-
-.transition-butterfly.fly{
-    animation:mergedButterflyFlight 2.4s cubic-bezier(.15,.75,.2,1) forwards;
-}
-
-.transition-butterfly.fly .wing{
-    animation:mergedWingBeat .16s ease-in-out infinite alternate;
-}
-
-@keyframes mergedWingBeat{
-    from{transform:translateY(-65%) rotate(-22deg) scaleY(1)}
-    to{transform:translateY(-65%) rotate(-22deg) scaleY(.68)}
-}
-
-@keyframes mergedButterflyFlight{
-    0%{
-        left:-180px;
-        top:75%;
-        transform:translateY(-50%) rotate(-12deg) scale(.75);
-        opacity:0;
-    }
-    10%{opacity:1}
-    30%{
-        top:28%;
-        transform:translateY(-50%) rotate(10deg) scale(1);
-    }
-    52%{
-        top:65%;
-        transform:translateY(-50%) rotate(-8deg) scale(1.15);
-    }
-    75%{
-        top:34%;
-        transform:translateY(-50%) rotate(7deg) scale(1.05);
-    }
-    100%{
-        left:115vw;
-        top:48%;
-        transform:translateY(-50%) rotate(-5deg) scale(.85);
-        opacity:0;
-    }
-}
-
-.transition-flash{
-    position:fixed;
-    inset:0;
-    z-index:1190;
-    pointer-events:none;
-    background:
-        radial-gradient(
-            circle,
-            rgba(255,180,215,.22),
-            transparent 55%
-        );
-    opacity:0;
-}
-
-.transition-flash.active{
-    animation:mergedFlash 1.2s ease forwards;
-}
-
-@keyframes mergedFlash{
-    0%{opacity:0}
-    35%{opacity:1}
-    100%{opacity:0}
-}
-
-/* Better tooltip behavior, including touch-friendly status text */
-button[data-tooltip]{
-    position:relative;
-}
-
-button[data-tooltip]::after{
-    content:attr(data-tooltip);
-    position:absolute;
-    left:50%;
-    bottom:calc(100% + 10px);
-    transform:translateX(-50%) translateY(4px);
-    background:rgba(0,0,0,.92);
-    color:#fff;
-    padding:8px 11px;
-    border-radius:8px;
-    font-size:11px;
-    font-weight:600;
-    white-space:nowrap;
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
-    transition:opacity .18s,transform .18s;
-    z-index:10000;
-}
-
-button[data-tooltip]:hover::after,
-button[data-tooltip].show-tooltip::after{
-    opacity:1;
-    visibility:visible;
-    transform:translateX(-50%) translateY(0);
-}
-
-.no-btn.locked{
-    cursor:not-allowed;
-}
-
-.no-btn.unlocked{
-    cursor:pointer;
-}
-
-
-@media(max-width:650px){
-    .transition-butterfly{
-        transform:translateY(-50%) scale(.65);
-    }
-
-    button[data-tooltip]::after{
-        max-width:220px;
-        white-space:normal;
-        text-align:center;
-    }
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- =====================================================
-     CINEMATIC ENVIRONMENT
-===================================================== -->
-
-<div id="scene">
-
-    <canvas id="stars"></canvas>
-
-    <div class="aurora one"></div>
-    <div class="aurora two"></div>
-    <div class="aurora three"></div>
-
-    <div class="beam one"></div>
-    <div class="beam two"></div>
-
+<div class="background">
+    <div class="stars"></div>
+    <div class="glow"></div>
 </div>
 
-<div class="cinematicLight"></div>
-<div class="bokeh-layer" id="bokehLayer"></div>
-<div class="grain"></div>
 
-<div class="transition-butterfly-layer" id="transitionButterflyLayer">
-    <div class="transition-butterfly" id="transitionButterfly">
-        <div class="wing left"></div>
-        <div class="wing right"></div>
-        <div class="body"></div>
+<!-- ================================================= -->
+<!-- OPENING -->
+<!-- ================================================= -->
+
+<section id="opening">
+
+    <div class="opening-content">
+
+        <div class="kicker">
+            Classified Birthday File
+        </div>
+
+        <h1>
+            Nikita
+            <span>Birthday Edition</span>
+        </h1>
+
+        <p>
+            A highly scientific investigation has been
+            conducted to determine your birthday personality.
+            <br><br>
+            Your only task is to choose wisely.
+            👀
+        </p>
+
+        <button class="start-btn" onclick="startGame()">
+            Begin ✦
+        </button>
+
     </div>
-</div>
-
-<div class="transition-flash" id="transitionFlash"></div>
-
-<div class="particle-layer" id="particles"></div>
-<div class="butterfly-layer" id="butterflies"></div>
-<div class="vignette"></div>
-
-<div class="progress">
-    <span id="progress"></span>
-</div>
-
-<div class="toast" id="toast"></div>
-
-
-<!-- =====================================================
-     INTRO
-===================================================== -->
-
-<section class="screen active" id="intro">
-
-<div class="card-wrap">
-
-<div class="card">
-
-<div class="eyebrow">
-A little something I made for you
-</div>
-
-<h1 class="gradient">
-Before we begin…
-</h1>
-
-<p class="subtitle">
-There is something I have been wanting to ask you.
-<br>
-Nothing complicated.
-Nothing you have to rush.
-<br><br>
-Just a tiny little journey I made for you. ✨
-</p>
-
-<input
-    id="name"
-    maxlength="30"
-    autocomplete="off"
-    placeholder="Your name..."
->
-
-<div class="insta-field">
-
-<span class="prefix">@</span>
-
-<input
-    id="insta"
-    maxlength="30"
-    autocomplete="off"
-    placeholder="Your Instagram"
->
-
-</div>
-
-<div class="buttons">
-
-<button
-    onclick="begin()"
->
-Let's begin ✨
-</button>
-
-</div>
-
-</div>
-</div>
 
 </section>
 
 
-<!-- =====================================================
-     AGE
-===================================================== -->
+<!-- ================================================= -->
+<!-- GAME -->
+<!-- ================================================= -->
 
-<section class="screen" id="age">
+<main id="game">
 
-<div class="card-wrap">
+    <div class="game-container">
 
-<div class="card">
+        <header class="game-header">
 
-<div class="eyebrow">
-Just one little thing
-</div>
+            <small>
+                BIRTHDAY PERSONALITY TEST
+            </small>
 
-<h1 class="gradient">
-Before we continue…
-</h1>
+            <h2>
+                10 Questions
+            </h2>
 
-<p class="subtitle">
-How old are you?
-<br>
-<span style="font-size:.85em;color:#aaa">
-Just choose what is true for you. ❤️
-</span>
-</p>
+            <p>
+                There are no wrong answers.
+                Probably.
+            </p>
 
-<div class="buttons">
+        </header>
 
-<button
-    class="choice"
-    onclick="chooseAge(15)"
->
-15 🌸
-</button>
 
-<button
-    class="choice"
-    onclick="chooseAge(16)"
->
-16 💗
-</button>
+        <div class="progress-wrapper">
 
-<button
-    class="choice"
-    onclick="chooseAge(17)"
->
-17 ✨
-</button>
+            <div class="progress-text">
 
-</div>
+                <span id="questionCount">
+                    QUESTION 1 / 10
+                </span>
 
-</div>
-</div>
+                <span id="percentage">
+                    10%
+                </span>
 
-</section>
+            </div>
 
+            <div class="progress">
 
-<!-- =====================================================
-     QUESTION 1
-===================================================== -->
+                <div
+                    class="progress-bar"
+                    id="progressBar">
+                </div>
 
-<section class="screen" id="question1">
+            </div>
 
-<div class="card-wrap">
+        </div>
 
-<div class="card">
 
-<div class="eyebrow">
-Question 01
-</div>
+        <div
+            class="question-card"
+            id="questionCard">
 
-<h1>
-Hey,
-<span class="gradient userName">
-you
-</span>…
-</h1>
+            <div
+                class="question-number"
+                id="questionNumber">
+                QUESTION 01
+            </div>
 
-<p class="subtitle">
-Do you believe that sometimes,
-one person can make an ordinary day
-feel a little more special?
-</p>
+            <div
+                class="question"
+                id="question">
+                Loading...
+            </div>
 
-<div class="buttons">
+            <div
+                class="options"
+                id="options">
+            </div>
 
-<button onclick="next(2)">
-Yes 💗
-</button>
+            <button
+                class="next-btn"
+                id="nextBtn">
+                Next Question →
+            </button>
 
-<button onclick="next(2)">
-Obviously yes ✨
-</button>
+        </div>
 
-<button onclick="next(2)">
-Maybe… 👀
-</button>
+    </div>
 
-</div>
+</main>
 
-</div>
-</div>
 
-</section>
+<!-- ================================================= -->
+<!-- RESULT -->
+<!-- ================================================= -->
 
+<section id="result">
 
-<!-- =====================================================
-     QUESTION 2
-===================================================== -->
+    <div class="result-inner">
 
-<section class="screen" id="question2">
+        <div
+            class="result-icon"
+            id="resultIcon">
+            ✦
+        </div>
 
-<div class="card-wrap">
+        <div class="result-label">
+            YOUR BIRTHDAY PROFILE
+        </div>
 
-<div class="card">
+        <h1
+            class="result-title"
+            id="resultTitle">
+        </h1>
 
-<div class="eyebrow">
-Question 02
-</div>
+        <p
+            class="result-description"
+            id="resultDescription">
+        </p>
 
-<h1 class="gradient">
-Be honest…
-</h1>
 
-<p class="subtitle">
-If someone could make you smile
-without even trying,
-would you remember them?
-</p>
+        <div class="result-card">
 
-<div class="buttons">
+            <p id="resultCardText"></p>
 
-<button onclick="next(3)">
-Definitely ❤️
-</button>
+        </div>
 
-<button onclick="next(3)">
-Probably 😊
-</button>
 
-<button onclick="next(3)">
-I'd pretend I didn't 😌
-</button>
+        <div class="final-message">
 
-</div>
+            <h3>
+                One Last Thing 🎂
+            </h3>
 
-</div>
-</div>
+            <p>
+                Birthdays are strange little reminders
+                that another year has passed and another
+                chapter is waiting to be written.
+                <br><br>
 
-</section>
+                So here's my wish for yours:
 
+                May you find more reasons to laugh,
+                more moments worth remembering,
+                people who make ordinary days brighter,
+                and enough courage to chase the things
+                that truly matter to you.
+                <br><br>
 
-<!-- =====================================================
-     QUESTION 3
-===================================================== -->
+                Whatever this next year brings,
+                I hope it brings you somewhere
+                you're happy to be.
+                <br><br>
 
-<section class="screen" id="question3">
+                And yes...
+                you survived the highly scientific
+                birthday investigation. 😂
+            </p>
 
-<div class="card-wrap">
+            <div class="signature">
+                Happy Birthday, Nikita. 🎂<br><br>
+                — From a friend
+            </div>
 
-<div class="card">
+        </div>
 
-<div class="eyebrow">
-One last thing…
-</div>
-
-<h1>
-Almost there.
-</h1>
-
-<p class="subtitle">
-Would you give a little piece of your time
-to someone who genuinely cares about
-seeing you happy?
-</p>
-
-<div class="buttons">
-
-<button onclick="proposal()">
-Yes ❤️
-</button>
-
-<button onclick="proposal()">
-Of course 💗
-</button>
-
-<button onclick="proposal()">
-Obviously 😭
-</button>
-
-</div>
-
-</div>
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     PROPOSAL
-===================================================== -->
-
-<section class="screen" id="proposal">
-
-<div class="card-wrap">
-
-<div class="card">
-
-<div class="proposalHeart">
-❤️
-</div>
-
-<div class="eyebrow">
-Okay…
-</div>
-
-<h1 class="gradient">
-
-<span class="userName">
-You
-</span>,
-
-I have one final question.
-
-</h1>
-
-<p class="proposalText">
-
-I've been hiding the real reason behind
-all those questions.
-
-<br><br>
-
-Some people enter our lives quietly
-and somehow leave a little more light
-behind them.
-
-You're one of those people for me.
-
-<br><br>
-
-I don't know what tomorrow has written
-for us and I don't want to force the story.
-
-I just wanted to be brave enough to ask.
-
-</p>
-
-<div class="question">
-Would you give us a chance? ❤️
-</div>
-
-<div
-    class="buttons proposalButtons"
-    id="proposalButtons"
->
-
-<button
-    class="yes"
-    onclick="accepted()"
->
-YES 💗
-</button>
-
-<button
-    class="no-btn locked"
-    id="noBtn"
-    type="button"
-    data-tooltip="Wait 15 seconds before choosing No"
-    aria-label="No, locked for 15 seconds"
->
-No 🤍
-</button>
-
-</div>
-
-</div>
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     REJECTED
-===================================================== -->
-
-<section class="screen" id="rejected">
-
-<div class="card-wrap">
-
-<div class="card">
-
-<div class="heart">
-🤍
-</div>
-
-<div class="eyebrow">
-Thank you for being honest
-</div>
-
-<h1 class="gradient">
-It's okay.
-</h1>
-
-<div class="finalMessage">
-
-<span class="userName">
-You
-</span>,
-
-your answer doesn't make you
-any less special.
-
-<br><br>
-
-I may have hoped for a different answer,
-but I'd rather have your honest heart
-than a yes you didn't truly mean.
-
-<br><br>
-
-No anger.
-No guilt.
-No pressure.
-
-Just a sincere thank you
-for listening.
-
-<br><br>
-
-<strong>
-May God keep you happy,
-safe and surrounded by people
-who genuinely care about you. 🌸
-</strong>
-
-</div>
-
-<div class="signature">
-Some feelings are beautiful simply
-because they were true. ♡
-</div>
-
-</div>
-</div>
-
-</section>
-
-
-
-<!-- =====================================================
-     ACCEPTED
-===================================================== -->
-
-<section class="screen" id="accepted">
-
-<div class="card-wrap">
-<div class="card">
-
-<div class="heart">
-💖
-</div>
-
-<div class="eyebrow">
-You said yes…
-</div>
-
-<h1 class="gradient">
-Then it's a yes.
-</h1>
-
-<div class="finalMessage">
-
-<span class="userName">
-You
-</span>,
-
-I don't know what the future
-will look like.
-
-<br><br>
-
-Maybe it'll be messy.
-Maybe it'll be beautiful.
-Maybe it'll be a little bit of both.
-
-<br><br>
-
-But if there's one thing I know,
-it's that some moments
-are worth remembering.
-
-<br><br>
-
-<strong>
-I'll always be grateful
-that you chose to give us a chance. ❤️
-</strong>
-
-</div>
-
-<div class="signature">
-Made with code, courage
-and a ridiculous amount of heart. ♡
-</div>
-
-<div class="buttons">
-<button onclick="continueAfterAccepted()">
-Continue ✨
-</button>
-</div>
-
-</div>
-</div>
-
-</section>
-
-<!-- =====================================================
-     DATE PLANNER
-===================================================== -->
-
-<section class="screen" id="datePlanner">
-
-<div class="card-wrap">
-
-<div class="card">
-
-<div class="heart">
-💖
-</div>
-
-<div class="eyebrow">
-Then let's make a little plan
-</div>
-
-<h1 class="gradient">
-Pick the moment.
-</h1>
-
-<p class="subtitle">
-
-If you'd like to meet,
-choose a day, time and place
-that feels comfortable for you.
-
-<br>
-
-You decide where.
-
-</p>
-
-<div class="date-grid">
-
-<input
-    id="date"
-    type="date"
->
-
-<input
-    id="time"
-    type="time"
->
-
-</div>
-
-<input
-    id="place"
-    class="place"
-    maxlength="120"
-    autocomplete="off"
-    placeholder="Where would you like to meet?"
->
-
-<div class="notice">
-August dates only are available here.
-The time uses the 24-hour format.
-Choose whatever works best for you. 🌸
-</div>
-
-<div class="buttons">
-
-<button onclick="submitDate()">
-Confirm the plan ✨
-</button>
-
-</div>
-
-</div>
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     CONFIRMATION
-===================================================== -->
-
-<section class="screen" id="confirmation">
-
-<div class="card-wrap">
-
-<div class="card">
-
-<div class="heart">
-🦋
-</div>
-
-<div class="eyebrow">
-It's written down
-</div>
-
-<h1 class="gradient">
-See you then.
-</h1>
-
-<p class="subtitle">
-
-Everything looks good.
-
-I have your chosen details.
-Now all that's left is the actual moment.
-
-</p>
-
-<div class="confirm-box">
-
-<div class="confirm-row">
-
-<div class="confirm-label">
-Name
-</div>
-
-<div class="confirm-value" id="confirmName">
-—
-</div>
-
-</div>
-
-<div class="confirm-row">
-
-<div class="confirm-label">
-Instagram
-</div>
-
-<div class="confirm-value" id="confirmInsta">
-—
-</div>
-
-</div>
-
-<div class="confirm-row">
-
-<div class="confirm-label">
-Date
-</div>
-
-<div class="confirm-value" id="confirmDate">
-—
-</div>
-
-</div>
-
-<div class="confirm-row">
-
-<div class="confirm-label">
-Time
-</div>
-
-<div class="confirm-value" id="confirmTime">
-—
-</div>
-
-</div>
-
-<div class="confirm-row">
-
-<div class="confirm-label">
-Place
-</div>
-
-<div class="confirm-value" id="confirmPlace">
-—
-</div>
-
-</div>
-
-</div>
-
-<p class="subtitle">
-
-And yes…
-
-<br>
-
-<strong style="color:#ffd0e3">
-I have a small gift for you. 🎁
-</strong>
-
-</p>
-
-<div class="buttons">
-
-<button onclick="finale()">
-Continue ✨
-</button>
-
-</div>
-
-</div>
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     OUTRO
-===================================================== -->
-
-<section class="screen" id="finale">
-
-<div class="card-wrap">
-
-<div class="card">
-
-<div class="heart">
-🎁
-</div>
-
-<div class="eyebrow">
-One last thing
-</div>
-
-<h1 class="gradient">
-Until then…
-</h1>
-
-<div class="finalMessage">
-
-<span class="userName">
-You
-</span>,
-
-thank you for making it
-all the way here.
-
-<br><br>
-
-Whatever happens next,
-I hope the day we meet becomes
-one of those little memories
-that makes us smile later.
-
-<br><br>
-
-No giant promises.
-
-No pressure.
-
-Just a simple moment,
-two people,
-and a little time together.
-
-<br><br>
-
-<strong>
-And yes…
-
-I really do have a small gift for you. 🎁❤️
-</strong>
-
-</div>
-
-<div class="signature">
-Made with code, courage
-and a ridiculous amount of heart. ♡
-</div>
-
-</div>
-</div>
+    </div>
 
 </section>
 
 
 <script>
 
-/* =========================================================
-   FINAL GOOGLE APPS SCRIPT ENDPOINT
-========================================================= */
+/* ================================================= */
+/* QUESTIONS */
+/* ================================================= */
 
-const GOOGLE_SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycbwQ9YA18mWXDT9lqz_NvTPqsDFODrh30UkCDNQBJj4QzFNPwhCwmGAtHpUogqm30Vsn/exec";
+const questions = [
+
+{
+    q: "What's your birthday mood today?",
+    options: [
+        ["👑 Main character energy", "dreamer"],
+        ["🍰 Cake first, questions later", "chaos"],
+        ["😴 Sleep mode activated", "calm"],
+        ["🤪 Chaos has entered the chat", "adventure"]
+    ]
+},
+
+{
+    q: "Choose your perfect birthday.",
+    options: [
+        ["🎉 A huge celebration", "chaos"],
+        ["🌸 A small gathering", "calm"],
+        ["🏡 A peaceful day", "dreamer"],
+        ["🎮 Just vibing", "adventure"]
+    ]
+},
+
+{
+    q: "Someone gives you a mystery gift. What do you do?",
+    options: [
+        ["🎁 Open it immediately", "adventure"],
+        ["👀 Guess what's inside", "dreamer"],
+        ["😂 Shake the box", "chaos"],
+        ["🥹 Get genuinely touched", "calm"]
+    ]
+},
+
+{
+    q: "Pick a superpower.",
+    options: [
+        ["🧠 Unlimited intelligence", "dreamer"],
+        ["⏳ Control time", "calm"],
+        ["🪽 Flight", "adventure"],
+        ["✨ Make anyone laugh", "chaos"]
+    ]
+},
+
+{
+    q: "Choose an adventure.",
+    options: [
+        ["🌊 Somewhere by the sea", "calm"],
+        ["🏔️ Mountains and clouds", "adventure"],
+        ["🌃 A city at night", "chaos"],
+        ["🌲 Somewhere completely unknown", "dreamer"]
+    ]
+},
+
+{
+    q: "Pick your perfect atmosphere.",
+    options: [
+        ["🌙 Quiet night", "calm"],
+        ["☀️ Bright morning", "dreamer"],
+        ["🌧️ Rainy afternoon", "adventure"],
+        ["🌌 Stars everywhere", "chaos"]
+    ]
+},
+
+{
+    q: "What's more important?",
+    options: [
+        ["❤️ Good people", "calm"],
+        ["🧠 Great memories", "dreamer"],
+        ["🎯 Big dreams", "adventure"],
+        ["😂 Having fun", "chaos"]
+    ]
+},
+
+{
+    q: "Pick a cake.",
+    options: [
+        ["🍫 Chocolate", "chaos"],
+        ["🍓 Strawberry", "dreamer"],
+        ["🍰 Vanilla", "calm"],
+        ["🎂 Surprise me", "adventure"]
+    ]
+},
+
+{
+    q: "What would you choose for your next year?",
+    options: [
+        ["🌟 New experiences", "adventure"],
+        ["📚 New achievements", "dreamer"],
+        ["🫶 More meaningful friendships", "calm"],
+        ["🌍 New adventures", "chaos"]
+    ]
+},
+
+{
+    q: "Final question... what do you think this website is?",
+    options: [
+        ["🎂 Just a birthday thing", "calm"],
+        ["😂 Someone got bored", "chaos"],
+        ["👀 There is definitely something hidden", "dreamer"],
+        ["🧐 I have absolutely no idea", "adventure"]
+    ]
+}
+
+];
 
 
-/* =========================================================
-   USER DATA
-========================================================= */
+/* ================================================= */
+/* VARIABLES */
+/* ================================================= */
 
-let person = "";
-let insta = "";
-let age = null;
+let currentQuestion = 0;
 
-let selectedDate = "";
-let selectedTime = "";
-let selectedPlace = "";
+let scores = {
+    dreamer: 0,
+    chaos: 0,
+    calm: 0,
+    adventure: 0
+};
 
-const progress =
-document.getElementById("progress");
+let selected = false;
 
 
-/* =========================================================
-   SCREEN SYSTEM
-========================================================= */
+/* ================================================= */
+/* START */
+/* ================================================= */
 
-function showScreen(id, percentage){
+function startGame() {
 
-    document
-        .querySelectorAll(".screen")
-        .forEach(screen =>
-            screen.classList.remove("active")
+    const opening =
+        document.getElementById("opening");
+
+    const game =
+        document.getElementById("game");
+
+    opening.style.opacity = "0";
+    opening.style.transform = "scale(1.03)";
+
+    setTimeout(() => {
+
+        opening.style.display = "none";
+        game.style.display = "block";
+
+        loadQuestion();
+
+    }, 900);
+}
+
+
+/* ================================================= */
+/* LOAD QUESTION */
+/* ================================================= */
+
+function loadQuestion() {
+
+    selected = false;
+
+    const data =
+        questions[currentQuestion];
+
+    document.getElementById("questionNumber")
+        .textContent =
+        "QUESTION " +
+        String(currentQuestion + 1).padStart(2, "0");
+
+    document.getElementById("question")
+        .textContent = data.q;
+
+    document.getElementById("questionCount")
+        .textContent =
+        "QUESTION " +
+        (currentQuestion + 1) +
+        " / " +
+        questions.length;
+
+    const percent =
+        Math.round(
+            ((currentQuestion + 1) /
+            questions.length) * 100
         );
 
-    const target =
-        document.getElementById(id);
+    document.getElementById("percentage")
+        .textContent = percent + "%";
 
-    target.classList.add("active");
+    document.getElementById("progressBar")
+        .style.width = percent + "%";
 
-    progress.style.width =
-        percentage + "%";
+
+    const options =
+        document.getElementById("options");
+
+    options.innerHTML = "";
+
+
+    data.options.forEach((option, index) => {
+
+        const button =
+            document.createElement("button");
+
+        button.className = "option";
+
+        button.textContent =
+            option[0];
+
+        button.onclick = () => {
+
+            if (selected) return;
+
+            selected = true;
+
+            button.classList.add("selected");
+
+            scores[option[1]]++;
+
+            document
+                .getElementById("nextBtn")
+                .classList.add("ready");
+
+        };
+
+        options.appendChild(button);
+
+    });
+
+
+    const next =
+        document.getElementById("nextBtn");
+
+    next.classList.remove("ready");
+
+    next.textContent =
+        currentQuestion === questions.length - 1
+        ? "Reveal My Result ✦"
+        : "Next Question →";
+
+
+    const card =
+        document.getElementById("questionCard");
+
+    card.style.animation = "none";
+
+    void card.offsetWidth;
+
+    card.style.animation =
+        "cardIn .6s ease";
+}
+
+
+/* ================================================= */
+/* NEXT */
+/* ================================================= */
+
+document
+    .getElementById("nextBtn")
+    .addEventListener("click", () => {
+
+        if (!selected) return;
+
+        currentQuestion++;
+
+        if (currentQuestion < questions.length) {
+
+            loadQuestion();
+
+        } else {
+
+            showResult();
+
+        }
+
+    });
+
+
+/* ================================================= */
+/* RESULT */
+/* ================================================= */
+
+function showResult() {
+
+    document.getElementById("game")
+        .style.display = "none";
+
+    document.getElementById("result")
+        .style.display = "block";
+
+
+    let winner =
+        Object.keys(scores).reduce(
+            (a, b) =>
+                scores[a] >= scores[b] ? a : b
+        );
+
+
+    const results = {
+
+        dreamer: {
+            icon: "🌙",
+            title: "The Dreamer",
+            description:
+                "You seem to carry a little world of your own inside you.",
+            card:
+                "Curious, thoughtful and quietly imaginative. " +
+                "You probably notice more than you let people realise."
+        },
+
+        chaos: {
+            icon: "✨",
+            title: "The Chaos Star",
+            description:
+                "A perfectly reasonable amount of chaos. Probably.",
+            card:
+                "You bring energy wherever you go. " +
+                "Life would be considerably less interesting without people " +
+                "who know how to have fun."
+        },
+
+        calm: {
+            icon: "🌸",
+            title: "The Gentle Soul",
+            description:
+                "You seem to value the little things that make life meaningful.",
+            card:
+                "Good people, peaceful moments and memories that actually matter. " +
+                "There is something quietly beautiful about that."
+        },
+
+        adventure: {
+            icon: "🌌",
+            title: "The Wanderer",
+            description:
+                "You seem to have a little curiosity pulling you toward the unknown.",
+            card:
+                "New places, new experiences and stories waiting to happen. " +
+                "The world is much too big to stay in one chapter forever."
+        }
+
+    };
+
+
+    const result =
+        results[winner];
+
+
+    document.getElementById("resultIcon")
+        .textContent = result.icon;
+
+    document.getElementById("resultTitle")
+        .textContent = result.title;
+
+    document.getElementById("resultDescription")
+        .textContent = result.description;
+
+    document.getElementById("resultCardText")
+        .textContent = result.card;
+
 
     window.scrollTo({
-        top:0,
-        behavior:"smooth"
+        top: 0,
+        behavior: "smooth"
     });
+
+
+    createFinalParticles();
 }
 
 
-/* =========================================================
-   INTRO
-========================================================= */
+/* ================================================= */
+/* FINAL PARTICLES */
+/* ================================================= */
 
-function begin(){
+function createFinalParticles() {
 
-    const input =
-        document.getElementById("name");
+    setInterval(() => {
 
-    person =
-        input.value.trim();
-
-    if(!person){
-
-        input.focus();
-
-        input.placeholder =
-            "You forgot your name 👀";
-
-        return;
-    }
-
-    insta =
-        document
-            .getElementById("insta")
-            .value
-            .trim()
-            .replace(/^@/,"");
-
-    document
-        .querySelectorAll(".userName")
-        .forEach(el =>
-            el.textContent = person
-        );
-
-    showScreen("age",12);
-}
-
-
-/* =========================================================
-   AGE
-========================================================= */
-
-function chooseAge(selectedAge){
-
-    age = selectedAge;
-
-    showScreen("question1",20);
-}
-
-
-/* =========================================================
-   QUESTIONS
-========================================================= */
-
-function next(number){
-
-    if(number === 2)
-        showScreen("question2",40);
-
-    if(number === 3)
-        showScreen("question3",65);
-}
-
-
-/* =========================================================
-   PROPOSAL
-========================================================= */
-
-function proposal(){
-
-    showScreen("proposal",78);
-
-    startNoButton();
-}
-
-
-/* =========================================================
-   NO BUTTON
-========================================================= */
-
-let noRunning = false;
-let noTimer = null;
-let noInitialized = false;
-
-const noBtn =
-    document.getElementById("noBtn");
-
-function startNoButton(){
-
-    if(noInitialized)
-        return;
-
-    noInitialized = true;
-    noRunning = true;
-
-    noBtn.classList.add("running");
-
-    moveNoButton();
-
-    clearTimeout(noTimer);
-
-    noTimer =
-        setTimeout(() => {
-
-            noRunning = false;
-
-            noBtn.classList.remove("running");
-
-            noBtn.style.left = "";
-            noBtn.style.top = "";
-
-            noBtn.textContent =
-                "No 🤍";
-
-            showToast(
-                "You can choose No now 🤍"
-            );
-
-        },15000);
-}
-
-
-/*
-   Moves the button around the screen
-   during the first 15 seconds.
-*/
-
-function moveNoButton(){
-
-    if(!noRunning)
-        return;
-
-    const padding = 20;
-
-    const rect =
-        noBtn.getBoundingClientRect();
-
-    const maxX =
-        window.innerWidth -
-        rect.width -
-        padding;
-
-    const maxY =
-        window.innerHeight -
-        rect.height -
-        padding;
-
-    const x =
-        padding +
-        Math.random() *
-        Math.max(1,maxX - padding);
-
-    const y =
-        padding +
-        Math.random() *
-        Math.max(1,maxY - padding);
-
-    noBtn.style.left =
-        Math.max(
-            padding,
-            Math.min(x,maxX)
-        ) + "px";
-
-    noBtn.style.top =
-        Math.max(
-            padding,
-            Math.min(y,maxY)
-        ) + "px";
-}
-
-
-noBtn.addEventListener(
-    "mouseenter",
-    () => {
-
-        if(noRunning)
-            moveNoButton();
-
-    }
-);
-
-
-noBtn.addEventListener(
-    "touchstart",
-    event => {
-
-        if(noRunning){
-
-            event.preventDefault();
-
-            moveNoButton();
-
-            showToast(
-                "Not yet 😭 15 seconds..."
-            );
-        }
-
-    },
-    {passive:false}
-);
-
-
-noBtn.addEventListener(
-    "click",
-    event => {
-
-        if(noRunning){
-
-            event.preventDefault();
-
-            moveNoButton();
-
-            showToast(
-                "You can choose No after 15 seconds 🤍"
-            );
-
-            return;
-        }
-
-        rejected();
-
-    }
-);
-
-
-/* =========================================================
-   REJECTED
-========================================================= */
-
-function rejected(){
-
-    clearTimeout(noTimer);
-
-    noRunning = false;
-
-    showScreen("rejected",100);
-}
-
-
-/* =========================================================
-   ACCEPTED
-========================================================= */
-
-function accepted(){
-
-    clearTimeout(noTimer);
-
-    noRunning = false;
-
-    heartExplosion();
-
-    createFloatingHearts();
-
-    showScreen("datePlanner",88);
-
-    setupAugustDates();
-
-    sendEvent("YES");
-}
-
-
-/* =========================================================
-   AUGUST DATE LIMIT
-========================================================= */
-
-function setupAugustDates(){
-
-    const dateInput =
-        document.getElementById("date");
-
-    const year =
-        new Date().getFullYear();
-
-    /*
-       Current year August.
-       If the page is opened after August,
-       use next year's August.
-    */
-
-    const now =
-        new Date();
-
-    let targetYear =
-        year;
-
-    if(now.getMonth() > 7)
-        targetYear = year + 1;
-
-    const month =
-        String(8).padStart(2,"0");
-
-    const first =
-        `${targetYear}-${month}-01`;
-
-    const last =
-        `${targetYear}-${month}-31`;
-
-    dateInput.min = first;
-    dateInput.max = last;
-
-    dateInput.value = "";
-}
-
-
-/* =========================================================
-   DATE VALIDATION
-========================================================= */
-
-function submitDate(){
-
-    const dateInput =
-        document.getElementById("date");
-
-    const timeInput =
-        document.getElementById("time");
-
-    const placeInput =
-        document.getElementById("place");
-
-    selectedDate =
-        dateInput.value;
-
-    selectedTime =
-        timeInput.value;
-
-    selectedPlace =
-        placeInput.value.trim();
-
-    if(!selectedDate){
-
-        showToast(
-            "Pick an August date first 🌸"
-        );
-
-        dateInput.focus();
-
-        return;
-    }
-
-    if(!selectedTime){
-
-        showToast(
-            "Pick a time first ⏰"
-        );
-
-        timeInput.focus();
-
-        return;
-    }
-
-    if(!selectedPlace){
-
-        showToast(
-            "You get to choose the place 💗"
-        );
-
-        placeInput.focus();
-
-        return;
-    }
-
-    const chosen =
-        new Date(selectedDate + "T00:00:00");
-
-    if(chosen.getMonth() !== 7){
-
-        showToast(
-            "Only August dates are available 🌸"
-        );
-
-        return;
-    }
-
-    updateConfirmation();
-
-    sendDateData();
-
-    showScreen("confirmation",95);
-
-    createFloatingHearts();
-}
-
-
-/* =========================================================
-   CONFIRMATION
-========================================================= */
-
-function updateConfirmation(){
-
-    document.getElementById(
-        "confirmName"
-    ).textContent =
-        person || "—";
-
-    document.getElementById(
-        "confirmInsta"
-    ).textContent =
-        insta ? "@" + insta : "Not provided";
-
-    const d =
-        new Date(
-            selectedDate + "T00:00:00"
-        );
-
-    document.getElementById(
-        "confirmDate"
-    ).textContent =
-        d.toLocaleDateString(
-            undefined,
-            {
-                day:"numeric",
-                month:"long",
-                year:"numeric"
-            }
-        );
-
-    document.getElementById(
-        "confirmTime"
-    ).textContent =
-        selectedTime;
-
-    document.getElementById(
-        "confirmPlace"
-    ).textContent =
-        selectedPlace;
-}
-
-
-/* =========================================================
-   SEND DATE DATA TO GOOGLE SHEETS
-========================================================= */
-
-function sendDateData(){
-
-    const payload = {
-
-        type:"DATE_REQUEST",
-
-        name:person,
-
-        instagram:insta,
-
-        age:age,
-
-        answer:"YES",
-
-        date:selectedDate,
-
-        time:selectedTime,
-
-        place:selectedPlace,
-
-        submittedAt:
-            new Date().toISOString()
-
-    };
-
-    /*
-       no-cors is intentional.
-
-       The Apps Script receives the POST
-       even though this page is hosted
-       on GitHub Pages.
-    */
-
-    fetch(
-        GOOGLE_SCRIPT_URL,
-        {
-            method:"POST",
-            mode:"no-cors",
-
-            headers:{
-                "Content-Type":
-                    "text/plain;charset=utf-8"
-            },
-
-            body:
-                JSON.stringify(payload)
-        }
-    )
-    .then(() => {
-
-        showToast(
-            "Your plan has been saved ✨"
-        );
-
-    })
-    .catch(() => {
-
-        showToast(
-            "Saved locally for this session 💗"
-        );
-
-    });
-}
-
-
-/* =========================================================
-   GENERAL EVENT LOG
-========================================================= */
-
-function sendEvent(answer){
-
-    const payload = {
-
-        type:"ANSWER",
-
-        name:person,
-
-        instagram:insta,
-
-        age:age,
-
-        answer:answer,
-
-        date:"",
-
-        time:"",
-
-        place:"",
-
-        submittedAt:
-            new Date().toISOString()
-
-    };
-
-    fetch(
-        GOOGLE_SCRIPT_URL,
-        {
-            method:"POST",
-            mode:"no-cors",
-
-            headers:{
-                "Content-Type":
-                    "text/plain;charset=utf-8"
-            },
-
-            body:
-                JSON.stringify(payload)
-        }
-    ).catch(() => {});
-}
-
-
-/* =========================================================
-   FINAL OUTRO
-========================================================= */
-
-function finale(){
-
-    showScreen("finale",100);
-
-    heartExplosion();
-
-    createFloatingHearts();
-}
-
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-let toastTimer;
-
-function showToast(message){
-
-    const toast =
-        document.getElementById("toast");
-
-    toast.textContent =
-        message;
-
-    toast.classList.add("show");
-
-    clearTimeout(toastTimer);
-
-    toastTimer =
-        setTimeout(() => {
-
-            toast.classList.remove("show");
-
-        },2200);
-}
-
-
-/* =========================================================
-   HEART EXPLOSION
-========================================================= */
-
-function heartExplosion(){
-
-    const symbols = [
-        "❤️",
-        "💗",
-        "💖",
-        "💕",
-        "✨",
-        "♡",
-        "🦋"
-    ];
-
-    for(let i=0;i<65;i++){
-
-        const heart =
+        const star =
             document.createElement("div");
 
-        heart.textContent =
-            symbols[
-                Math.floor(
-                    Math.random() *
-                    symbols.length
-                )
-            ];
+        star.textContent =
+            Math.random() > .5
+            ? "✦"
+            : "✧";
 
-        heart.style.position =
-            "fixed";
+        star.style.position = "fixed";
+        star.style.left =
+            Math.random() * 100 + "vw";
 
-        heart.style.left =
-            "50%";
+        star.style.bottom = "-20px";
 
-        heart.style.top =
-            "50%";
+        star.style.opacity = ".65";
 
-        heart.style.zIndex =
-            "900";
+        star.style.pointerEvents = "none";
 
-        heart.style.pointerEvents =
-            "none";
+        star.style.transition =
+            "transform 7s linear, opacity 7s";
 
-        heart.style.fontSize =
-            (14 + Math.random()*27) +
-            "px";
-
-        heart.style.transition =
-            "transform 1.8s cubic-bezier(.16,1,.3,1), opacity 1.8s";
-
-        document.body.appendChild(heart);
+        document.body.appendChild(star);
 
         requestAnimationFrame(() => {
 
-            const angle =
-                Math.random() *
-                Math.PI *
-                2;
+            star.style.transform =
+                "translateY(-110vh)";
 
-            const distance =
-                100 +
-                Math.random()*430;
-
-            const x =
-                Math.cos(angle) *
-                distance;
-
-            const y =
-                Math.sin(angle) *
-                distance;
-
-            heart.style.transform =
-                `translate(${x}px,${y}px)
-                 rotate(${Math.random()*360}deg)
-                 scale(${.7+Math.random()})`;
-
-            heart.style.opacity =
-                "0";
+            star.style.opacity = "0";
 
         });
 
-        setTimeout(
-            () => heart.remove(),
-            1900
-        );
-    }
-}
-
-
-/* =========================================================
-   FLOATING HEARTS
-========================================================= */
-
-function createFloatingHearts(){
-
-    const symbols = [
-        "❤️",
-        "💗",
-        "💕",
-        "💖",
-        "♡"
-    ];
-
-    for(let i=0;i<30;i++){
-
-        const heart =
-            document.createElement("div");
-
-        heart.className =
-            "floatHeart";
-
-        heart.textContent =
-            symbols[
-                Math.floor(
-                    Math.random() *
-                    symbols.length
-                )
-            ];
-
-        heart.style.left =
-            Math.random()*100 +
-            "vw";
-
-        heart.style.bottom =
-            "-30px";
-
-        heart.style.fontSize =
-            (12+Math.random()*25) +
-            "px";
-
-        heart.style.animationDuration =
-            (4+Math.random()*5) +
-            "s";
-
-        heart.style.animationDelay =
-            Math.random()*2 +
-            "s";
-
-        document.body.appendChild(heart);
-
-        setTimeout(
-            () => heart.remove(),
-            10000
-        );
-    }
-}
-
-
-/* =========================================================
-   CINEMATIC STARFIELD
-========================================================= */
-
-const canvas =
-    document.getElementById("stars");
-
-const ctx =
-    canvas.getContext("2d");
-
-let W = 0;
-let H = 0;
-let DPR = 1;
-
-let stars = [];
-
-function resizeCanvas(){
-
-    DPR =
-        Math.min(
-            window.devicePixelRatio || 1,
-            1.7
-        );
-
-    W =
-        window.innerWidth;
-
-    H =
-        window.innerHeight;
-
-    canvas.width =
-        W * DPR;
-
-    canvas.height =
-        H * DPR;
-
-    canvas.style.width =
-        W + "px";
-
-    canvas.style.height =
-        H + "px";
-
-    ctx.setTransform(
-        DPR,
-        0,
-        0,
-        DPR,
-        0,
-        0
-    );
-
-    const count =
-        Math.min(
-            130,
-            Math.floor(W/8)
-        );
-
-    stars =
-        Array.from(
-            {length:count},
-            () => ({
-
-                x:Math.random()*W,
-
-                y:Math.random()*H,
-
-                r:
-                    Math.random()*1.3+.2,
-
-                speed:
-                    Math.random()*.22+.025,
-
-                alpha:
-                    Math.random()*.65+.15,
-
-                phase:
-                    Math.random()*Math.PI*2
-
-            })
-        );
-}
-
-window.addEventListener(
-    "resize",
-    resizeCanvas
-);
-
-resizeCanvas();
-
-
-function animateStars(){
-
-    ctx.clearRect(
-        0,
-        0,
-        W,
-        H
-    );
-
-    const t =
-        Date.now()/1000;
-
-    stars.forEach(star => {
-
-        star.y -=
-            star.speed;
-
-        if(star.y < -5){
-
-            star.y =
-                H + 5;
-
-            star.x =
-                Math.random()*W;
-        }
-
-        ctx.globalAlpha =
-            star.alpha *
-            (
-                .65 +
-                .35 *
-                Math.sin(
-                    t*1.2 +
-                    star.phase
-                )
-            );
-
-        ctx.beginPath();
-
-        ctx.arc(
-            star.x,
-            star.y,
-            star.r,
-            0,
-            Math.PI*2
-        );
-
-        ctx.fillStyle =
-            "#ffffff";
-
-        ctx.fill();
-
-    });
-
-    requestAnimationFrame(
-        animateStars
-    );
-}
-
-animateStars();
-
-
-/* =========================================================
-   PARTICLES
-========================================================= */
-
-const particleLayer =
-    document.getElementById(
-        "particles"
-    );
-
-function createParticle(){
-
-    const p =
-        document.createElement("div");
-
-    p.className =
-        "particle";
-
-    const size =
-        1.5 +
-        Math.random()*3;
-
-    p.style.width =
-        size+"px";
-
-    p.style.height =
-        size+"px";
-
-    p.style.left =
-        Math.random()*100+
-        "vw";
-
-    p.style.setProperty(
-        "--drift",
-        (
-            Math.random()*160 -
-            80
-        )+"px"
-    );
-
-    const duration =
-        8 +
-        Math.random()*12;
-
-    p.style.animationDuration =
-        duration+"s";
-
-    particleLayer.appendChild(p);
-
-    setTimeout(
-        () => p.remove(),
-        duration*1000
-    );
-}
-
-setInterval(
-    createParticle,
-    500
-);
-
-for(let i=0;i<15;i++){
-
-    setTimeout(
-        createParticle,
-        i*250
-    );
-}
-
-
-/* =========================================================
-   BUTTERFLIES
-========================================================= */
-
-const butterflyLayer =
-    document.getElementById(
-        "butterflies"
-    );
-
-function createButterfly(){
-
-    const b =
-        document.createElement("div");
-
-    b.className =
-        "butterfly";
-
-    b.textContent =
-        Math.random() > .5
-        ? "🦋"
-        : "🦋";
-
-    b.style.top =
-        Math.random()*100 +
-        "vh";
-
-    b.style.fontSize =
-        (16+Math.random()*17)+
-        "px";
-
-    const duration =
-        15 +
-        Math.random()*14;
-
-    b.style.animationDuration =
-        duration+"s";
-
-    b.style.animationDelay =
-        Math.random()*3+"s";
-
-    butterflyLayer.appendChild(b);
-
-    setTimeout(
-        () => b.remove(),
-        (duration+4)*1000
-    );
-}
-
-setInterval(
-    createButterfly,
-    3500
-);
-
-for(let i=0;i<4;i++){
-
-    setTimeout(
-        createButterfly,
-        i*1200
-    );
-}
-
-
-/* =========================================================
-   3D CINEMATIC CARD MOVEMENT
-========================================================= */
-
-document
-.querySelectorAll(".card")
-.forEach(card => {
-
-    card.addEventListener(
-        "mousemove",
-        event => {
-
-            if(window.innerWidth < 700)
-                return;
-
-            const rect =
-                card.getBoundingClientRect();
-
-            const x =
-                event.clientX -
-                rect.left;
-
-            const y =
-                event.clientY -
-                rect.top;
-
-            const cx =
-                rect.width/2;
-
-            const cy =
-                rect.height/2;
-
-            const rotateY =
-                ((x-cx)/cx)*5;
-
-            const rotateX =
-                -((y-cy)/cy)*5;
-
-            card.style.transform =
-                `
-                rotateX(${rotateX}deg)
-                rotateY(${rotateY}deg)
-                translateZ(8px)
-                scale(1.008)
-                `;
-
-        }
-    );
-
-    card.addEventListener(
-        "mouseleave",
-        () => {
-
-            card.style.transform =
-                `
-                rotateX(0deg)
-                rotateY(0deg)
-                translateZ(0)
-                scale(1)
-                `;
-
-        }
-    );
-});
-
-
-/* =========================================================
-   MOBILE DEVICE PARALLAX
-========================================================= */
-
-window.addEventListener(
-    "deviceorientation",
-    event => {
-
-        if(window.innerWidth > 700)
-            return;
-
-        const card =
-            document.querySelector(
-                ".screen.active .card"
-            );
-
-        if(!card)
-            return;
-
-        const beta =
-            event.beta || 0;
-
-        const gamma =
-            event.gamma || 0;
-
-        const rotateX =
-            Math.max(
-                -4,
-                Math.min(
-                    4,
-                    (beta-45)/8
-                )
-            );
-
-        const rotateY =
-            Math.max(
-                -4,
-                Math.min(
-                    4,
-                    gamma/8
-                )
-            );
-
-        card.style.transform =
-            `
-            rotateX(${-rotateX}deg)
-            rotateY(${rotateY}deg)
-            scale(1.005)
-            `;
-
-    }
-);
-
-
-/* =========================================================
-   CURSOR LIGHT
-========================================================= */
-
-let mouseX = 50;
-let mouseY = 50;
-
-window.addEventListener(
-    "mousemove",
-    e => {
-
-        mouseX =
-            (e.clientX /
-            window.innerWidth)*100;
-
-        mouseY =
-            (e.clientY /
-            window.innerHeight)*100;
-
-        document
-            .getElementById("scene")
-            .style.background =
-            `
-            radial-gradient(
-                circle at ${mouseX}% ${mouseY}%,
-                rgba(255,120,180,.15),
-                transparent 30%
-            ),
-            radial-gradient(
-                circle at 10% 90%,
-                rgba(255,40,80,.10),
-                transparent 30%
-            ),
-            linear-gradient(
-                135deg,
-                #12060d,
-                #050205 45%,
-                #090307
-            )
-            `;
-
-    }
-);
-
-
-/* =========================================================
-   INITIAL DATE PREPARATION
-========================================================= */
-
-setupAugustDates();
-
-
-/* =========================================================
-   MERGED CINEMATIC BOKEH
-========================================================= */
-
-const bokehLayer = document.getElementById("bokehLayer");
-
-function spawnBokeh(){
-    if(!bokehLayer) return;
-
-    const b = document.createElement("div");
-    b.className = "bokeh";
-
-    const size = 20 + Math.random()*70;
-    const duration = 10 + Math.random()*10;
-
-    b.style.width = size + "px";
-    b.style.height = size + "px";
-    b.style.left = Math.random()*100 + "vw";
-    b.style.animationDuration = duration + "s";
-
-    bokehLayer.appendChild(b);
-
-    setTimeout(() => b.remove(), duration*1000);
-}
-
-for(let i=0;i<8;i++){
-    setTimeout(spawnBokeh, i*300);
-}
-setInterval(spawnBokeh, 900);
-
-/* =========================================================
-   MERGED BUTTERFLY TRANSITION
-========================================================= */
-
-const transitionLayer =
-    document.getElementById("transitionButterflyLayer");
-const transitionButterfly =
-    document.getElementById("transitionButterfly");
-const transitionFlash =
-    document.getElementById("transitionFlash");
-
-let transitionToken = 0;
-
-function butterflyTransition(){
-    if(!transitionLayer || !transitionButterfly) return;
-
-    transitionToken++;
-    const token = transitionToken;
-
-    transitionButterfly.classList.remove("fly");
-    transitionLayer.classList.remove("active");
-    transitionFlash?.classList.remove("active");
-
-    void transitionButterfly.offsetWidth;
-    void transitionLayer.offsetWidth;
-
-    transitionLayer.classList.add("active");
-    transitionFlash?.classList.add("active");
-    transitionButterfly.classList.add("fly");
-
-    setTimeout(() => {
-        if(token === transitionToken){
-            transitionLayer.classList.remove("active");
-        }
-    }, 2400);
-}
-
-/* =========================================================
-   SAFER SCREEN SWITCH
-========================================================= */
-
-const originalShowScreen = showScreen;
-
-showScreen = function(id, percentage){
-    butterflyTransition();
-
-    setTimeout(() => {
-        document.querySelectorAll(".screen").forEach(screen => {
-            screen.classList.remove("active");
-        });
-
-        const target = document.getElementById(id);
-        if(target){
-            target.classList.add("active");
-        }
-
-        if(progress){
-            progress.style.width = percentage + "%";
-        }
-
-        window.scrollTo({
-            top:0,
-            behavior:"smooth"
-        });
-    }, 350);
-};
-
-/* =========================================================
-   MERGED NO-BUTTON UX
-   First 15 seconds: visible, but cannot be selected.
-========================================================= */
-
-const originalStartNoButton = startNoButton;
-
-startNoButton = function(){
-    originalStartNoButton();
-
-    noBtn.classList.add("locked");
-    noBtn.classList.remove("unlocked");
-    noBtn.dataset.tooltip = "Wait 15 seconds before choosing No";
-    noBtn.setAttribute("aria-label","No, locked for 15 seconds");
-
-    clearTimeout(noBtn._unlockTimer);
-    noBtn._unlockTimer = setTimeout(() => {
-        if(!noRunning){
-            noBtn.classList.remove("locked");
-            noBtn.classList.add("unlocked");
-            noBtn.dataset.tooltip = "Tap to choose No";
-            noBtn.setAttribute("aria-label","Choose No");
-            noBtn.classList.add("show-tooltip");
-            clearTimeout(noBtn._tooltipTimer);
-            noBtn._tooltipTimer = setTimeout(() => {
-                noBtn.classList.remove("show-tooltip");
-            }, 1200);
-        }
-    }, 15050);
-};
-
-const originalMoveNoButton = moveNoButton;
-
-moveNoButton = function(){
-    originalMoveNoButton();
-
-    if(noRunning){
-        noBtn.classList.add("show-tooltip");
-        clearTimeout(noBtn._tooltipTimer);
-        noBtn._tooltipTimer = setTimeout(() => {
-            noBtn.classList.remove("show-tooltip");
-        }, 900);
-    }
-};
-
-const originalRejected = rejected;
-
-rejected = function(){
-    if(noRunning){
-        showToast("Not yet 🤍 Please wait until the 15 seconds are over.");
-        return;
-    }
-    originalRejected();
-};
-
-/* Unlock state is synchronized with the existing timer. */
-const originalAccepted = accepted;
-
-accepted = function(){
-    clearTimeout(noTimer);
-    noRunning = false;
-    noBtn.classList.remove("running","locked");
-    noBtn.classList.add("unlocked");
-    noBtn.style.left = "";
-    noBtn.style.top = "";
-    noBtn.style.transform = "";
-
-    originalAccepted();
-};
-
-/* =========================================================
-   ACCEPTED -> DATE PLANNER
-========================================================= */
-
-function continueAfterAccepted(){
-    showScreen("datePlanner",88);
-    setupAugustDates();
-}
-
-/* =========================================================
-   TOUCH + KEYBOARD POLISH
-========================================================= */
-
-document.addEventListener("keydown", event => {
-    if(event.key === "Escape" && noRunning){
-        showToast("No is temporarily locked for 15 seconds 🤍");
-    }
-});
-
-window.addEventListener("resize", () => {
-    if(noRunning){
-        moveNoButton();
-    }
-});
-
-
-/* =========================================================
-   FINAL ACCEPTED FLOW OVERRIDE
-========================================================= */
-
-function accepted(){
-    clearTimeout(noTimer);
-    clearTimeout(noBtn?._unlockTimer);
-    noRunning = false;
-
-    if(noBtn){
-        noBtn.classList.remove("running","locked");
-        noBtn.classList.add("unlocked");
-        noBtn.style.left = "";
-        noBtn.style.top = "";
-        noBtn.style.transform = "";
-    }
-
-    heartExplosion();
-    createFloatingHearts();
-    showScreen("accepted",86);
-    sendEvent("YES");
+        setTimeout(() => {
+            star.remove();
+        }, 7500);
+
+    }, 700);
 }
 
 </script>
