@@ -1486,6 +1486,14 @@ footer {
 .modal-box.gift2 p{max-width:620px}
 @media(max-width:520px){.song-item{grid-template-columns:1fr}.song-download{width:100%}}
 
+
+/* ===== GIFT #02 LIVE SONG PLAYER UPGRADE ===== */
+.song-item{grid-template-columns:1fr auto auto;gap:9px}
+.song-play{min-width:40px;height:36px;border:1px solid rgba(245,220,168,.32);border-radius:999px;background:rgba(245,220,168,.10);color:var(--white);cursor:pointer}
+.song-item.playing{border-color:rgba(245,220,168,.7);background:rgba(245,220,168,.08)}
+.song-status{font-size:.78rem;opacity:.55;margin-top:4px}
+@media(max-width:520px){.song-item{grid-template-columns:1fr auto}.song-download{grid-column:1/-1}}
+
 </style>
 </head>
 <body>
@@ -2573,33 +2581,75 @@ function openGift(index) {
         const list = document.createElement("div");
         list.className = "song-list";
 
-        gift.songs.forEach(([label, file]) => {
+        gift.songs.forEach((song, index) => {
             const item = document.createElement("div");
             item.className = "song-item";
 
-            const name = document.createElement("span");
-            name.className = "song-name";
-            name.textContent = label;
+            const info = document.createElement("div");
+            info.innerHTML = `<div class="song-name">${song[0]}</div><div class="song-status">Ready to play</div>`;
+
+            const play = document.createElement("button");
+            play.className = "song-play";
+            play.type = "button";
+            play.textContent = "▶";
+            play.setAttribute("aria-label", "Play " + song[0]);
 
             const download = document.createElement("a");
             download.className = "song-download";
-            download.href = "./" + encodeURIComponent(file);
-            download.download = file;
-            download.textContent = "Download ↓";
+            download.href = song[1];
+            download.download = song[0];
+            download.textContent = "⬇ Download";
 
-            item.appendChild(name);
-            item.appendChild(download);
+            const audio = new Audio(song[1]);
+            audio.preload = "metadata";
+
+            play.addEventListener("click", async () => {
+                document.querySelectorAll(".song-item").forEach(el => {
+                    if (el !== item && el._giftAudio) {
+                        el._giftAudio.pause();
+                        el._giftAudio.currentTime = 0;
+                        el.querySelector(".song-play").textContent = "▶";
+                        el.querySelector(".song-status").textContent = "Ready to play";
+                        el.classList.remove("playing");
+                    }
+                });
+                try {
+                    if (audio.paused) {
+                        await audio.play();
+                        play.textContent = "❚❚";
+                        info.querySelector(".song-status").textContent = "Now playing";
+                        item.classList.add("playing");
+                    } else {
+                        audio.pause();
+                    }
+                } catch (err) {
+                    info.querySelector(".song-status").textContent = "Could not load song";
+                }
+            });
+            audio.addEventListener("pause", () => {
+                if (!audio.ended) {
+                    play.textContent = "▶";
+                    if (!audio.currentTime) info.querySelector(".song-status").textContent = "Ready to play";
+                    item.classList.remove("playing");
+                }
+            });
+            audio.addEventListener("ended", () => {
+                play.textContent = "▶";
+                info.querySelector(".song-status").textContent = "Finished";
+                item.classList.remove("playing");
+            });
+
+            item._giftAudio = audio;
+            item.append(info, play, download);
             list.appendChild(item);
         });
 
-        modalBox.insertBefore(list, closeButton);
-
         const note = document.createElement("div");
         note.className = "gift-note";
-        note.textContent = "Keep these four MP3 files in the same folder as this HTML page so the download buttons work.";
+        note.textContent = "Tap ▶ to play, ❚❚ to pause, or Download to save the song.";
+        modalBox.insertBefore(list, closeButton);
         modalBox.insertBefore(note, closeButton);
     }
-
     modal.classList.add("active");
     burstParticles(25);
 }
