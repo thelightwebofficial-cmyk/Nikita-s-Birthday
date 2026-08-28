@@ -3,9 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Happy Birthday Nikita ✦</title>
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
 
@@ -1475,661 +1473,600 @@ footer {
     }
 
 }
+
+.gift-actions{display:flex;flex-direction:column;gap:12px;margin-top:25px}
+.gift-link,.song-download{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:11px 18px;border:1px solid rgba(245,220,168,.28);border-radius:999px;background:rgba(255,255,255,.055);color:var(--white);text-decoration:none;font-family:Cinzel,serif;font-size:.72rem;letter-spacing:1.2px;transition:.3s ease}
+.gift-link:hover,.song-download:hover{transform:translateY(-3px);background:rgba(245,220,168,.12);border-color:rgba(245,220,168,.6);box-shadow:0 12px 35px rgba(0,0,0,.25)}
+.song-list{display:grid;gap:10px;margin:22px auto 0;max-width:480px}
+.song-item{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;padding:12px 14px;border:1px solid rgba(255,255,255,.09);border-radius:15px;background:rgba(255,255,255,.035);text-align:left}
+.song-name{font-size:1rem;opacity:.82}
+.song-download{min-height:36px;padding:8px 13px;font-size:.58rem;white-space:nowrap}
+.gift-note{margin-top:20px;font-size:.95rem;line-height:1.7;opacity:.58}
+.modal-box.gift2{width:min(700px,100%)}
+.modal-box.gift2 p{max-width:620px}
+@media(max-width:520px){.song-item{grid-template-columns:1fr}.song-download{width:100%}}
+
 </style>
 </head>
-
-
 <body>
-
-
 <!-- =========================================================
      OS BAR
 ========================================================= -->
-
 <div class="os-bar">
 
-    <div class="os-left">
 
-        <span class="os-light"></span>
+<div class="os-left">
 
-        birthdayOS
+    <span class="os-light"></span>
 
-    </div>
-
-    <div class="os-right">
-
-        <span id="date"></span>
-
-        <span id="time"></span>
-
-        <button
-            class="music-mini"
-            id="musicMini">
-            ♫
-        </button>
-
-    </div>
+    birthdayOS
 
 </div>
 
+<div class="os-right">
 
-<!-- =========================================================
-     MUSIC
-========================================================= -->
+    <span id="date"></span>
 
-<div class="music-player">
-
-    <div class="album">
-        ♫
-    </div>
-
-    <div class="track">
-
-        <strong>
-            golden hour — instrumental
-        </strong>
-
-        <span id="musicStatus">
-            Starting…
-        </span>
-
-    </div>
+    <span id="time"></span>
 
     <button
-        class="music-button"
-        id="musicButton">
-        ▶
+        class="music-mini"
+        id="musicMini">
+        ♫
     </button>
 
 </div>
 
 
+</div>
+<!-- =========================================================
+     MUSIC
+========================================================= -->
+<div class="music-player">
+
+
+<div class="album">
+    ♫
+</div>
+
+<div class="track">
+
+    <strong>
+        golden hour — instrumental
+    </strong>
+
+    <span id="musicStatus">
+        Starting…
+    </span>
+
+</div>
+
+<button
+    class="music-button"
+    id="musicButton">
+    ▶
+</button>
+
+
+</div>
 <!-- =========================================================
      AUDIO
      
      IMPORTANT:
      Keep this MP3 in the same folder as this HTML file.
 ========================================================= -->
-
 <audio
-    id="birthdayAudio"
-    autoplay
-    loop
-    preload="auto"
-    playsinline>
+ id="birthdayAudio"
+ autoplay
+ loop
+ preload="auto"
+ playsinline>
 
-    <source
-        src="./golden-hour-instrumental.mp3"
-        type="audio/mpeg">
+
+<source
+    src="./golden-hour-instrumental.mp3"
+    type="audio/mpeg">
+
 
 </audio>
-
-
 <!-- =========================================================
      BACKGROUND
 ========================================================= -->
-
 <div class="background">
 
-    <div class="stars"></div>
 
-    <div class="aurora"></div>
+<div class="stars"></div>
 
-    <div class="orb one"></div>
+<div class="aurora"></div>
 
-    <div class="orb two"></div>
+<div class="orb one"></div>
+
+<div class="orb two"></div>
+
+
+</div>
+<!-- =========================================================
+     OPENING
+========================================================= -->
+<section id="opening">
+
+
+<div class="opening-content">
+
+    <div class="system-label">
+        PERSONAL BIRTHDAY SYSTEM
+    </div>
+
+    <div class="kicker">
+        CLASSIFIED BIRTHDAY FILE · 27.08
+    </div>
+
+    <h1 class="opening-title">
+
+        <span class="name">
+            Nikita
+        </span>
+
+        <span class="subtitle">
+            BIRTHDAY EDITION
+        </span>
+
+    </h1>
+
+    <p class="opening-text">
+
+        A tiny birthday universe has been
+        prepared for one very specific person.
+
+        <br><br>
+
+        There are questions to answer,
+        gifts to unlock,
+        and a few surprises hidden inside.
+
+        <br><br>
+
+        Your birthdayOS is ready. ✦
+
+    </p>
+
+    <button
+        class="start-button"
+        onclick="startExperience()">
+
+        Enter BirthdayOS ✦
+
+    </button>
 
 </div>
 
 
+</section>
 <!-- =========================================================
-     OPENING
+     QUIZ
 ========================================================= -->
+<main id="game">
 
-<section id="opening">
 
-    <div class="opening-content">
+<div class="game-container">
 
-        <div class="system-label">
-            PERSONAL BIRTHDAY SYSTEM
+    <header class="game-header">
+
+        <small>
+            BIRTHDAY PERSONALITY TEST
+        </small>
+
+        <h2>
+            10 Questions
+        </h2>
+
+        <p>
+            There are no wrong answers.
+            Probably.
+        </p>
+
+    </header>
+
+
+    <div class="progress-wrapper">
+
+        <div class="progress-text">
+
+            <span id="questionCount">
+                QUESTION 1 / 10
+            </span>
+
+            <span id="percentage">
+                10%
+            </span>
+
         </div>
 
-        <div class="kicker">
-            CLASSIFIED BIRTHDAY FILE · 27.08
+        <div class="progress">
+
+            <div
+                class="progress-bar"
+                id="progressBar">
+            </div>
+
         </div>
 
-        <h1 class="opening-title">
+    </div>
+
+
+    <div
+        class="question-card"
+        id="questionCard">
+
+        <div
+            class="question-number"
+            id="questionNumber">
+
+            QUESTION 01
+
+        </div>
+
+        <div
+            class="question"
+            id="question">
+
+            Loading...
+
+        </div>
+
+        <div
+            class="options"
+            id="options">
+        </div>
+
+        <button
+            class="next-btn"
+            id="nextBtn">
+
+            Next Question →
+
+        </button>
+
+    </div>
+
+</div>
+
+
+</main>
+<!-- =========================================================
+     GIFTS
+========================================================= -->
+<section
+    id="gifts"
+    class="page-section hidden">
+
+
+<div class="section-label">
+    BIRTHDAY INVENTORY
+</div>
+
+<h2 class="section-title">
+    Your Gifts
+</h2>
+
+<p class="section-description">
+
+    Three little packages have been detected
+    inside the birthday system.
+
+    <br>
+
+    Tap any gift to open it. You can open every gift as many times as you want. ✦
+
+</p>
+
+
+<div class="gift-grid">
+    <div class="gift-card" data-gift="0">
+        <div class="gift-icon">🎁</div>
+        <h3>Gift #01</h3>
+        <p>A little surprise waiting beyond the box.</p>
+        <div class="tap">TAP TO OPEN · UNLIMITED</div>
+    </div>
+
+    <div class="gift-card" data-gift="1">
+        <div class="gift-icon">💌</div>
+        <h3>Gift #02</h3>
+        <p>Four songs and one tiny apology for the Hindi-song chaos.</p>
+        <div class="tap">TAP TO OPEN · UNLIMITED</div>
+    </div>
+
+    <div class="gift-card" data-gift="2">
+        <div class="gift-icon">✨</div>
+        <h3>Gift #03</h3>
+        <p>Another little door to something made especially for you.</p>
+        <div class="tap">TAP TO OPEN · UNLIMITED</div>
+    </div>
+</div>
+
+
+<!-- =====================================================
+     DIGITAL GIFT CARD
+===================================================== -->
+
+<div class="gift-card-special">
+
+    <div class="gift-card-inner">
+
+        <div class="card-chip"></div>
+
+        <h3>
+            Birthday Wish Card
+        </h3>
+
+        <p>
+
+            This card has no monetary value.
+
+            <br>
+
+            It is redeemable for one year
+            filled with good memories,
+            unexpected happiness,
+            and plenty of reasons to smile.
+
+        </p>
+
+        <div class="card-number">
+            NIKITA · BIRTHDAY · 2026
+        </div>
+
+        <div class="card-note">
+            NON-TRANSFERABLE · INFINITE VALIDITY
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+<!-- =========================================================
+     MESSAGE / MINI GIFTS
+========================================================= -->
+<section
+    id="messages"
+    class="page-section hidden">
+
+
+<div class="section-label">
+    BONUS CONTENT
+</div>
+
+<h2 class="section-title">
+    A Few Things Worth Keeping
+</h2>
+
+<p class="section-description">
+
+    Because one birthday card
+    was clearly not enough.
+
+</p>
+
+
+<div class="message-grid">
+
+
+    <div class="message-card">
+
+        <span>🌙</span>
+
+        <h3>
+            For Quiet Nights
+        </h3>
+
+        <p>
+            May you always have somewhere peaceful
+            to return to after a long day.
+        </p>
+
+    </div>
+
+
+    <div class="message-card">
+
+        <span>🌸</span>
+
+        <h3>
+            For Ordinary Days
+        </h3>
+
+        <p>
+            Hopefully some of the best memories
+            come from days you never planned.
+        </p>
+
+    </div>
+
+
+    <div class="message-card">
+
+        <span>✨</span>
+
+        <h3>
+            For Your Dreams
+        </h3>
+
+        <p>
+            Keep making room for things
+            that make you genuinely excited.
+        </p>
+
+    </div>
+
+
+    <div class="message-card">
+
+        <span>🎂</span>
+
+        <h3>
+            For This Birthday
+        </h3>
+
+        <p>
+            May today be one of those days
+            you remember with a smile later.
+        </p>
+
+    </div>
+
+</div>
+
+
+</section>
+<!-- =========================================================
+     RESULT
+========================================================= -->
+<section id="result">
+
+
+<div class="result-inner">
+
+    <div
+        class="result-icon"
+        id="resultIcon">
+        ✦
+    </div>
+
+    <div class="result-label">
+        YOUR BIRTHDAY PROFILE
+    </div>
+
+    <h1
+        class="result-title"
+        id="resultTitle">
+    </h1>
+
+    <p
+        class="result-description"
+        id="resultDescription">
+    </p>
+
+
+    <div class="result-card">
+
+        <p id="resultCardText"></p>
+
+    </div>
+
+
+    <div class="final-message">
+
+        <h3>
+            One Last Thing 🎂
+        </h3>
+
+        <p>
+
+            Birthdays are strange little reminders
+            that another year has passed and another
+            chapter is waiting to be written.
+
+            <br><br>
+
+            So here's my wish for yours:
+
+            <br><br>
+
+            May you find more reasons to laugh,
+            more moments worth remembering,
+            people who make ordinary days brighter,
+            and enough courage to chase the things
+            that truly matter to you.
+
+            <br><br>
+
+            Whatever this next year brings,
+            I hope it brings you somewhere
+            you're happy to be.
+
+            <br><br>
+
+            And yes...
+
+            <br>
+
+            you survived the highly scientific
+            birthday investigation. 😂
+
+        </p>
+
+        <div class="signature">
+
+            Happy Birthday,
 
             <span class="name">
                 Nikita
             </span>
 
-            <span class="subtitle">
-                BIRTHDAY EDITION
-            </span>
-
-        </h1>
-
-        <p class="opening-text">
-
-            A tiny birthday universe has been
-            prepared for one very specific person.
+            🎂
 
             <br><br>
 
-            There are questions to answer,
-            gifts to unlock,
-            and a few surprises hidden inside.
-
-            <br><br>
-
-            Your birthdayOS is ready. ✦
-
-        </p>
-
-        <button
-            class="start-button"
-            onclick="startExperience()">
-
-            Enter BirthdayOS ✦
-
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     QUIZ
-========================================================= -->
-
-<main id="game">
-
-    <div class="game-container">
-
-        <header class="game-header">
-
-            <small>
-                BIRTHDAY PERSONALITY TEST
-            </small>
-
-            <h2>
-                10 Questions
-            </h2>
-
-            <p>
-                There are no wrong answers.
-                Probably.
-            </p>
-
-        </header>
-
-
-        <div class="progress-wrapper">
-
-            <div class="progress-text">
-
-                <span id="questionCount">
-                    QUESTION 1 / 10
-                </span>
-
-                <span id="percentage">
-                    10%
-                </span>
-
-            </div>
-
-            <div class="progress">
-
-                <div
-                    class="progress-bar"
-                    id="progressBar">
-                </div>
-
-            </div>
+            — From someone who wanted your birthday
+            to feel a little different ✦
 
         </div>
-
-
-        <div
-            class="question-card"
-            id="questionCard">
-
-            <div
-                class="question-number"
-                id="questionNumber">
-
-                QUESTION 01
-
-            </div>
-
-            <div
-                class="question"
-                id="question">
-
-                Loading...
-
-            </div>
-
-            <div
-                class="options"
-                id="options">
-            </div>
-
-            <button
-                class="next-btn"
-                id="nextBtn">
-
-                Next Question →
-
-            </button>
-
-        </div>
-
-    </div>
-
-</main>
-
-
-<!-- =========================================================
-     GIFTS
-========================================================= -->
-
-<section
-    id="gifts"
-    class="page-section hidden">
-
-    <div class="section-label">
-        BIRTHDAY INVENTORY
-    </div>
-
-    <h2 class="section-title">
-        Your Gifts
-    </h2>
-
-    <p class="section-description">
-
-        Three little packages have been detected
-        inside the birthday system.
-
-        <br>
-
-        Tap each one to open it.
-
-    </p>
-
-
-    <div class="gift-grid">
-
-
-        <!-- GIFT 1 -->
-
-        <div
-            class="gift-card"
-            data-gift="0">
-
-            <div class="gift-icon">
-                🎁
-            </div>
-
-            <h3>
-                Gift #01
-            </h3>
-
-            <p>
-                Something warm,
-                simple and meaningful.
-            </p>
-
-            <div class="tap">
-                TAP TO OPEN
-            </div>
-
-        </div>
-
-
-        <!-- GIFT 2 -->
-
-        <div
-            class="gift-card"
-            data-gift="1">
-
-            <div class="gift-icon">
-                💌
-            </div>
-
-            <h3>
-                Gift #02
-            </h3>
-
-            <p>
-                A message hidden
-                inside an envelope.
-            </p>
-
-            <div class="tap">
-                TAP TO OPEN
-            </div>
-
-        </div>
-
-
-        <!-- GIFT 3 -->
-
-        <div
-            class="gift-card"
-            data-gift="2">
-
-            <div class="gift-icon">
-                ✨
-            </div>
-
-            <h3>
-                Gift #03
-            </h3>
-
-            <p>
-                A final surprise.
-                Definitely not suspicious.
-            </p>
-
-            <div class="tap">
-                TAP TO OPEN
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         DIGITAL GIFT CARD
-    ===================================================== -->
-
-    <div class="gift-card-special">
-
-        <div class="gift-card-inner">
-
-            <div class="card-chip"></div>
-
-            <h3>
-                Birthday Wish Card
-            </h3>
-
-            <p>
-
-                This card has no monetary value.
-
-                <br>
-
-                It is redeemable for one year
-                filled with good memories,
-                unexpected happiness,
-                and plenty of reasons to smile.
-
-            </p>
-
-            <div class="card-number">
-                NIKITA · BIRTHDAY · 2026
-            </div>
-
-            <div class="card-note">
-                NON-TRANSFERABLE · INFINITE VALIDITY
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     MESSAGE / MINI GIFTS
-========================================================= -->
-
-<section
-    id="messages"
-    class="page-section hidden">
-
-    <div class="section-label">
-        BONUS CONTENT
-    </div>
-
-    <h2 class="section-title">
-        A Few Things Worth Keeping
-    </h2>
-
-    <p class="section-description">
-
-        Because one birthday card
-        was clearly not enough.
-
-    </p>
-
-
-    <div class="message-grid">
-
-
-        <div class="message-card">
-
-            <span>🌙</span>
-
-            <h3>
-                For Quiet Nights
-            </h3>
-
-            <p>
-                May you always have somewhere peaceful
-                to return to after a long day.
-            </p>
-
-        </div>
-
-
-        <div class="message-card">
-
-            <span>🌸</span>
-
-            <h3>
-                For Ordinary Days
-            </h3>
-
-            <p>
-                Hopefully some of the best memories
-                come from days you never planned.
-            </p>
-
-        </div>
-
-
-        <div class="message-card">
-
-            <span>✨</span>
-
-            <h3>
-                For Your Dreams
-            </h3>
-
-            <p>
-                Keep making room for things
-                that make you genuinely excited.
-            </p>
-
-        </div>
-
-
-        <div class="message-card">
-
-            <span>🎂</span>
-
-            <h3>
-                For This Birthday
-            </h3>
-
-            <p>
-                May today be one of those days
-                you remember with a smile later.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     RESULT
-========================================================= -->
-
-<section id="result">
-
-    <div class="result-inner">
-
-        <div
-            class="result-icon"
-            id="resultIcon">
-            ✦
-        </div>
-
-        <div class="result-label">
-            YOUR BIRTHDAY PROFILE
-        </div>
-
-        <h1
-            class="result-title"
-            id="resultTitle">
-        </h1>
-
-        <p
-            class="result-description"
-            id="resultDescription">
-        </p>
-
-
-        <div class="result-card">
-
-            <p id="resultCardText"></p>
-
-        </div>
-
-
-        <div class="final-message">
-
-            <h3>
-                One Last Thing 🎂
-            </h3>
-
-            <p>
-
-                Birthdays are strange little reminders
-                that another year has passed and another
-                chapter is waiting to be written.
-
-                <br><br>
-
-                So here's my wish for yours:
-
-                <br><br>
-
-                May you find more reasons to laugh,
-                more moments worth remembering,
-                people who make ordinary days brighter,
-                and enough courage to chase the things
-                that truly matter to you.
-
-                <br><br>
-
-                Whatever this next year brings,
-                I hope it brings you somewhere
-                you're happy to be.
-
-                <br><br>
-
-                And yes...
-
-                <br>
-
-                you survived the highly scientific
-                birthday investigation. 😂
-
-            </p>
-
-            <div class="signature">
-
-                Happy Birthday,
-
-                <span class="name">
-                    Nikita
-                </span>
-
-                🎂
-
-                <br><br>
-
-                — From someone who wanted your birthday
-                to feel a little different ✦
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     GIFT MODAL
-========================================================= -->
-
-<div
-    class="modal"
-    id="giftModal">
-
-    <div class="modal-box">
-
-        <div
-            class="modal-icon"
-            id="modalIcon">
-            🎁
-        </div>
-
-        <h2
-            id="modalTitle">
-            Surprise
-        </h2>
-
-        <p
-            id="modalText">
-        </p>
-
-        <button
-            class="close-modal"
-            onclick="closeGift()">
-
-            Keep the surprise ✦
-
-        </button>
 
     </div>
 
 </div>
 
 
+</section>
+<!-- =========================================================
+     GIFT MODAL
+========================================================= -->
+<div
+    class="modal"
+    id="giftModal">
+
+
+<div class="modal-box">
+
+    <div
+        class="modal-icon"
+        id="modalIcon">
+        🎁
+    </div>
+
+    <h2
+        id="modalTitle">
+        Surprise
+    </h2>
+
+    <p
+        id="modalText">
+    </p>
+
+    <button
+        class="close-modal"
+        onclick="closeGift()">
+
+        Close & keep it ✦
+
+    </button>
+
+</div>
+
+
+</div>
 <!-- =========================================================
      FOOTER
 ========================================================= -->
-
 <footer>
 
-    BIRTHDAYOS · SYSTEM STATUS: HAPPY ✦
+
+BIRTHDAYOS · SYSTEM STATUS: HAPPY ✦
+
 
 </footer>
-
-
 <script>
 
 /* =========================================================
@@ -2563,104 +2500,115 @@ function revealSection(id) {
 ========================================================= */
 
 const gifts = [
-
     {
         icon: "🎁",
-        title: "A Little Reminder",
-        text:
-            "You don't need a perfect day to have a beautiful year. " +
-            "Sometimes the smallest moments become the ones you remember most."
+        title: "Gift #01 · A Little Surprise",
+        type: "link",
+        text: "A tiny door to the first surprise. Open it whenever you want. There is no one-time-only rule here. ✦",
+        url: "https://dm.terabox.app/sharing/link?surl=NnMzSS76ezVlr85ckZP5Dg&clearCache=1",
+        button: "Open Gift #01 ↗"
     },
-
     {
         icon: "💌",
-        title: "A Birthday Letter",
-        text:
-            "Happy Birthday, Nikita. " +
-            "I hope this year gives you plenty of reasons to smile, " +
-            "people who make you feel appreciated, and memories worth keeping."
+        title: "Gift #02 · The Song Mess",
+        type: "songs",
+        text: "I just messed up a little with the song choices because I had never really heard Hindi songs before 😭. So… please forgive the slightly chaotic playlist.",
+        songs: [
+            ["MERA DIL.mp3", "MERA DIL.mp3"],
+            ["Chand Mera Dil.mp3", "Chand Mera Dil.mp3"],
+            ["Ae Dil Hai Mushkil.mp3", "Ae Dil Hai Mushkil.mp3"],
+            ["Dil Mere.mp3", "Dil Mere.mp3"]
+        ]
     },
-
     {
         icon: "✨",
-        title: "The Secret Gift",
-        text:
-            "The actual gift is simple: " +
-            "I hope the person reading this knows that someone thought " +
-            "their birthday was important enough to build an entire little universe for."
+        title: "Gift #03 · One More Surprise",
+        type: "link",
+        text: "The final little door. You can come back and open this one again too. Unlimited replays. ✦",
+        url: "https://1024terabox.com/s/1Pgtt8JijXHOSm0pkNm34nw",
+        button: "Open Gift #03 ↗"
     }
-
 ];
 
-
-document
-    .querySelectorAll(".gift-card")
-    .forEach(card => {
-
-        card.addEventListener(
-            "click",
-            () => {
-
-                const index =
-                    Number(
-                        card.dataset.gift
-                    );
-
-                openGift(index);
-
-                card.classList.add(
-                    "opened"
-                );
-
-            }
-        );
-
+document.querySelectorAll(".gift-card").forEach(card => {
+    card.addEventListener("click", () => {
+        const index = Number(card.dataset.gift);
+        openGift(index);
+        card.classList.add("opened");
     });
-
+});
 
 function openGift(index) {
+    const gift = gifts[index];
+    const modal = document.getElementById("giftModal");
+    const modalBox = modal.querySelector(".modal-box");
+    const modalIcon = document.getElementById("modalIcon");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalText = document.getElementById("modalText");
+    const closeButton = document.querySelector(".close-modal");
 
-    const gift =
-        gifts[index];
+    modalIcon.textContent = gift.icon;
+    modalTitle.textContent = gift.title;
+    modalBox.classList.toggle("gift2", gift.type === "songs");
+    modalText.textContent = gift.text;
 
-    document
-        .getElementById("modalIcon")
-        .textContent =
-        gift.icon;
+    document.querySelectorAll(".gift-actions,.song-list,.gift-note").forEach(el => el.remove());
 
-    document
-        .getElementById("modalTitle")
-        .textContent =
-        gift.title;
+    if (gift.type === "link") {
+        const actions = document.createElement("div");
+        actions.className = "gift-actions";
 
-    document
-        .getElementById("modalText")
-        .textContent =
-        gift.text;
+        const link = document.createElement("a");
+        link.className = "gift-link";
+        link.href = gift.url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = gift.button;
 
-    document
-        .getElementById("giftModal")
-        .classList.add("active");
+        actions.appendChild(link);
+        modalBox.insertBefore(actions, closeButton);
+    }
 
+    if (gift.type === "songs") {
+        const list = document.createElement("div");
+        list.className = "song-list";
+
+        gift.songs.forEach(([label, file]) => {
+            const item = document.createElement("div");
+            item.className = "song-item";
+
+            const name = document.createElement("span");
+            name.className = "song-name";
+            name.textContent = label;
+
+            const download = document.createElement("a");
+            download.className = "song-download";
+            download.href = "./" + encodeURIComponent(file);
+            download.download = file;
+            download.textContent = "Download ↓";
+
+            item.appendChild(name);
+            item.appendChild(download);
+            list.appendChild(item);
+        });
+
+        modalBox.insertBefore(list, closeButton);
+
+        const note = document.createElement("div");
+        note.className = "gift-note";
+        note.textContent = "Keep these four MP3 files in the same folder as this HTML page so the download buttons work.";
+        modalBox.insertBefore(note, closeButton);
+    }
+
+    modal.classList.add("active");
     burstParticles(25);
-
 }
-
 
 function closeGift() {
-
-    document
-        .getElementById("giftModal")
-        .classList.remove("active");
-
-    setTimeout(() => {
-
-        revealSection("messages");
-
-    }, 350);
-
+    document.getElementById("giftModal").classList.remove("active");
+    // Nothing is consumed or locked. Every gift remains available forever.
+    setTimeout(() => revealSection("messages"), 350);
 }
-
 
 /* =========================================================
    MODAL BACKGROUND CLOSE
@@ -3019,6 +2967,5 @@ audio.addEventListener(
 );
 
 </script>
-
 </body>
 </html>
